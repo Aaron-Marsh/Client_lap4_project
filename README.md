@@ -6,7 +6,7 @@
 
 -   [Aaron Marsh](https://github.com/Aaron-Marsh)
 -   [William Sessions](https://github.com/Izgardon)
--   [Christopher Pucknell ](https://github.com/xargon666)
+-   [Christopher Pucknell](https://github.com/xargon666)
 -   [Rebecca Blixt](https://github.com/rebeccablixt)
 -   [Alice Kreslins](https://github.com/alicekres)
 
