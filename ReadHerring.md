@@ -9,26 +9,26 @@ Users can follow other users by adding a star.
 
 ## Product USP
 
-Read Herring's unique selling point is the the clear and accessible design which makes using the application pleasant.
+Read Herring's unique selling point is the clear and accessible design which makes using the application pleasant.
 
 ## Requirements
 
 ### Must Have's
 
--   user register/login
--   search for books/authors/users/forums
--   forum
--   following other users
--   add books to favourites/future reading/already read books
--   admin portal
+- user register/login
+- search for books/authors/users/forums
+- forum
+- following other users
+- add books to favourites/future reading/already read books
+- admin portal
 
-### Strecth Goals
+### Stretch Goals
 
--   chat using sockets
--   mail integration
+- chat using sockets
+- mail integration
 
 ## Technologies
 
--   Frontend - React
--   Backend - Python/Django
--   Database - Djongo
+- Frontend - React
+- Backend - Python/Django
+- Database - MongoDB
