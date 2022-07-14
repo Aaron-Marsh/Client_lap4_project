@@ -15,20 +15,20 @@ Read Herring's unique selling point is the the clear and accessible design which
 
 ### Must Have's
 
-- user register/login
-- search for books/authors/users/forums
-- forum
-- following other users
-- add books to favourites/future reading/already read books
-- admin portal
+-   user register/login
+-   search for books/authors/users/forums
+-   forum
+-   following other users
+-   add books to favourites/future reading/already read books
+-   admin portal
 
 ### Strecth Goals
 
-- chat using sockets
-- mail integration
+-   chat using sockets
+-   mail integration
 
 ## Technologies
 
-- Frontend - React
-- Backend - Python/Django
-- Database ?
+-   Frontend - React
+-   Backend - Python/Django
+-   Database - Djongo
