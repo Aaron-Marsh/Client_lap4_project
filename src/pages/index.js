@@ -1,5 +1,5 @@
-export { default as Home } from './Home';
-export { default as Books } from './Books';
-export { default as Forums } from './Forums';
-export { default as Profile } from './Profile';
-export { default as Search } from './Search';
+export { BooksPage } from './BooksPage';
+export { ForumsPage } from './ForumsPage';
+export { HomePage } from './HomePage';
+export { ProfilePage } from './ProfilePage';
+export { SearchPage } from './SearchPage';
