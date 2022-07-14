@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import {Home, Books, Forums} from './pages/index';
+import {Home, Books, Forums, Profile, Search} from './pages/index';
 
 
 import './App.css';
@@ -11,7 +11,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/books" element={<Books />}/>
-        <Route path="/Forums" element={<Forums />}/>
+        <Route path="/forums" element={<Forums />}/>
+        <Route path="/profile" element={<Profile />}/>
+        <Route path="/search" element={<Search />}/>
       </Routes>
     </>
   );
