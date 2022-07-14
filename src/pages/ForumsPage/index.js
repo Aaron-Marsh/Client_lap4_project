@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Forums() {
+export const ForumsPage = () => {
     return(
         <>
             <h2>Forums page</h2>
@@ -8,5 +8,3 @@ function Forums() {
         </>
     )
 }
-
-export default Forums;
