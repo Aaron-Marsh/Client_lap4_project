@@ -13,10 +13,10 @@ export const SearchBar = () => {
 				<option value='users'>Users</option>
 				<option value='threads'>Threads</option>
 			</select>
-			<form role='form' onSubmit={handleSubmit}>
+			<form>
 				<label htmlFor='search'>Search</label>
-				<input id='search' type='text' onChange={updateInput} value={search} />
-				<input type='submit' value='Search' />
+				<input id='search' type='text' value={search} />
+				<input type='submit' onChange='' value='Search' />
 			</form>
 		</>
 	);
