@@ -1,6 +1,6 @@
 import React from 'react';
 // Change to search results?
-function Search() {
+export const SearchPage = () => {
     return(
         <>
             <h2>Search page</h2>
@@ -8,5 +8,3 @@ function Search() {
         </>
     )
 }
-
-export default Search;
