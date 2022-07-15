@@ -14,7 +14,7 @@ export const LoginModal = () => {
 
     const handleSignIn = async (e) => {
         const backendUrl = '???https://red-devils-quiz.herokuapp.com/???';
-        const route = 'auth/login';
+        const route = '???auth/login???';
         e.preventDefault();
         try {
             if (username === '' || password === '') {
@@ -213,12 +213,6 @@ export const LoginModal = () => {
                         </div>
                         <div className="modal-footer justify-content-center">
                             <button
-                                type="button"
-                                class="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"
-                            ></button>
-                            <button
                                 className="btn btn-primary"
                                 // data-bs-target="#exampleModalToggle"
                                 // data-bs-toggle="modal"
@@ -231,7 +225,7 @@ export const LoginModal = () => {
                         <div className="modal-footer justify-content-center">
                             <button
                                 className="btn btn-primary"
-                                data-bs-target="#exampleModalToggle"
+                                data-bs-target="#exampleModalToggle2"
                                 data-bs-toggle="modal"
                             >
                                 Already have an account? Sign in.
