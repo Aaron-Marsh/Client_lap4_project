@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Forums = () => {
+export const ForumPost = () => {
 	return (
 		<>
 			<h2>Forum threads</h2>
