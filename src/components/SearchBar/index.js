@@ -4,6 +4,12 @@ export const SearchBar = () => {
 	const [search, setSearch] = useState('');
 
 	// useEffect, search api
+	const handleSubmit = () => {};
+
+	const updateInput = (e) => {
+		const input = e.target.value;
+		setSearch(input);
+	};
 
 	return (
 		<>
@@ -13,10 +19,10 @@ export const SearchBar = () => {
 				<option value='users'>Users</option>
 				<option value='threads'>Threads</option>
 			</select>
-			<form>
+			<form onSubmit={handleSubmit}>
 				<label htmlFor='search'>Search</label>
-				<input id='search' type='text' value={search} />
-				<input type='submit' onChange='' value='Search' />
+				<input id='search' type='text' onChange={updateInput} value={search} />
+				<input type='submit' value='Search' />
 			</form>
 		</>
 	);

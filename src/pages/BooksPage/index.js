@@ -1,11 +1,11 @@
 import React from 'react';
-import { Books } from '../../components/Books';
+import { BooksResult } from '../../components/BooksResult';
 
 export const BooksPage = () => {
 	return (
 		<>
 			<h2>Books page</h2>
-			<Books />
+			<BooksResult />
 		</>
 	);
 };
