@@ -12,43 +12,45 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Montserrat", sans-serif;
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
-    width: 15px;
+  width: 15px;
 }
 
 ::-webkit-scrollbar-track {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #b0b5b5;
-    border-radius: 20px;
-    border: 3px solid transparent;
-    background-clip: content-box;
+  background-color: #b0b5b5;
+  border-radius: 20px;
+  border: 3px solid transparent;
+  background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #494a4a;
+  background-color: #494a4a;
 }
 
 .navbar {
   display: flex;
   align-items: center;
-  /* primary header */
+
   width: 100%;
-  position: fixed;
+  position: absolute;
   z-index: 100;
   top: 0;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
 }
 
 .logo {
   margin-right: auto;
   padding-left: calc(min(2rem, 8%));
-  width: 4em;
-  height: 4rem;
+  padding-top: 0.75rem;
+  width: 4.5em;
+  height: 4.5em;
   position: relative;
 }
 
@@ -60,44 +62,33 @@ body {
 .nav-items {
   /* primary nav */
   padding-right: 5rem;
+
   display: flex;
-  gap: 3rem;
+
   list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
 }
 
 .link {
   position: relative;
-
+  padding-inline: 2rem;
+  padding-block: 2rem;
+  font-size: 1.125em;
   font-weight: 600;
   text-align: center;
   text-decoration: none;
-  color: rgb(36, 36, 36);
+  color: white;
+  cursor: pointer;
+  text-shadow: 0.5px 0 0 #000, 0 -0.5px 0 #000, 0 0.5px 0 #000, -0.5px 0 0 #000;
 }
 
-.nav-items > div {
-  background-color: white;
-  height: 2.8rem;
-  width: 5.8rem;
-  border-radius: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.link::after {
-  content: "";
-  z-index: 3000;
-  position: absolute;
-  width: 0;
-  height: 1px;
-  bottom: 0;
-  left: 0;
-  background-color: white;
-  transition: width 0.3s ease-in;
-}
-
-.link:hover::after {
-  width: 100%;
+.link:hover {
+  background-color: rgba(246, 107, 0, 0.9);
+  color: white;
 }
 
 @media (min-width: 47rem) and (max-width: 51rem) {
@@ -169,19 +160,52 @@ body {
     .nav-items {
       background: rgba(27, 27, 27, 0.5);
       backdrop-filter: blur(1em);
-    }
-    .nav-items > div {
-      background-color: transparent;
-      height: 2.8rem;
-      width: 5.8rem;
-      border-radius: 4rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      gap: 2rem;
     }
 
-    .link {
+    .link:hover {
+      background-color: transparent;
       color: white;
     }
+    .link {
+      color: white;
+      padding-inline: 0;
+      background-color: transparent !important;
+      padding-block: 0;
+    }
   }
+}
+
+/* Login footer */
+
+.login-footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  height: fit-content;
+  background-color: rgb(246, 107, 0);
+  display: flex;
+  align-items: center;
+}
+
+.login-footer-text {
+  margin-right: auto;
+  margin-left: 30%;
+  color: white;
+  padding-block: 0.5rem;
+  text-shadow: 0.5px 0 0 #000, 0 -0.5px 0 #000, 0 0.5px 0 #000, -0.5px 0 0 #000;
+}
+.login-footer-text > p {
+  font-size: 0.9rem;
+  margin-block: 0;
+}
+.login-footer-text > h4 {
+  margin-bottom: 0;
+  font-weight: 600;
+}
+
+.login-footer-buttons {
+  margin-right: 10%;
+  display: flex;
+  gap: 2rem;
 }
