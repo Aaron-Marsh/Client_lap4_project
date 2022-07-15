@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -95,4 +96,5 @@ export const Navbar = () => {
       </nav>
     </header>
   );
+
 };
