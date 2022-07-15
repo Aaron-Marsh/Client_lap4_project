@@ -6,7 +6,7 @@ export const SearchBar = () => {
 	// useEffect, search api
 	const handleSubmit = () => {};
 
-	const updateInput = () => {
+	const updateInput = (e) => {
 		const input = e.target.value;
 		setSearch(input);
 	};
