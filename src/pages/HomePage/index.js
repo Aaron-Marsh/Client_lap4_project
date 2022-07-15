@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { SearchBar } from "../../components/index";
+import { LoginFooter, SearchBar } from "../../components/index";
 import "./home.css";
 
 export const HomePage = () => {
@@ -163,20 +163,14 @@ export const HomePage = () => {
   return (
     <>
       <div className="home-banner">
-        <h1 className="home-title">Read Herring</h1>
         <div className="background-upper">
-          <img
+          {/* <img
             alt=""
             className="background-image-upper"
-            src={require("../../imgs/upper.jpg")}
-          ></img>
+            src={require("../../imgs/background.png")}
+          ></img> */}
         </div>
         <div className="background-lower">
-          <img
-            alt=""
-            className="background-image-lower"
-            src={require("../../imgs/lower.png")}
-          ></img>
           <svg width="0" height="0">
             <defs>
               <mask id="mask">
@@ -259,10 +253,7 @@ export const HomePage = () => {
         <div className="home-book"></div>
       </div>
 
-      {/* Register Button? */}
-      {/* User Login Button? */}
-
-      {/* footer? */}
+      <LoginFooter />
     </>
   );
 };

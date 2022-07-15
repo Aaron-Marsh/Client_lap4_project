@@ -1,108 +1,121 @@
-
-import React, { useEffect, useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { LoginModal } from '../LoginModal';
-import Button from 'react-bootstrap/Button';
-
+import React, { useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { LoginModal } from "../LoginModal";
+import Button from "react-bootstrap/Button";
 
 export const Navbar = () => {
-    const [modalShow, setModalShow] = useState(false);
-    const goTo = useNavigate();
-    let user = 'asd';
-    function toggle() {
-        let navItems = document.querySelector('.nav-items');
-        let navButton = document.querySelector('.mobile-nav-button');
+  const [modalShow, setModalShow] = useState(false);
 
-        let navLink = document.querySelectorAll('.link');
+  const [loggedIn, setLoggedIn] = useState(false);
 
-        for (let i = 0; i < navLink.length; i++) {
-            navLink[i].addEventListener('click', toggle);
-        }
+  function toggle() {
+    let navItems = document.querySelector(".nav-items");
+    let navButton = document.querySelector(".mobile-nav-button");
 
-        navButton.addEventListener('click', toggle);
+    let navLink = document.querySelectorAll(".link");
 
-        const visible = navItems.getAttribute('data-visible');
-
-        if (visible === 'false') {
-            navItems.setAttribute('data-visible', 'true');
-            navButton.setAttribute('data-open', 'true');
-            navButton.setAttribute('aria-expanded', 'true');
-        } else if (visible === 'true') {
-            navItems.setAttribute('data-visible', 'false');
-            navButton.setAttribute('data-open', 'false');
-            navButton.setAttribute('aria-expanded', 'false');
-        }
+    for (let i = 0; i < navLink.length; i++) {
+      navLink[i].addEventListener("click", toggle);
     }
-    useEffect(() => {
-        toggle();
-    }, []);
 
-    const handleLoginClick = () => {
-        console.log('clicked');
-    };
+    navButton.addEventListener("click", toggle);
 
-    return (
-        <>
-            <header className="navbar">
-                <button
-                    className="mobile-nav-button no-select"
-                    aria-controls="nav-items"
-                    aria-expanded="false"
-                    data-open="false"
-                >
-                    <span className="sr-only">Menu</span>
-                </button>
-                <div className="logo">
-                    <img
-                        className="logo-image"
-                        src={require('../../imgs/logo.png')}
-                    ></img>
-                </div>
-                <nav>
-                    <ul
-                        id="nav-items"
-                        className="nav-items"
-                        data-visible="false"
-                    >
-                        <div>
-                            <NavLink
-                                className="link"
-                                style={({ isActive }) => ({
-                                    color: isActive ? 'red' : '',
-                                })}
-                                to="/"
-                            >
-                                Home
-                            </NavLink>
-                        </div>
-                        <div>
-                            <NavLink
-                                className="link"
-                                style={({ isActive }) => ({
-                                    color: isActive ? 'red' : '',
-                                })}
-                                to="/books"
-                            >
-                                Books
-                            </NavLink>
-                        </div>
-                        <div>
-                            <NavLink
-                                className="link"
-                                style={({ isActive }) => ({
-                                    color: isActive ? 'red' : '',
-                                })}
-                                to="/forum"
-                            >
-                                Forum
-                            </NavLink>
-                        </div>
-                        <div onClick={() => setModalShow(true)}>Login</div>
-                    </ul>
-                </nav>
-            </header>
-            <LoginModal show={modalShow} onHide={() => setModalShow(false)} />
-        </>
-    );
+    const visible = navItems.getAttribute("data-visible");
 
+    if (visible === "false") {
+      navItems.setAttribute("data-visible", "true");
+      navButton.setAttribute("data-open", "true");
+      navButton.setAttribute("aria-expanded", "true");
+    } else if (visible === "true") {
+      navItems.setAttribute("data-visible", "false");
+      navButton.setAttribute("data-open", "false");
+      navButton.setAttribute("aria-expanded", "false");
+    }
+  }
+  useEffect(() => {
+    toggle();
+  }, []);
+
+  const handleLoginClick = () => {
+    console.log("clicked");
+  };
+
+  return (
+    <>
+      <header className="navbar">
+        <button
+          className="mobile-nav-button no-select"
+          aria-controls="nav-items"
+          aria-expanded="false"
+          data-open="false"
+        >
+          <span className="sr-only">Menu</span>
+        </button>
+        <NavLink className="logo" to="/">
+          <img
+            className="logo-image"
+            src={require("../../imgs/logo.png")}
+          ></img>
+        </NavLink>
+        <nav>
+          <ul id="nav-items" className="nav-items" data-visible="false">
+            <div>
+              <NavLink
+                className="link"
+                style={({ isActive }) => ({
+                  color: isActive ? "white" : "",
+                  backgroundColor: isActive ? "rgba(246, 107, 0, 0.9)" : "",
+                })}
+                to="/"
+              >
+                Home
+              </NavLink>
+            </div>
+            <div>
+              <NavLink
+                className="link"
+                style={({ isActive }) => ({
+                  color: isActive ? "white" : "",
+                  backgroundColor: isActive ? "rgba(246, 107, 0, 0.9)" : "",
+                })}
+                to="/books"
+              >
+                Books
+              </NavLink>
+            </div>
+            <div>
+              <NavLink
+                className="link"
+                style={({ isActive }) => ({
+                  color: isActive ? "white" : "",
+                  backgroundColor: isActive ? "rgba(246, 107, 0, 0.9)" : "",
+                })}
+                to="/forum"
+              >
+                Forum
+              </NavLink>
+            </div>
+            <div>
+              <NavLink
+                className="link"
+                style={({ isActive }) => ({
+                  color: isActive ? "white" : "",
+                  backgroundColor: loggedIn
+                    ? isActive
+                      ? "rgba(246, 107, 0, 0.9)"
+                      : ""
+                    : "",
+                })}
+                onClick={loggedIn ? "" : () => setModalShow(true)}
+                to={loggedIn ? "/profile" : {}}
+              >
+                Profile
+              </NavLink>
+            </div>
+          </ul>
+        </nav>
+      </header>
+      <LoginModal show={modalShow} onHide={() => setModalShow(false)} />
+    </>
+  );
 };
