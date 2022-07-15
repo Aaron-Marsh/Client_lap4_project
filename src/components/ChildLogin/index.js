@@ -6,12 +6,18 @@ import Modal from 'react-bootstrap/Modal';
 export function ChildLoginModal(props) {
     return (
         <>
-            <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
+            <Modal.Header
+                closeButton
+                d-flex
+                className="align-items-center"
+            ></Modal.Header>
+            <Modal.Body>
+                <Modal.Title
+                    id="contained-modal-title-vcenter"
+                    className="ms-auto"
+                >
                     Log In
                 </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
                 <Form>
                     <Form.Group
                         className="mb-3"

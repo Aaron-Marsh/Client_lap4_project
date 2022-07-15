@@ -3,11 +3,14 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
-export function ChildSignUpModal(props) {
+export const ChildSignUpModal = (props) => {
     return (
         <>
-            <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
+            <Modal.Header closeButton d-flex className="align-items-center">
+                <Modal.Title
+                    id="contained-modal-title-vcenter"
+                    className="ms-auto"
+                >
                     Sign Up
                 </Modal.Title>
             </Modal.Header>
@@ -67,4 +70,4 @@ export function ChildSignUpModal(props) {
             </Modal.Footer>
         </>
     );
-}
+};
