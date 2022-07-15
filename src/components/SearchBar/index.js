@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
+// import axios from 'axios';
+// import { useSelector, useDispatch } from 'react-redux';
 
-export const SearchBar = () => {
+export const SearchBar = ({ getBooks }) => {
+	// checks if user is logged in for search results
+	// const isLoggedIn = useSelector((state) => state.isLoggedIn);
 	const [search, setSearch] = useState('');
 
-	// useEffect, search api
-	const handleSubmit = () => {};
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		getBooks(search);
+		console.log(search);
+	};
 
 	const updateInput = (e) => {
 		const input = e.target.value;
@@ -12,18 +19,10 @@ export const SearchBar = () => {
 	};
 
 	return (
-		<>
-			<select type=''>
-				<option value=''>Category</option>
-				<option value='books'>Books</option>
-				<option value='users'>Users</option>
-				<option value='threads'>Threads</option>
-			</select>
-			<form onSubmit={handleSubmit}>
-				<label htmlFor='search'>Search</label>
-				<input id='search' type='text' onChange={updateInput} value={search} />
-				<input type='submit' value='Search' />
-			</form>
-		</>
+		<form onSubmit={handleSubmit}>
+			<label htmlFor='search'>Search</label>
+			<input id='search' type='text' onChange={updateInput} value={search} />
+			<input type='submit' value='Search' />
+		</form>
 	);
 };
