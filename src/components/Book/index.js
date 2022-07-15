@@ -1,7 +1,6 @@
 import React from 'react';
 
 export const Book = () => {
-    <>
-    <p> Hello I am a book </p>
-    </>
+    
+	return <p> Hello I am a book </p>;
 };

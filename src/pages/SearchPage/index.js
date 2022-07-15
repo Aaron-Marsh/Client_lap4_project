@@ -1,10 +1,12 @@
 import React from 'react';
-// Change to search results?
+import { SearchBar } from '../../components/index';
+
 export const SearchPage = () => {
-    return(
-        <>
-            <h2>Search page</h2>
-            {/* search results here */}
-        </>
-    )
-}
+	return (
+		<>
+			<h2>Search page</h2>
+			<SearchBar />
+			{/* Search results here*/}
+		</>
+	);
+};
