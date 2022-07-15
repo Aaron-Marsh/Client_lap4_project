@@ -116,7 +116,7 @@ export const HomePage = () => {
       let x = Math.floor(Math.random() * w);
       let m = (y * 700) / h + 200;
       let newFish = document.createElement("DIV");
-      newFish.className = "suportPeix";
+      newFish.className = "newFish";
       newFish.style.top = y + "px";
       newFish.style.left = x + m > w ? w - m + "px" : x + "px";
       if (Math.random() > 0.5) newFish.style.transform = "scale(-1,1)";
@@ -162,7 +162,6 @@ export const HomePage = () => {
   };
   return (
     <>
-      <h2>Home page</h2>
       <div className="background-upper">
         <img
           alt=""
@@ -248,7 +247,7 @@ export const HomePage = () => {
       {/* Books of the Week link */}
       {/* Register Button? */}
       {/* User Login Button? */}
-      <SearchBar />
+
       {/* footer? */}
     </>
   );
