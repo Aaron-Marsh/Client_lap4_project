@@ -184,33 +184,33 @@ export const HomePage = () => {
             </mask>
             <linearGradient id="grad0" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="20%" stopColor="#cc0000" />
-              <stop offset="50%" stopColor="#ff0000" />
-              <stop offset="100%" stopColor="#ffffff" />
+              <stop offset="70%" stopColor="#ff0000" />
+              <stop offset="100%" stopColor="#ffcccb" />
             </linearGradient>
             <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="20%" stopColor="#cc0000" />
-              <stop offset="50%" stopColor="#ff0000" />
-              <stop offset="100%" stopColor="#ffffff" />
+              <stop offset="70%" stopColor="#ff0000" />
+              <stop offset="100%" stopColor="#ffcccb" />
             </linearGradient>
             <linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="20%" stopColor="#cc0000" />
-              <stop offset="50%" stopColor="#ff0000" />
-              <stop offset="100%" stopColor="#ffffff" />
+              <stop offset="70%" stopColor="#ff0000" />
+              <stop offset="100%" stopColor="#ffcccb" />
             </linearGradient>
             <linearGradient id="grad3" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="20%" stopColor="#cc0000" />
-              <stop offset="50%" stopColor="#ff0000" />
-              <stop offset="100%" stopColor="#ffffff" />
+              <stop offset="70%" stopColor="#ff0000" />
+              <stop offset="100%" stopColor="#ffcccb" />
             </linearGradient>
             <linearGradient id="grad4" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="20%" stopColor="#cc0000" />
-              <stop offset="50%" stopColor="#ff0000" />
-              <stop offset="100%" stopColor="#ffffff" />
+              <stop offset="70%" stopColor="#ff0000" />
+              <stop offset="100%" stopColor="#ffcccb" />
             </linearGradient>
             <linearGradient id="vermell" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="20%" stopColor="#cc0000" />
-              <stop offset="50%" stopColor="#ff0000" />
-              <stop offset="100%" stopColor="#ffffff" />
+              <stop offset="70%" stopColor="#ff0000" />
+              <stop offset="100%" stopColor="#ffcccb" />
             </linearGradient>
             <g id="peix" transform="translate(100,-100) scale(-2,2)">
               <path
