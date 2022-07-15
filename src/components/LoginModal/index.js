@@ -1,126 +1,248 @@
-// import React, { useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
-// import axios from 'axios';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-// const LoginModal = () => {
-//     const [username, setUsername] = useState('');
-//     const [password, setPassword] = useState('');
-//     const [error, setError] = useState('');
-//     const [errorVisibility, setErrorVisibility] = useState('hidden');
+export const LoginModal = () => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [errorVisibility, setErrorVisibility] = useState('hidden');
 
-//     const dispatch = useDispatch();
-//     let navigate = useNavigate();
+    const dispatch = useDispatch();
+    let navigate = useNavigate();
 
-//     const handleSignIn = async (e) => {
-//         const backendUrl = '???https://red-devils-quiz.herokuapp.com/???';
-//         const route = 'auth/login';
-//         e.preventDefault();
-//         try {
-//             if (username === '' || password === '') {
-//                 setError('Missing username or password!');
-//             } else {
-//                 await axios.post(
-//                     `${backendUrl}${route}`,
-//                     JSON.stringify({ username, password }),
-//                     {
-//                         headers: { 'Content-Type': 'application/json' },
-//                     }
-//                 );
-//                 dispatch({ type: 'SET USER', payload: username });
-//                 navigate('/???home???');
-//             }
-//             setUsername('');
-//             setPassword('');
-//         } catch (err) {
-//             if (!err?.response) {
-//                 setError('No server response!');
-//             } else if (err.response?.status === 401) {
-//                 setError(
-//                     'Unauthorized! Create an account or check your username and password spelling!'
-//                 );
-//                 setErrorVisibility('visible');
-//                 setTimeout(() => {
-//                     setErrorVisibility('hidden');
-//                 }, '2000');
-//             } else {
-//                 setError('Login failed!');
-//                 setErrorVisibility('visible');
-//                 setTimeout(() => {
-//                     setErrorVisibility('hidden');
-//                 }, '2000');
-//             }
-//         }
-//     };
+    const handleSignIn = async (e) => {
+        const backendUrl = '???https://red-devils-quiz.herokuapp.com/???';
+        const route = 'auth/login';
+        e.preventDefault();
+        try {
+            if (username === '' || password === '') {
+                setError('Missing username or password!');
+            } else {
+                await axios.post(
+                    `${backendUrl}${route}`,
+                    JSON.stringify({ username, password }),
+                    {
+                        headers: { 'Content-Type': 'application/json' },
+                    }
+                );
+                dispatch({ type: 'SET USER', payload: username });
+                navigate('/profile');
+            }
+            setUsername('');
+            setPassword('');
+        } catch (err) {
+            if (!err?.response) {
+                setError('No server response!');
+            } else if (err.response?.status === 401) {
+                setError(
+                    'Unauthorized! Create an account or check your username and password spelling!'
+                );
+                setErrorVisibility('visible');
+                setTimeout(() => {
+                    setErrorVisibility('hidden');
+                }, '2000');
+            } else {
+                setError('Login failed!');
+                setErrorVisibility('visible');
+                setTimeout(() => {
+                    setErrorVisibility('hidden');
+                }, '2000');
+            }
+        }
+    };
 
-//     const onUsernameChange = (e) => {
-//         setUsername(e.target.value);
-//     };
+    const onUsernameChange = (e) => {
+        setUsername(e.target.value);
+    };
 
-//     const onPasswordChange = (e) => {
-//         setPassword(e.target.value);
-//     };
+    const onPasswordChange = (e) => {
+        setPassword(e.target.value);
+    };
 
-//     return (
-//         <>
-//             <div className="introText">
-//                 <h2 className="introLine1">Fun quiz game</h2>
-//                 <h2>Will you be dumbfounded?</h2>
-//             </div>
-//             <div className="loginError" style={{ visibility: errorVisibility }}>
-//                 {error}
-//             </div>
-//             <form
-//                 data-testid="form"
-//                 aria-label="login"
-//                 className="loginForm"
-//                 onSubmit={handleSignIn}
-//             >
-//                 <h2 className="loginText">Login</h2>
-//                 <label className="userLabel" htmlFor="username">
-//                     Username
-//                 </label>
-//                 <input
-//                     type="text"
-//                     name="username"
-//                     id="username"
-//                     className="usernameInput"
-//                     autoFocus
-//                     placeholder="Username"
-//                     value={username}
-//                     onChange={onUsernameChange}
-//                     data-testid="usernameInput"
-//                 />
-//                 <label className="passLabel" htmlFor="password">
-//                     Password
-//                 </label>
-//                 <input
-//                     type="password"
-//                     name="password"
-//                     id="password"
-//                     className="passwordInput"
-//                     autoFocus
-//                     placeholder="Password"
-//                     value={password}
-//                     onChange={onPasswordChange}
-//                     data-testid="passwordInput"
-//                 />
-//                 <button
-//                     data-testid="signIn"
-//                     className="signIn"
-//                     onClick={handleSignIn}
-//                 >
-//                     Sign in
-//                 </button>
-//                 <button
-//                     className="createAccount"
-//                     onClick={() => navigate('/register')}
-//                 >
-//                     Create an account
-//                 </button>
-//             </form>
-//         </>
-//     );
-// };
+    return (
+        <>
+            <div
+                className="modal fade"
+                id="exampleModalToggle"
+                aria-hidden="true"
+                aria-labelledby="exampleModalToggleLabel"
+                tabIndex="-1"
+            >
+                <div className="modal-dialog modal-dialog-centered text-center">
+                    <div className="modal-content">
+                        <div className="modal-body">
+                            <h5
+                                className="modal-title"
+                                id="exampleModalToggleLabel"
+                            >
+                                Login
+                            </h5>
+                        </div>
 
-// export default LoginModal;
+                        <div className="mb-3">
+                            <label
+                                htmlFor="recipient-name"
+                                className="col-form-label"
+                            >
+                                Username
+                            </label>
+                            <input
+                                type="text"
+                                className="form-control attractions-title"
+                                maxLength="35"
+                                onChange={onUsernameChange}
+                                required
+                            />
+                            <div className="mb-3">
+                                <label
+                                    htmlFor="recipient-name"
+                                    className="col-form-label"
+                                >
+                                    Password
+                                </label>
+                                <input
+                                    type="text"
+                                    className="form-control attractions-title"
+                                    onChange={onPasswordChange}
+                                    maxLength="35"
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <div className="modal-footer justify-content-center">
+                            <button
+                                className="btn btn-primary"
+                                onClick={handleSignIn}
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                            >
+                                Sign in
+                            </button>
+                        </div>
+                        <div className="modal-footer justify-content-center">
+                            <button
+                                className="btn btn-primary"
+                                data-bs-target="#exampleModalToggle2"
+                                data-bs-toggle="modal"
+                            >
+                                Create Account
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* className="modal fade"
+                id="exampleModalToggle"
+                aria-hidden="true"
+                aria-labelledby="exampleModalToggleLabel"
+                tabIndex="-1" */}
+            <div
+                className="modal fade"
+                id="exampleModalToggle2"
+                aria-hidden="true"
+                aria-labelledby="exampleModalToggleLabel2"
+                tabIndex="-1"
+            >
+                <div className="modal-dialog modal-dialog-centered text-center">
+                    <div className="modal-content">
+                        <div className="modal-body">
+                            <h5
+                                className="modal-title"
+                                id="exampleModalToggleLabel2"
+                            >
+                                Create Account
+                            </h5>
+                        </div>
+                        <div className="mb-3">
+                            <label
+                                htmlFor="recipient-name"
+                                className="col-form-label"
+                            >
+                                Username
+                            </label>
+                            <input
+                                type="text"
+                                className="form-control attractions-title"
+                                maxLength="35"
+                                required
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label
+                                htmlFor="recipient-name"
+                                className="col-form-label"
+                            >
+                                Email
+                            </label>
+                            <input
+                                type="text"
+                                className="form-control attractions-title"
+                                maxLength="35"
+                                required
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label
+                                htmlFor="recipient-name"
+                                className="col-form-label"
+                            >
+                                Password
+                            </label>
+                            <input
+                                type="text"
+                                className="form-control attractions-title"
+                                maxLength="35"
+                                required
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label
+                                htmlFor="recipient-name"
+                                className="col-form-label"
+                            >
+                                Confirm password
+                            </label>
+                            <input
+                                type="text"
+                                className="form-control attractions-title"
+                                maxLength="35"
+                                required
+                            />
+                        </div>
+                        <div className="modal-footer justify-content-center">
+                            <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                            ></button>
+                            <button
+                                className="btn btn-primary"
+                                // data-bs-target="#exampleModalToggle"
+                                // data-bs-toggle="modal"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                            >
+                                Sign up
+                            </button>
+                        </div>
+                        <div className="modal-footer justify-content-center">
+                            <button
+                                className="btn btn-primary"
+                                data-bs-target="#exampleModalToggle"
+                                data-bs-toggle="modal"
+                            >
+                                Already have an account? Sign in.
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a data-bs-toggle="modal" href="#exampleModalToggle" role="button">
+                Login
+            </a>
+        </>
+    );
+};

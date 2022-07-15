@@ -6,3 +6,4 @@ export { Navbar } from './Navbar';
 export { Profile } from './Profile';
 export { SearchBar } from './SearchBar';
 export { SearchResults } from './SearchResults';
+export { LoginModal } from './LoginModal';
