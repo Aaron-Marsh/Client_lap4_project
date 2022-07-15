@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -42,59 +41,49 @@ export const Navbar = () => {
       >
         <span className="sr-only">Menu</span>
       </button>
-      <div className="logo">
+      <NavLink to="/" className="logo">
         <img className="logo-image" src={require("../../imgs/logo.png")}></img>
-      </div>
+      </NavLink>
       <nav>
         <ul id="nav-items" className="nav-items" data-visible="false">
-          <div>
-            <NavLink
-              className="link"
-              style={({ isActive }) => ({
-                color: isActive ? "red" : "",
-              })}
-              to="/"
-            >
-              Home
-            </NavLink>
-          </div>
-          <div>
-            <NavLink
-              className="link"
-              style={({ isActive }) => ({
-                color: isActive ? "red" : "",
-              })}
-              to="/books"
-            >
-              Books
-            </NavLink>
-          </div>
-          <div>
-            <NavLink
-              className="link"
-              style={({ isActive }) => ({
-                color: isActive ? "red" : "",
-              })}
-              to="/forum"
-            >
-              Forum
-            </NavLink>
-          </div>
-          <div>
-            <NavLink
-              className="link"
-              style={({ isActive }) => ({
-                color: isActive ? "red" : "",
-              })}
-              to="/login"
-            >
-              Login
-              {/* supp</div>osed to be modal but will be fixed later */}
-            </NavLink>
-          </div>
+          <NavLink
+            className="link"
+            style={({ isActive }) => ({
+              color: isActive ? "red" : "",
+            })}
+            to="/"
+          >
+            <div class="cloud">Home</div>
+          </NavLink>
+          <NavLink
+            className="link"
+            style={({ isActive }) => ({
+              color: isActive ? "red" : "",
+            })}
+            to="/books"
+          >
+            <div class="cloud">Books</div>
+          </NavLink>
+          <NavLink
+            className="link"
+            style={({ isActive }) => ({
+              color: isActive ? "red" : "",
+            })}
+            to="/forum"
+          >
+            <div class="cloud">Forum</div>
+          </NavLink>
+          <NavLink
+            className="link"
+            style={({ isActive }) => ({
+              color: isActive ? "red" : "",
+            })}
+            to="/login"
+          >
+            <div class="cloud">Login</div>
+          </NavLink>
         </ul>
       </nav>
     </header>
   );
-
 };
