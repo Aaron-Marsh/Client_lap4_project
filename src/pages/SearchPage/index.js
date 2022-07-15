@@ -1,7 +1,7 @@
 import React from 'react';
 import { SearchBar } from '../../components/index';
 
-export const Search = () => {
+export const SearchPage = () => {
 	return (
 		<>
 			<h2>Search page</h2>
