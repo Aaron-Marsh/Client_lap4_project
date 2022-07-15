@@ -156,6 +156,7 @@ export const HomePage = () => {
 	window.onresize = function () {
 		clearTimeout(timeoutResize);
 
+
 		timeoutResize = setTimeout(function () {
 			window.location.reload();
 		}, 250);
@@ -241,6 +242,7 @@ export const HomePage = () => {
 					</defs>
 				</svg>
 			</div>
+
 
 			{/* Books of the Week link */}
 			{/* Register Button? */}
