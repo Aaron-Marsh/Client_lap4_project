@@ -152,7 +152,7 @@ export const HomePage = () => {
   useEffect(() => {
     fishes();
   }, []);
-  let timeoutResize = setTimeout("", 1);
+  let timeoutResize;
   window.onresize = function () {
     clearTimeout(timeoutResize);
 
