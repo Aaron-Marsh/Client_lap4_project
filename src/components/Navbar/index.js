@@ -1,7 +1,9 @@
+
 import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { LoginModal } from '../LoginModal';
 import Button from 'react-bootstrap/Button';
+
 
 export const Navbar = () => {
     const [modalShow, setModalShow] = useState(false);
@@ -102,4 +104,5 @@ export const Navbar = () => {
             <LoginModal show={modalShow} onHide={() => setModalShow(false)} />
         </>
     );
+
 };
