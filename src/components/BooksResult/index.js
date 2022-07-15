@@ -1,7 +1,7 @@
 import React from 'react';
-import { Book } from '../index';
+import { Book } from '../Book';
 
-export const Books = () => {
+export const BooksResult = () => {
 	return (
 		<>
 			<h2>Take a look at all of these amazing books!</h2>
