@@ -1,6 +1,23 @@
-import axios from 'axios';
+import axios from "axios";
 
-// const loading = ({ amount, category, difficulty }) => ({
-//     type: 'LOADING',
-//     payload: { category: category, amount: amount, difficulty: difficulty },
-// });
+//LoggedIn
+
+export const login = () => {
+  return {
+    type: "change",
+  };
+};
+
+export const logout = () => {
+  return {
+    type: "change",
+  };
+};
+
+//Login Footer
+
+export const close = () => {
+  return {
+    type: "close",
+  };
+};
