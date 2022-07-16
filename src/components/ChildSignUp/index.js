@@ -1,13 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
-export function ChildSignUpModal(props) {
+export const ChildSignUpModal = (props) => {
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
+    const onUsernameChange = (e) => {
+        setUsername(e.target.value);
+    };
+
+    const onEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const onPasswordChange = (e) => {
+        setPassword(e.target.value);
+    };
+
+    const onConfirmPasswordChange = (e) => {
+        setConfirmPassword(e.target.value);
+    };
+
     return (
         <>
-            <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
+            <Modal.Header closeButton d-flex className="align-items-center">
+                <Modal.Title
+                    id="contained-modal-title-vcenter"
+                    className="ms-auto"
+                >
                     Sign Up
                 </Modal.Title>
             </Modal.Header>
@@ -22,6 +46,7 @@ export function ChildSignUpModal(props) {
                             type="text"
                             placeholder="Username"
                             autoFocus
+                            onChange={onUsernameChange}
                         />
                     </Form.Group>
                     <Form.Group
@@ -33,6 +58,7 @@ export function ChildSignUpModal(props) {
                             type="email"
                             placeholder="name@example.com"
                             autoFocus
+                            onChange={onEmailChange}
                         />
                     </Form.Group>
                     <Form.Group
@@ -44,6 +70,7 @@ export function ChildSignUpModal(props) {
                             type="text"
                             placeholder="Password"
                             autoFocus
+                            onChange={onPasswordChange}
                         />
                     </Form.Group>
                     <Form.Group
@@ -55,6 +82,7 @@ export function ChildSignUpModal(props) {
                             type="text"
                             placeholder="Confirm password"
                             autoFocus
+                            onChange={onConfirmPasswordChange}
                         />
                     </Form.Group>
                 </Form>
@@ -67,4 +95,4 @@ export function ChildSignUpModal(props) {
             </Modal.Footer>
         </>
     );
-}
+};
