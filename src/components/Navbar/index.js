@@ -109,7 +109,7 @@ export const Navbar = () => {
                 onClick={loggedIn ? "" : () => setModalShow(true)}
                 to={loggedIn ? "/profile" : {}}
               >
-                Profile
+                {loggedIn ? "Profile" : "Sign in"}
               </NavLink>
             </div>
           </ul>

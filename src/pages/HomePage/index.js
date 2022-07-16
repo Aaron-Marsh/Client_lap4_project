@@ -1,8 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { LoginFooter, SearchBar } from "../../components/index";
 import "./home.css";
 
 export const HomePage = () => {
+  //Background related functions for fish
+
   function fishes() {
     let water = document.querySelector(".background-lower");
     let images = 36;
@@ -160,6 +162,30 @@ export const HomePage = () => {
       window.location.reload();
     }, 250);
   };
+
+  //--------------------------
+  //Scrolling functions for login footer
+
+  const [showLoginFooter, setShowLoginFooter] = useState(false);
+
+  useEffect(() => {
+    let myScrollFunc = function () {
+      console.log("hello");
+      let y = window.scrollY;
+      if (y >= 300) {
+        setShowLoginFooter(true);
+      } else {
+        setShowLoginFooter(false);
+      }
+    };
+
+    window.addEventListener("scroll", myScrollFunc);
+
+    return () => {
+      window.removeEventListener("scroll", myScrollFunc);
+    };
+  }, []);
+
   return (
     <>
       <div className="home-banner">
@@ -252,8 +278,7 @@ export const HomePage = () => {
         </div>
         <div className="home-book"></div>
       </div>
-
-      <LoginFooter />
+      {showLoginFooter ? <LoginFooter /> : ""}
     </>
   );
 };

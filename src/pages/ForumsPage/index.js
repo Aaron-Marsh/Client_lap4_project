@@ -1,6 +1,5 @@
 import React from 'react';
-import { ForumPosts } from '../../components/index';
-import { SearchBar } from '../../components/index';
+import { SearchBar, LoginFooter, ForumPosts } from "../../components/index";
 
 export const ForumsPage = () => {
 
@@ -9,6 +8,7 @@ export const ForumsPage = () => {
 			<h2>Forums page</h2>
 			<SearchBar />
 			<ForumPosts/>
+			<LoginFooter />
 		</div>
 	);
 };
