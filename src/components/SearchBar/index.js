@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 // import axios from 'axios';
 // import { useSelector, useDispatch } from 'react-redux';
 
-export const SearchBar = ({ getBooks }) => {
+export const SearchBar = ({ getResults }) => {
 	// checks if user is logged in for search results
 	// const isLoggedIn = useSelector((state) => state.isLoggedIn);
 	const [search, setSearch] = useState('');
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		getBooks(search);
+		getResults(search);
 		console.log(search);
 	};
 

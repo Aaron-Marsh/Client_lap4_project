@@ -36,7 +36,7 @@ export const BooksResult = () => {
 		<>
 			<h2>Take a look at all of these amazing books!</h2>
 			<p>WOW!</p>
-			<SearchBar getBooks={fetchBooks} />
+			<SearchBar getResults={fetchBooks} />
 			<div className='books-result-wrapper'>
 				<Carousel show={4} infiniteLoop={true}>
 					<div className='image-container'>
