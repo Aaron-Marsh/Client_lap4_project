@@ -1,5 +1,6 @@
 export { Book } from './Book';
 export { BooksResult } from './BooksResult';
+export { Carousel } from './Carousel';
 export { Forums } from './Forums';
 export { Home } from './Home';
 export { Navbar } from './Navbar';
