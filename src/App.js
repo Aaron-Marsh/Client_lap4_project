@@ -7,7 +7,7 @@ import {
   ProfilePage,
   SearchPage,
 } from "./pages/index";
-import { Navbar } from "./components/index";
+import { Navbar, LoginFooter } from "./components/index";
 
 function App() {
   return (
