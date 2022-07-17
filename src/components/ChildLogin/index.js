@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
 
-export function ChildLoginModal(props) {
+export const ChildLoginModal = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -92,10 +92,10 @@ export function ChildLoginModal(props) {
                         <Button onClick={props.onHide}>Sign in</Button>
                     )}
                 </div>
-                <Button onClick={() => props.setShowSignUp(true)}>
+                <Button id="toggle" onClick={() => props.setShowSignUp(true)}>
                     Create account
                 </Button>
             </Modal.Footer>
         </>
     );
-}
+};
