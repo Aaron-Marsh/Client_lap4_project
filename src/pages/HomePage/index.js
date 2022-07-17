@@ -235,6 +235,7 @@ export const HomePage = () => {
                 <stop offset="50%" stopColor="#ff0000" />
                 <stop offset="100%" stopColor="#ffffff" />
               </linearGradient>
+
               <g id="peix" transform="translate(100,-100) scale(-2,2)">
                 <path
                   id="silueta"

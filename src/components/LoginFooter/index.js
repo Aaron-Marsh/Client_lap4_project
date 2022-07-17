@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { close } from "../../actions";
@@ -8,11 +8,21 @@ export function LoginFooter() {
   const loggedIn = useSelector((state) => state.loggedIn);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (footerClose || loggedIn) {
+      return;
+    } else {
+      setTimeout(() => {
+        document.querySelector(".login-footer").classList.add("slide");
+      }, 100);
+    }
+  }, []);
+
   if (footerClose || loggedIn) {
     return "";
   } else {
     return (
-      <div className="login-footer">
+      <div className="login-footer left">
         <div className="login-footer-text">
           <h4>Don't miss out on your next favourite book</h4>
           <p>Sign in or sign up now to discuss all those red herrings!</p>
