@@ -13,6 +13,8 @@ body {
   padding: 0;
   font-family: "Montserrat", sans-serif;
   overflow-x: hidden;
+
+  overflow-y: scroll !important;
 }
 
 ::-webkit-scrollbar {
@@ -33,6 +35,8 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #494a4a;
 }
+
+/* Navabar ------------------------------------------------------------------------------*/
 
 .navbar {
   display: flex;
@@ -96,19 +100,21 @@ body {
   color: white;
 }
 
-@media (min-width: 47rem) and (max-width: 51rem) {
-  .nav-items {
-    gap: 2rem;
-    padding-right: 2rem;
-  }
-}
-
 .sr-only {
   display: none;
 }
 
 .mobile-nav-button {
   display: none;
+}
+
+/* //Navbar media queries  */
+
+@media (min-width: 47rem) and (max-width: 51rem) {
+  .nav-items {
+    gap: 2rem;
+    padding-right: 2rem;
+  }
 }
 
 @media (max-width: 47rem) {
@@ -231,3 +237,14 @@ body {
   right: 1rem;
   cursor: pointer;
 }
+
+.login-footer-close:hover {
+  transform: scale(1.1);
+}
+
+/* Login Modal */
+
+/* .modal-open {
+  overflow-y: auto;
+}
+ */
