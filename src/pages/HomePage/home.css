@@ -60,3 +60,12 @@
   height: 100vh;
   background-color: white;
 }
+
+.left {
+  left: -100%;
+  transition: left 0.7s ease-in;
+}
+
+.slide {
+  left: 0;
+}
