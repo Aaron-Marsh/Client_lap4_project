@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { LoginModal } from "../LoginModal";
-import Button from "react-bootstrap/Button";
+// import {  useNavigate } from "react-router-dom";
+// import Button from "react-bootstrap/Button";
 
 export const Navbar = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -90,7 +91,7 @@ export const Navbar = () => {
                   color: isActive ? "white" : "",
                   backgroundColor: isActive ? "rgba(246, 107, 0, 0.9)" : "",
                 })}
-                to="/forum"
+                to="/forums"
               >
                 Forum
               </NavLink>
