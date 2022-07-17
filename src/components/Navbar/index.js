@@ -3,8 +3,6 @@ import { NavLink } from "react-router-dom";
 import { LoginModal } from "../LoginModal";
 import { useSelector } from "react-redux";
 
-import { LoginModal } from "../";
-
 export const Navbar = () => {
   const [modalShow, setModalShow] = useState(false);
 
