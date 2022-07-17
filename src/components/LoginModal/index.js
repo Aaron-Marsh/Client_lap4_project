@@ -3,7 +3,7 @@ import { ChildSignUpModal } from '../ChildSignUp';
 import { ChildLoginModal } from '../ChildLogin';
 import Modal from 'react-bootstrap/Modal';
 
-export function LoginModal(props) {
+export const LoginModal = (props) => {
     const [showSignUp, setShowSignUp] = useState(false);
 
     return (
@@ -20,4 +20,4 @@ export function LoginModal(props) {
             )}
         </Modal>
     );
-}
+};

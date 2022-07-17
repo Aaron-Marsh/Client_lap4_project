@@ -89,7 +89,7 @@ export const ChildSignUpModal = (props) => {
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={props.onHide}>Sign up</Button>
-                <Button onClick={() => props.setShowSignUp(false)}>
+                <Button id="toggle" onClick={() => props.setShowSignUp(false)}>
                     Already have an account? Sign in
                 </Button>
             </Modal.Footer>
