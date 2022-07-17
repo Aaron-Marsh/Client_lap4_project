@@ -4,3 +4,4 @@ export { PostPage } from './PostPage';
 export { HomePage } from './HomePage';
 export { ProfilePage } from './ProfilePage';
 export { SearchPage } from './SearchPage';
+export { PageNotFound } from './PageNotFound';

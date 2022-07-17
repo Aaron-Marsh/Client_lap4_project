@@ -170,7 +170,6 @@ export const HomePage = () => {
 
   useEffect(() => {
     let myScrollFunc = function () {
-      console.log("hello");
       let y = window.scrollY;
       if (y >= 300) {
         setShowLoginFooter(true);
@@ -235,6 +234,7 @@ export const HomePage = () => {
                 <stop offset="50%" stopColor="#ff0000" />
                 <stop offset="100%" stopColor="#ffffff" />
               </linearGradient>
+
               <g id="peix" transform="translate(100,-100) scale(-2,2)">
                 <path
                   id="silueta"

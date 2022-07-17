@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { LoginModal } from "../LoginModal";
-// import {  useNavigate } from "react-router-dom";
-// import Button from "react-bootstrap/Button";
+import { useSelector } from "react-redux";
+
+import { LoginModal } from "../";
 
 export const Navbar = () => {
   const [modalShow, setModalShow] = useState(false);
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  const loggedIn = useSelector((state) => state.loggedIn);
 
   function toggle() {
     let navItems = document.querySelector(".nav-items");

@@ -1,15 +1,17 @@
 import { Routes, Route } from "react-router-dom";
+import { Navbar, LoginFooter } from "./components/index";
 // import {getServer} from './getServer'
 import React from "react";
 import {
     HomePage,
     BooksPage,
     ForumsPage,
-	PostPage,
+    PostPage,
     ProfilePage,
-    SearchPage
+    SearchPage,
+    PageNotFound
 } from "./pages/index";
-import { Navbar } from "./components/index";
+
 // import { useGetServer } from './useGetServer'
 
 function App() {
@@ -22,7 +24,6 @@ function App() {
     return (
         <>
             <Navbar />
-
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/books" element={<BooksPage />} />
@@ -30,6 +31,7 @@ function App() {
                 <Route path="/forums/:postId" element={<PostPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/search" element={<SearchPage />} />
+                <Route path="*" element={<PageNotFound />} />
             </Routes>
         </>
     );
