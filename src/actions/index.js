@@ -1,5 +1,3 @@
-import axios from "axios";
-
 //LoggedIn
 
 export const login = () => {
@@ -21,3 +19,13 @@ export const close = () => {
     type: "close",
   };
 };
+
+
+export const setServer = (server_url) => {
+  return {
+    type: "UPDATE",
+    payload: server_url
+  };
+};
+
+
