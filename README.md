@@ -1,6 +1,8 @@
 # Client_lap4_project
 
 ## Installation & usage
+### Deployment
+Access the deployed client site [here](https://read-herring.netlify.app/).
 
 ## Contact
 
