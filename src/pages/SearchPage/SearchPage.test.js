@@ -1,15 +1,15 @@
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from '../../store';
-import { ForumsPage } from '.';
+import { SearchPage } from '.';
 import { screen } from '@testing-library/react';
 
-describe('ForumsPage', () => {
-    test('has a searchbar component with a label of "Search', () => {
+describe('SearchPage', () => {
+    test('renders BooksResult component with an h2 text', () => {
         render(
             <Provider store={store}>
                 <BrowserRouter>
-                    <ForumsPage />
+                    <SearchPage />
                 </BrowserRouter>
             </Provider>
         );
