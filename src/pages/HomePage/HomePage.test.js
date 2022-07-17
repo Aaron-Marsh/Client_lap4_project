@@ -1,19 +1,19 @@
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from '../../store';
-import { ForumsPage } from '.';
+import { HomePage } from '.';
 import { screen } from '@testing-library/react';
 
-describe('ForumsPage', () => {
-    test('has a searchbar component with a label of "Search', () => {
+describe('HomePage', () => {
+    test('renders BooksResult component with an h2 text', () => {
         render(
             <Provider store={store}>
                 <BrowserRouter>
-                    <ForumsPage />
+                    <HomePage />
                 </BrowserRouter>
             </Provider>
         );
 
-        expect(screen.getByLabelText(/Search/i)).toBeInTheDocument();
+        expect(screen.getByText(/Read Herring/i)).toBeInTheDocument();
     });
 });
