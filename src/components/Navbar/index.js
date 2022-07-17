@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import { LoginModal } from "../LoginModal";
+import { LoginModal } from "../";
 
 export const Navbar = () => {
   const [modalShow, setModalShow] = useState(false);
