@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
+
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 
@@ -73,10 +73,10 @@ export const ChildSignUpModal = (props) => {
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Sign up</Button>
-        <Button id="toggle" onClick={() => props.setShowSignUp(false)}>
+        <button onClick={props.onHide}>Sign up</button>
+        <button id="toggle" onClick={() => props.setShowSignUp(false)}>
           Already have an account? Sign in
-        </Button>
+        </button>
       </Modal.Footer>
     </>
   );
