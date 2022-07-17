@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import React, { useState } from 'react';
+
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
@@ -36,7 +36,6 @@ export const ChildSignUpModal = (props) => {
                             placeholder="Username"
                             autoFocus
                             onChange={handleChange}
-                            name="username"
                         />
                     </Form.Group>
                     <Form.Group
@@ -49,7 +48,6 @@ export const ChildSignUpModal = (props) => {
                             placeholder="name@example.com"
                             autoFocus
                             onChange={handleChange}
-                            name="email"
                         />
                     </Form.Group>
                     <Form.Group
@@ -62,7 +60,6 @@ export const ChildSignUpModal = (props) => {
                             placeholder="Password"
                             autoFocus
                             onChange={handleChange}
-                            name="password"
                         />
                     </Form.Group>
                     <Form.Group
@@ -75,16 +72,15 @@ export const ChildSignUpModal = (props) => {
                             placeholder="Confirm password"
                             autoFocus
                             onChange={handleChange}
-                            name="confirmPassword"
                         />
                     </Form.Group>
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={props.onHide}>Sign up</Button>
-                <Button id="toggle" onClick={() => props.setShowSignUp(false)}>
+                <button onClick={props.onHide}>Sign up</button>
+                <button id="toggle" onClick={() => props.setShowSignUp(false)}>
                     Already have an account? Sign in
-                </Button>
+                </button>
             </Modal.Footer>
         </>
     );
