@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { Navbar, LoginFooter } from "./components/index";
+import { Navbar } from "./components/index";
 // import {getServer} from './getServer'
 import React from "react";
 import {
