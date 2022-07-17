@@ -6,7 +6,7 @@ import Modal from "react-bootstrap/Modal";
 export const LoginModal = (props) => {
   const [showSignUp, setShowSignUp] = useState(false);
 
-  const { show, registershow, onHide } = props;
+  const { registershow, show, onHide } = props;
   useEffect(() => {
     setShowSignUp(registershow);
   }, [props]);
