@@ -170,7 +170,6 @@ export const HomePage = () => {
 
   useEffect(() => {
     let myScrollFunc = function () {
-      console.log("hello");
       let y = window.scrollY;
       if (y >= 300) {
         setShowLoginFooter(true);

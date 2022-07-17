@@ -47,11 +47,7 @@ export const ChildLoginModal = (props) => {
 
   return (
     <>
-      <Modal.Header
-        closebutton
-        d-flex
-        className="align-items-center"
-      ></Modal.Header>
+      <Modal.Header className="align-items-center"></Modal.Header>
       <Modal.Body>
         <Modal.Title id="contained-modal-title-vcenter" className="ms-auto">
           Log In
