@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { LoginFooter, SearchBar } from "../../components/index";
+import {
+  LoginFooter,
+  SearchBar,
+  HomeIntro,
+  HomeRandom,
+  Home,
+} from "../../components/index";
 import "./home.css";
 
 export const HomePage = () => {
@@ -265,19 +271,15 @@ export const HomePage = () => {
             </defs>
           </svg>
         </div>
-      </div>
-      <div className="home">
-        <div className="home-intro">
-          <img></img>
-          <div className="home-intro-text">
-            Read Herring allows you to find those words that have been missing
-            from your life. You can search for books, find others who like what
-            you like and get in touch, as also write all the fan theories you
-            have conjured in our forum. Get reading!
-          </div>
+        <div className="next-section">
+          <a className="next-section-button" href="#home-intro">
+            <div class="arrow"></div>
+          </a>
         </div>
-        <div className="home-book"></div>
       </div>
+      <HomeIntro />
+      <HomeRandom />
+
       {showLoginFooter ? <LoginFooter /> : ""}
     </>
   );
