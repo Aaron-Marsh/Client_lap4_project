@@ -1,4 +1,3 @@
-
 export { Book } from "./Book";
 export { BooksResult } from "./BooksResult";
 export { Carousel } from './Carousel';
@@ -8,4 +7,5 @@ export { Profile } from "./Profile";
 export { SearchBar } from "./SearchBar";
 export { LoginModal } from "./LoginModal";
 export { LoginFooter } from "./LoginFooter";
-
+export { HomeIntro } from "./HomeIntro";
+export { HomeRandom } from "./HomeRandom";
