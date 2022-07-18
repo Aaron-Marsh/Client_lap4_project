@@ -95,7 +95,6 @@
 
 .home {
   height: 80vh;
-  background-color: white;
 
   margin-bottom: 5rem;
   padding-top: 8rem;
@@ -107,9 +106,16 @@
   height: 70%;
   padding: 3rem 2rem;
   max-width: 900px;
-  border: 4px solid #f35369;
-  color: rgb(38, 38, 38);
+  background-color: #281e32;
+  color: white;
   margin-left: 30vw;
+  border-radius: 1rem;
+}
+
+.home-intro > h4 {
+  color: rgba(246, 107, 0, 0.9);
+  font-weight: 600;
+  margin-bottom: 2rem;
 }
 
 /* #CC2D41 */

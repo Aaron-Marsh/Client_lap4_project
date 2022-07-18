@@ -12,6 +12,13 @@ export const logout = () => {
   };
 };
 
+export const setUser = (username) => {
+  return {
+    type: "SET USER",
+    payload: username,
+  };
+};
+
 //Login Footer
 
 export const close = () => {
@@ -20,12 +27,9 @@ export const close = () => {
   };
 };
 
-
 export const setServer = (server_url) => {
   return {
     type: "UPDATE",
-    payload: server_url
+    payload: server_url,
   };
 };
-
-
