@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-
-import { LoginModal } from "../";
+import { NavLink } from "react-router-dom";
+import { LoginModal } from "../LoginModal";
+import { useSelector } from "react-redux";
 
 export const Navbar = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -91,7 +90,7 @@ export const Navbar = () => {
                   color: isActive ? "white" : "",
                   backgroundColor: isActive ? "rgba(246, 107, 0, 0.9)" : "",
                 })}
-                to="/forum"
+                to="/forums"
               >
                 Forum
               </NavLink>
