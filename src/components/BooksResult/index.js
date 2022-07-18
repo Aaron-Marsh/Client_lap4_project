@@ -14,11 +14,11 @@ export const BooksResult = () => {
 	const [cookingCarousel, setCookingCarousel] = useState([]);
 
 	// fetch on load
-	const fetchHerringBooksOnLoad = async () => {
+	const fetchHerringBooksOnLoad = async (apikey) => {
 		try {
 			console.log();
 			const { data } = await axios.get(
-				`https://www.googleapis.com/books/v1/volumes?q=herring&key=AIzaSyAs423tpX5M6cZ3kHj87t7V0cnRwcAGpek`
+				`https://www.googleapis.com/books/v1/volumes?q=herring&key={apikey}`
 			);
 			console.log('herring', data);
 
@@ -27,11 +27,12 @@ export const BooksResult = () => {
 			throw new Error(err.message);
 		}
 	};
-	const fetchFishBooksOnLoad = async () => {
+
+	const fetchFishBooksOnLoad = async (apikey) => {
 		try {
 			console.log();
 			const { data } = await axios.get(
-				`https://www.googleapis.com/books/v1/volumes?q=fish&key=AIzaSyAs423tpX5M6cZ3kHj87t7V0cnRwcAGpek`
+				`https://www.googleapis.com/books/v1/volumes?q=fish&key={apikey}`
 			);
 			console.log('fish', data);
 
@@ -41,11 +42,11 @@ export const BooksResult = () => {
 		}
 	};
 
-	const fetchCookingBooksOnLoad = async () => {
+	const fetchCookingBooksOnLoad = async (apikey) => {
 		try {
 			console.log();
 			const { data } = await axios.get(
-				`https://www.googleapis.com/books/v1/volumes?q=cook+fish&key=AIzaSyAs423tpX5M6cZ3kHj87t7V0cnRwcAGpek`
+				`https://www.googleapis.com/books/v1/volumes?q=cook+fish&key={apikey}`
 			);
 			console.log('cooking', data);
 
@@ -74,13 +75,19 @@ export const BooksResult = () => {
 	const fetchBooks = async (searchTerm) => {
 		try {
 			console.log(searchTerm);
+			const data = {
+				query_type: 'intitle',
+				query: { searchTerm },
+				num_results: 10,
+			};
 			const options = {
 				headers: {
 					'Content-Type': 'application/json',
 				},
 			};
-			const { data } = await axios.post(
-				`https://read-herring.herokuapp.com/books/api`,
+			await axios.post(
+				`https://read-herring.herokuapp.com/books/api/`,
+				JSON.stringify(data),
 				options
 			);
 			console.log('data', data);
