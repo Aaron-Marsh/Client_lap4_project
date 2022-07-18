@@ -6,7 +6,6 @@ import axios from "axios";
 
 export const ForumPosts = () => {
     // const storeServerURL = useSelector((state) => state.serverReducer);
-
     const [posts, setPosts] = useState([]);
     // const [serverURL, setServerURL] = useState("");
 
@@ -30,7 +29,7 @@ export const ForumPosts = () => {
             try {
                 console.log("Entering Try Block...");
                 let myURL = "https://read-herring.herokuapp.com";
-                const { data } = await axios.get(`${myURL}/forums`);
+                const { data } = await axios.get(`${myURL}/forums/`);
                 data.map((d, idx) => {
                     d.key = idx;
                 });
@@ -50,11 +49,10 @@ export const ForumPosts = () => {
             {posts.map((p) => (
                 <Link
                     to={{
-                        pathname: "/forums/" + p.key,
+                        pathname: "/forums/" + p.id,
                     }}
                 >
                     <ForumPost
-                        key={p.key}
                         title={p.title}
                         username={p.username}
                         first_message={p.first_message}
