@@ -1,0 +1,20 @@
+body {
+    background-attachment: fixed;
+    background-image: linear-gradient(to left bottom, #8c713b, #987734, #a57d2d, #b28223, #bf8817);
+    
+}
+
+.container {
+    padding: 1rem;
+}
+
+.post-header {
+    background: #fff9f9;
+    margin-bottom: 2rem;
+    border-radius: 15px;
+}
+
+.post-comments {
+    background: #fff9f9;
+    border-radius: 15px;
+}

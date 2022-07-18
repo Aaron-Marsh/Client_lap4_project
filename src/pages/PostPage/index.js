@@ -4,6 +4,7 @@ import { LoginFooter } from '../../components/index'
 import { PostHeader } from './PostHeader'
 import { PostComments } from './PostComments'
 import axios from "axios";
+import './style.css'
 
 export const PostPage = () => {
     
