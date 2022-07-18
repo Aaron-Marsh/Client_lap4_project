@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {useSelector} from 'react-redux'
 import { useParams } from "react-router-dom";
 import { LoginFooter } from '../../components/index'
 import { PostHeader } from './PostHeader'
@@ -8,7 +9,8 @@ import axios from "axios";
 import './style.css'
 
 export const PostPage = () => {
-    
+    const username = useSelector((state) => state.user.user);
+    const loggedIn = useSelector((state) => state.loggedIn);
     const [postMessages,setPostMessages] = useState([])
     const [post, setPost] = useState("");
     let { postId } = useParams();
@@ -27,17 +29,14 @@ export const PostPage = () => {
     };
     // get post data by id in route
     useEffect(() => {
-        console.log("hello from inside useEffect1");
         loadData();
         return () => {};
     }, []);
 
     useEffect(()=>{
-        console.log("hello from inside useEffect2");
         if (post) {
             setPostMessages(post.messages)
             post.messages && post.messages.map((m)=>{
-                console.log("message_id:",m.message_id)
             })
         }
         return () => {};
@@ -50,12 +49,14 @@ export const PostPage = () => {
                 <pre>Post ID: {postId}</pre>
                 <PostHeader 
                     title={post.title} 
-                    username={post.username}
+                    post_username={post.username}
                     first_message={post.first_message}
                 />
                 <NewCommentForm 
                     postId={postId}
                     onComment={loadData}
+                    username={username}
+                    loggedIn={loggedIn}
                 />
                 {postMessages
                 ? <PostComments 

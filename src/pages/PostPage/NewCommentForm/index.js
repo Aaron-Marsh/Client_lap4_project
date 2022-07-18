@@ -1,22 +1,25 @@
 import React, {useState} from 'react'
 import axios from 'axios'
-export const NewCommentForm = ({postId,onComment}) => {
+export const NewCommentForm = ({postId,onComment,username,loggedIn}) => {
     const [ message, setMessage ] = useState("");
     const handleMessageInput = e => setMessage(e.target.value);
 
     const handleFormEvent = async (e) => {
-        console.log("attempting to post to id: ",postId)
         e.preventDefault()
         e.stopPropagation()
         const serverUrl = 'https://read-herring.herokuapp.com'
+        console.log("username: ",username)
+        console.log("username: ",username)
+        console.log("username: ",username)
         try{
             const res = await axios({
                 method: 'patch',
                 url: `${serverUrl}/forums/${postId}`,
                 data:{
                     "method":"thread_message",
-                    "username":"Dave",
-                    "message":message,}
+                    "username":username,
+                    "message":message,
+                }
           })
           console.log(res);
           setMessage("");
@@ -30,7 +33,7 @@ export const NewCommentForm = ({postId,onComment}) => {
     <>
     <p>New Comment:</p>
 
-    <form onSubmit={handleFormEvent}>
+    <form onSubmit={handleFormEvent} >
       <label htmlFor="message">Message:</label>
       <input 
         type="text" 
@@ -38,8 +41,8 @@ export const NewCommentForm = ({postId,onComment}) => {
         name="message" 
         placeholder="Type here..."
         value={message}
-        onChange={handleMessageInput}/>
-      <input type="submit"/>
+        onChange={handleMessageInput} />
+      <input type="submit" disabled={!loggedIn}/>
     </form>
     </>
   )

@@ -31,7 +31,7 @@ export const NewPostForm = ({username,loggedIn}) => {
 
     <p>NewPostForm</p>
 
-    <form onSubmit={handleFormEvent} disabled={!loggedIn}>
+    <form onSubmit={handleFormEvent} >
       <label htmlFor="Title">Post Title</label>
       <input 
         type="text" 
@@ -48,7 +48,7 @@ export const NewPostForm = ({username,loggedIn}) => {
         placeholder="Type here..."
         value={message}
         onChange={handleMessageInput}/>
-      <input type="submit"/>
+      <input type="submit" disabled={!loggedIn}/>
     </form>
     </>
 
