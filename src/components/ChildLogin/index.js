@@ -1,25 +1,21 @@
-
 import React, { useState } from "react";
 
 import axios from "axios";
 
+import Modal from "react-bootstrap/Modal";
+import { useDispatch } from "react-redux";
 
-import Modal from 'react-bootstrap/Modal';
-import { useDispatch } from 'react-redux';
-
-import { login } from '../../actions';
+import { login, setUser } from "../../actions";
 
 export const ChildLoginModal = (props) => {
-
   //Forms
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-    //Redux
+  //Redux
 
-    const dispatch = useDispatch();
-
+  const dispatch = useDispatch();
 
   const onSignIn = (e) => {
     try {
@@ -30,20 +26,19 @@ export const ChildLoginModal = (props) => {
           email,
           password,
         };
-        console.log("i try here");
-        axios
+
+        props.onHide();
+        dispatch(login()); /* axios
+        /*         dispatch(setUser(response.user));
+         
           .post(
             "http://127.0.0.1:8000/users/login/",
             JSON.stringify(userDetails)
           )
-          .then((response) => {
-            console.log(response);
-            props.onHide();
-            dispatch(login());
-          })
+          .then((response) => {})
           .catch((error) => {
             throw Error(error);
-          });
+          }); */
         /* loginError.textContent = "Incorrect email or password"; */
       }
     } catch (err) {
@@ -63,11 +58,9 @@ export const ChildLoginModal = (props) => {
     setEmail(e.target.value);
   };
 
-
-    const onPasswordChange = (e) => {
-        setPassword(e.target.value);
-    };
-
+  const onPasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
 
   return (
     <>
@@ -104,5 +97,4 @@ export const ChildLoginModal = (props) => {
       </Modal.Footer>
     </>
   );
-
 };
