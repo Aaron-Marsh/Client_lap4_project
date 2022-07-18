@@ -1,0 +1,13 @@
+.post {
+    border: 1px black solid;
+    border-radius: 30px;
+    margin: 2rem, 0;
+    padding: 0.5rem;
+    max-width: 60vw;
+    margin:1rem;
+}
+
+.post:hover {
+    outline: 3px black solid;
+}
+

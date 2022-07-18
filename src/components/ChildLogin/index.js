@@ -1,21 +1,25 @@
+
 import React, { useState } from "react";
 
 import axios from "axios";
 
-import Modal from "react-bootstrap/Modal";
-import { useDispatch } from "react-redux";
 
-import { login } from "../../actions";
+import Modal from 'react-bootstrap/Modal';
+import { useDispatch } from 'react-redux';
+
+import { login } from '../../actions';
 
 export const ChildLoginModal = (props) => {
+
   //Forms
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  //Redux
+    //Redux
 
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
+
 
   const onSignIn = (e) => {
     try {
@@ -59,9 +63,11 @@ export const ChildLoginModal = (props) => {
     setEmail(e.target.value);
   };
 
-  const onPasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
+
+    const onPasswordChange = (e) => {
+        setPassword(e.target.value);
+    };
+
 
   return (
     <>
@@ -98,4 +104,5 @@ export const ChildLoginModal = (props) => {
       </Modal.Footer>
     </>
   );
+
 };

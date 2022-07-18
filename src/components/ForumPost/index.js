@@ -1,10 +1,12 @@
 import React from 'react';
+import './style.css';
 
-export const ForumPost = () => {
+export const ForumPost = ({title,username,first_message}) => {
 	return (
-		<>
-			<h2>Forum threads</h2>
-			<p>Here are loads of interesting threads</p>
-		</>
+		<div className="container post">
+			<h3>{title}</h3>
+			<h4>Author: {username}</h4>
+			<p>{first_message}</p>
+		</div>
 	);
 };
