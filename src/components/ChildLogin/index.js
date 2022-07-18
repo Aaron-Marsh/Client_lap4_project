@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
+
+import axios from "axios";
 
 import Modal from "react-bootstrap/Modal";
 import { useDispatch } from "react-redux";
 
-import { login } from "../../actions";
+import { login, setUser } from "../../actions";
 
 export const ChildLoginModal = (props) => {
   //Forms
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -18,18 +19,34 @@ export const ChildLoginModal = (props) => {
 
   const onSignIn = (e) => {
     try {
-      if (username === "" || password === "") {
+      if (email === "" || password === "") {
         setError("Missing username or password!");
       } else {
-        //Server request will go here to check for an account
-        dispatch(login());
+        let userDetails = {
+          email,
+          password,
+        };
+
+        props.onHide();
+        dispatch(login()); /* axios
+        /*         dispatch(setUser(response.user));
+         
+          .post(
+            "http://127.0.0.1:8000/users/login/",
+            JSON.stringify(userDetails)
+          )
+          .then((response) => {})
+          .catch((error) => {
+            throw Error(error);
+          }); */
+        /* loginError.textContent = "Incorrect email or password"; */
       }
     } catch (err) {
       if (!err.response) {
         setError("No server response!");
       } else if (err.response.status === 401) {
         setError(
-          "Unauthorized! Create an account or check your username and password!"
+          "Unauthorized! Create an account or check your email and password!"
         );
       } else {
         setError("Login failed!");
@@ -37,8 +54,8 @@ export const ChildLoginModal = (props) => {
     }
   };
 
-  const onUsernameChange = (e) => {
-    setUsername(e.target.value);
+  const onEmailChange = (e) => {
+    setEmail(e.target.value);
   };
 
   const onPasswordChange = (e) => {
@@ -52,35 +69,28 @@ export const ChildLoginModal = (props) => {
         <Modal.Title id="contained-modal-title-vcenter" className="ms-auto">
           Log In
         </Modal.Title>
-        <Form>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>Username</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Username"
-              autoFocus
-              onChange={onUsernameChange}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Password"
-              autoFocus
-              onChange={onPasswordChange}
-            />
-          </Form.Group>
-        </Form>
+        <form className="login">
+          <label htmlFor="login-email"></label>
+          <input
+            type="text"
+            id="login-email"
+            required
+            placeholder="Email"
+            onChange={onEmailChange}
+          />
+          <label htmlFor="login-password"></label>
+          <input
+            type="password"
+            id="login-password"
+            required
+            placeholder="Password"
+            onChange={onPasswordChange}
+          />
+          <div className="login-error"></div>
+        </form>
       </Modal.Body>
       <Modal.Footer>
-        <div onClick={onSignIn}>
-          {error ? (
-            <button>Sign in</button>
-          ) : (
-            <button onClick={props.onHide}>Sign in</button>
-          )}
-        </div>
+        <button onClick={onSignIn}>Sign in</button>
         <button id="toggle" onClick={() => props.setShowSignUp(true)}>
           Create account
         </button>

@@ -1,40 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 export function HomeRandom() {
+  useEffect(() => {}, []);
+
   return (
     <div className="home-random">
       <div className="book">
         <div className="gap"></div>
         <div className="pages">
           <div className="page">
-            <a href="www.google.com">
-              <div className="test-page"></div>
-            </a>
+            <div className="test-page"></div>
           </div>
           <div className="page">
-            <a href="www.facebook.com">
-              <div className="test-page"></div>
-            </a>
+            <div className="test-page"></div>
           </div>
           <div className="page">
-            <a href="www.williamsessions.com">
-              <div className="test-page"></div>
-            </a>
+            <div className="test-page"></div>
           </div>
           <div className="page">
-            <a href="#">
-              <div className="test-page"></div>
-            </a>
+            <div className="test-page"></div>
           </div>
           <div className="page">
-            <a href="#">
-              <div className="test-page"></div>
-            </a>
+            <div className="test-page"></div>
           </div>
           <div className="page">
-            <a href="#">
-              <div className="test-page"></div>
-            </a>
+            <div className="test-page"></div>
           </div>
         </div>
         <div className="flips">

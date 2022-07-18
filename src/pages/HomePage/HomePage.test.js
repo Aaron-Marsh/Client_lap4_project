@@ -2,10 +2,12 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from '../../store';
 import { HomePage } from '.';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
+jest.useFakeTimers();
+jest.spyOn(global, 'setTimeout');
 
 describe('HomePage', () => {
-    test('renders BooksResult component with an h2 text', () => {
+    test('Find out if new fish are rendered on page', async () => {
         render(
             <Provider store={store}>
                 <BrowserRouter>
@@ -13,7 +15,9 @@ describe('HomePage', () => {
                 </BrowserRouter>
             </Provider>
         );
-
-        expect(screen.getByText(/Read Herring/i)).toBeInTheDocument();
+        const backgroundLower = screen.getByTestId('background-lower');
+        await waitFor(() => {
+            expect(backgroundLower.getElementsByClassName('newFish'));
+        });
     });
 });

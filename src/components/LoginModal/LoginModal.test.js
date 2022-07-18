@@ -36,6 +36,20 @@ describe('LoginModal', () => {
             screen.getByText(/Already have an account/i)
         ).toBeInTheDocument();
     });
+
+    test('it calls props.setShowSignUp when clicking on the create account button', () => {
+        render(
+            <Provider store={store}>
+                <BrowserRouter>
+                    <LoginModal props={showSignUp} />
+                </BrowserRouter>
+            </Provider>
+        );
+        fireEvent.click(createAccountButton);
+        expect(
+            screen.getByRole('button', { name: 'Create account' })
+        ).not.toBeDisabled();
+    });
 });
 
 // let container = null;
