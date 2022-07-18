@@ -17,29 +17,29 @@ export const ChildLoginModal = (props) => {
 
     const dispatch = useDispatch();
 
-    const onSignIn = async (e) => {
-        if (userInput === '' || password === '') {
-            setError('Missing username/email or password!');
-        } else {
-            try {
-                let userDetails = {
-                    userInput,
-                    password,
-                };
-                let options = {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                };
-                console.log('trying');
-                const { data } = await axios.post(
-                    'http://127.0.0.1:8000/users/login/',
-                    JSON.stringify(userDetails),
-                    options
-                );
-                if (data.error) {
-                    console.log('failing');
-                    setError(data.error);
+  const onSignIn = async (e) => {
+    if (userInput === "" || password === "") {
+      setError("Missing username/email or password!");
+    } else {
+      try {
+        let userDetails = {
+          userInput,
+          password,
+        };
+        let options = {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+
+        const { data } = await axios.post(
+          "http://127.0.0.1:8000/users/login/",
+          JSON.stringify(userDetails),
+          options
+        );
+        if (data.error) {
+          console.log("failing");
+          setError(data.error);
                 } else {
                     props.onHide();
                     dispatch(login());
