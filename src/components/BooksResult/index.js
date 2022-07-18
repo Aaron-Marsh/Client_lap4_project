@@ -8,6 +8,7 @@ import { SearchBar } from "../SearchBar";
 // import { getResult } from '../../actions';
 
 export const BooksResult = () => {
+
   const [books, setBooks] = useState([]);
   const [herringCarousel, setHerringCarousel] = useState([]);
   const [fishCarousel, setFishCarousel] = useState([]);
@@ -99,6 +100,7 @@ export const BooksResult = () => {
       <SearchBar getResults={fetchBooks} />
       <div className="books-result-wrapper">
         {/* <MultiCarousel>
+
 					<div className='image-container'>
 						<img alt='' src='https://www.placecage.com/c/200/300' />
 					</div>

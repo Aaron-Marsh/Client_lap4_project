@@ -1,31 +1,34 @@
-import { screen, cleanup } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import React, { useSelector } from 'react';
 import store from '../../store';
-// import axios from 'axios';
 
 import { ChildLoginModal } from './index';
 
 describe('ChildLogin', () => {
-    const correct = (
-        <Provider store={store}>
-            <BrowserRouter>
-                <ChildLoginModal />
-            </BrowserRouter>
-        </Provider>
-    );
-
-    test('username input value is updated', () => {
-        const { getByLabelText } = render(correct);
-        const usernameInput = getByLabelText('Username');
-        fireEvent.change(usernameInput, { target: { value: 'Fred' } });
-        expect(usernameInput.value).toBe('Fred');
+    test('email input value is updated', () => {
+        const { getByLabelText } = render(
+            <Provider store={store}>
+                <BrowserRouter>
+                    <ChildLoginModal />
+                </BrowserRouter>
+            </Provider>
+        );
+        const emailInput = getByLabelText('login-email');
+        fireEvent.change(emailInput, { target: { value: 'Fred@test.com' } });
+        expect(emailInput.value).toBe('Fred@test.com');
     });
 
     test('setPassword value is updated', () => {
-        const { getByLabelText } = render(correct);
-        const passwordInput = getByLabelText('Password');
+        const { getByLabelText } = render(
+            <Provider store={store}>
+                <BrowserRouter>
+                    <ChildLoginModal />
+                </BrowserRouter>
+            </Provider>
+        );
+        const passwordInput = getByLabelText('password');
         fireEvent.change(passwordInput, { target: { value: 'beautiful' } });
         expect(passwordInput.value).toBe('beautiful');
     });
@@ -39,23 +42,22 @@ describe('ChildLogin', () => {
             </Provider>
         );
         expect(
-            screen.getByRole('button', { name: 'Create account' })
+            screen.getByRole('button', { name: 'toggle-to-sign-up' })
         ).not.toBeDisabled();
     });
 
-    test('it calls props.setShowSignUp when clicking on the create account button', () => {
-        const showSignUp = false;
-        render(
+    test('toggle button exists for switching to signup modal', () => {
+        const { getByRole } = render(
             <Provider store={store}>
                 <BrowserRouter>
-                    <ChildLoginModal props={showSignUp} />
+                    <ChildLoginModal />
                 </BrowserRouter>
             </Provider>
         );
-        const createAccountButton = screen.getByRole('button', {
-            name: 'Create account',
+        const toggleButton = getByRole('button', {
+            name: 'toggle-to-sign-up',
         });
-        fireEvent.click(createAccountButton);
-        expect(showSignUp.mock.calls.length).toBe(1);
+        fireEvent.click(toggleButton);
+        expect(toggleButton).toBeInTheDocument();
     });
 });
