@@ -1,0 +1,36 @@
+.main-profile,
+.bookshelf {
+	display: flex;
+	flex-direction: column;
+}
+
+.intro-wrapper {
+	margin: 100px auto;
+}
+
+.shelf-user-wrapper {
+	width: 80%;
+	margin: auto;
+	display: flex;
+	align-content: space-around;
+}
+
+.bookshelf {
+	width: 80%;
+	margin: auto;
+	height: 300px;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.shelf {
+}
+
+.following-users {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+}
+
+img {
+	border-radius: 60%;
+}

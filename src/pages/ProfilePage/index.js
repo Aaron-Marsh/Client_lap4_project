@@ -1,13 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import { LoginFooter } from "../../components";
+import { LoginFooter, Profile } from '../../components';
 
 export const ProfilePage = () => {
-  return (
-    <>
-      <h2>Profile page</h2>
-      {/* bookshelf */}
-      <LoginFooter />
-    </>
-  );
+	return (
+		<>
+			<Profile />
+			<LoginFooter />
+		</>
+	);
 };
