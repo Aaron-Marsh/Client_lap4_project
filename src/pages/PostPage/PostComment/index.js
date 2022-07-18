@@ -25,7 +25,7 @@ export const PostComment = ({
     try {
       const res = await axios({
         method: "PATCH",
-        url: `http://127.0.0.1:8000/forums/${postId}/`,
+        url: `http://127.0.0.1:8000/forums/${postId}`,
         data: {
           method: "reply_message",
           username: username,
