@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import { ForumPost } from "../index";
+import { ForumPost } from "../ForumPost";
 import { Link } from "react-router-dom";
 import axios from "axios";
 // import { useSelector } from "react-redux";
@@ -35,7 +35,7 @@ export const ForumPosts = () => {
                     d.key = idx;
                 });
                 console.log("DATA:", data);
-                setPosts(data);
+                setPosts(await data);
             } catch (err) {
                 throw new Error(err.message);
             }
