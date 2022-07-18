@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
 
 export const ChildSignUpModal = (props) => {
-    const [signup, setSignup] = useState(null);
-
+  const [signup, setSignup] = useState(null);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
 
   const onSignUp = (e) => {};
 
@@ -76,5 +80,4 @@ export const ChildSignUpModal = (props) => {
       </Modal.Footer>
     </>
   );
-
 };
