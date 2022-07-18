@@ -6,82 +6,75 @@ import Form from 'react-bootstrap/Form';
 export const ChildSignUpModal = (props) => {
     const [signup, setSignup] = useState(null);
 
-    function handleChange(evt) {
-        const value = evt.target.value;
-        setSignup({
-            ...signup,
-            [evt.target.name]: value,
-        });
-    }
 
-    return (
-        <>
-            <Modal.Header className="align-items-center">
-                <Modal.Title
-                    id="contained-modal-title-vcenter"
-                    className="ms-auto"
-                >
-                    Sign Up
-                </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Form>
-                    <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlInput1"
-                    >
-                        <Form.Label>Username</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Username"
-                            autoFocus
-                            onChange={handleChange}
-                        />
-                    </Form.Group>
-                    <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlInput1"
-                    >
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control
-                            type="email"
-                            placeholder="name@example.com"
-                            autoFocus
-                            onChange={handleChange}
-                        />
-                    </Form.Group>
-                    <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlInput1"
-                    >
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Password"
-                            autoFocus
-                            onChange={handleChange}
-                        />
-                    </Form.Group>
-                    <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlInput1"
-                    >
-                        <Form.Label>Confirm password</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Confirm password"
-                            autoFocus
-                            onChange={handleChange}
-                        />
-                    </Form.Group>
-                </Form>
-            </Modal.Body>
-            <Modal.Footer>
-                <button onClick={props.onHide}>Sign up</button>
-                <button id="toggle" onClick={() => props.setShowSignUp(false)}>
-                    Already have an account? Sign in
-                </button>
-            </Modal.Footer>
-        </>
-    );
+  const onSignUp = (e) => {};
+
+  const onUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const onEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const onPasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const onConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
+  return (
+    <>
+      <Modal.Header className="align-items-center">
+        <Modal.Title id="contained-modal-title-vcenter" className="ms-auto">
+          Sign Up
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <form className="register">
+          <label htmlFor="register-username"></label>
+          <input
+            type="text"
+            id="register-username"
+            required
+            placeholder="Username"
+            onChange={onUsernameChange}
+          />
+          <label htmlFor="register-email"></label>
+          <input
+            type="text"
+            id="register-email"
+            required
+            placeholder="Email"
+            onChange={onEmailChange}
+          />
+          <label htmlFor="register-password"></label>
+          <input
+            type="password"
+            id="register-password"
+            required
+            placeholder="Password"
+            onChange={onPasswordChange}
+          />
+          <label htmlFor="confirm-register-password"></label>
+          <input
+            type="password"
+            id="confirm-register-password"
+            required
+            placeholder="Confirm password"
+            onChange={onConfirmPasswordChange}
+          />
+        </form>
+      </Modal.Body>
+      <Modal.Footer>
+        <button onClick={onSignUp}>Sign up</button>
+        <button id="toggle" onClick={() => props.setShowSignUp(false)}>
+          Already have an account? Sign in
+        </button>
+      </Modal.Footer>
+    </>
+  );
+
 };
