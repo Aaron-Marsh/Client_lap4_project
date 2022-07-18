@@ -1,13 +1,12 @@
 const initialState = "";
 
 const serverReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case 'UPDATE':
-            console.log("server_url: ",action.payload)
-            return action.payload;
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case "UPDATE":
+      return action.payload;
+    default:
+      return state;
+  }
 };
 
 export default serverReducer;

@@ -38,7 +38,6 @@ export const ChildLoginModal = (props) => {
           options
         );
         if (data.error) {
-          console.log("failing");
           setError(data.error);
         } else {
           props.onHide();
