@@ -31,7 +31,7 @@ export const ChildLoginModal = (props) => {
             "Content-Type": "application/json",
           },
         };
-        console.log("trying");
+
         const { data } = await axios.post(
           "http://127.0.0.1:8000/users/login/",
           JSON.stringify(userDetails),
