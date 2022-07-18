@@ -64,7 +64,7 @@ export const Navbar = () => {
                 className="link"
                 style={({ isActive }) => ({
                   color: isActive ? "white" : "",
-                  backgroundColor: isActive ? "rgba(246, 107, 0, 0.9)" : "",
+                  backgroundColor: isActive ? "#281e32" : "",
                 })}
                 to="/"
               >
@@ -76,7 +76,7 @@ export const Navbar = () => {
                 className="link"
                 style={({ isActive }) => ({
                   color: isActive ? "white" : "",
-                  backgroundColor: isActive ? "rgba(246, 107, 0, 0.9)" : "",
+                  backgroundColor: isActive ? "#281e32" : "",
                 })}
                 to="/books"
               >
@@ -88,7 +88,7 @@ export const Navbar = () => {
                 className="link"
                 style={({ isActive }) => ({
                   color: isActive ? "white" : "",
-                  backgroundColor: isActive ? "rgba(246, 107, 0, 0.9)" : "",
+                  backgroundColor: isActive ? "#281e32" : "",
                 })}
                 to="/forums"
               >
@@ -96,22 +96,27 @@ export const Navbar = () => {
               </NavLink>
             </div>
             <div>
-              <NavLink
-                className="link"
-                style={({ isActive }) => ({
-                  color: isActive ? "white" : "",
-                  backgroundColor: loggedIn
-                    ? isActive
-                      ? "rgba(246, 107, 0, 0.9)"
-                      : ""
-                    : "",
-                })}
-                onClick={loggedIn ? "" : () => setModalShow(true)}
-                to={loggedIn ? "/profile" : {}}
-              >
-                {loggedIn ? "Profile" : "Sign in"}
-              </NavLink>
+              {!loggedIn ? (
+                <a
+                  className="link"
+                  onClick={loggedIn ? "" : () => setModalShow(true)}
+                >
+                  {loggedIn ? "Profile" : "Sign in"}
+                </a>
+              ) : (
+                <NavLink
+                  className="link"
+                  style={({ isActive }) => ({
+                    color: isActive ? "white" : "",
+                    backgroundColor: isActive ? "#281e32" : "",
+                  })}
+                  to="/profile"
+                >
+                  {loggedIn ? "Profile" : "Sign in"}
+                </NavLink>
+              )}
             </div>
+            <div></div>
           </ul>
         </nav>
       </header>

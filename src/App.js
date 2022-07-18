@@ -8,7 +8,6 @@ import {
 	ForumsPage,
 	PostPage,
 	ProfilePage,
-	SearchPage,
 	PageNotFound,
 } from './pages/index';
 
@@ -30,7 +29,6 @@ function App() {
 				<Route path='/forums' element={<ForumsPage />} />
 				<Route path='/forums/:postId' element={<PostPage />} />
 				<Route path='/profile' element={<ProfilePage />} />
-				<Route path='/search' element={<SearchPage />} />
 				<Route path='*' element={<PageNotFound />} />
 			</Routes>
 		</>
