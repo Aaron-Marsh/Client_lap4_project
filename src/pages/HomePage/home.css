@@ -195,7 +195,7 @@
   right: 0%;
   transform-origin: center;
   transform: rotateY(180deg);
-  animation: nextPage 25s -20s infinite steps(1);
+  animation: nextPage 25s infinite steps(1);
   background-size: 420px 300px;
   background-position: 100% -2px;
 }
@@ -265,11 +265,11 @@
 }
 .flip.flip1 {
   right: 50%;
-  animation: flip1 5s infinite ease-in-out;
+  animation: flip1 10s infinite ease-in-out;
   border-width: 2px 2px 2px 0;
 }
 .flip.flip1::after {
-  animation: nextFlip1 25s -20s infinite steps(1);
+  animation: nextFlip1 25s infinite steps(1);
 }
 .flip:not(.flip1) {
   right: calc(100% - 2px);
@@ -278,29 +278,29 @@
   animation: flip2 5s ease-in-out infinite;
 }
 .flip.flip2::after {
-  animation: nextFlip2 25s -20s infinite steps(1);
+  animation: nextFlip2 25s infinite steps(1);
 }
 .flip.flip3::after {
-  animation: nextFlip3 25s -20s infinite steps(1);
+  animation: nextFlip3 25s infinite steps(1);
 }
 .flip.flip4::after {
-  animation: nextFlip4 25s -20s infinite steps(1);
+  animation: nextFlip4 25s infinite steps(1);
 }
 .flip.flip5::after {
-  animation: nextFlip5 25s -20s infinite steps(1);
+  animation: nextFlip5 25s infinite steps(1);
 }
 .flip.flip6::after {
-  animation: nextFlip6 25s -20s infinite steps(1);
+  animation: nextFlip6 25s infinite steps(1);
 }
 .flip.flip7::after {
-  animation: nextFlip7 25s -20s infinite steps(1);
+  animation: nextFlip7 25s infinite steps(1);
 }
 .flip.flip7 {
   width: 30px;
   border-width: 2px 0px 2px 2px;
 }
 .flip.flip7::after {
-  animation: nextFlip7 25s -20s infinite steps(1);
+  animation: nextFlip7 25s infinite steps(1);
 }
 @keyframes flip1 {
   0%,
@@ -621,5 +621,5 @@
   width: 100%;
   height: 100%;
   position: absolute;
-  z-index: 1000;
+  z-index: 10;
 }

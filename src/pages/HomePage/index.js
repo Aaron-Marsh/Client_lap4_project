@@ -273,7 +273,7 @@ export const HomePage = () => {
         </div>
         <div className="next-section">
           <a className="next-section-button" href="#home-intro">
-            <div class="arrow"></div>
+            <div className="arrow"></div>
           </a>
         </div>
       </div>
