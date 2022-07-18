@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 
-export const NewPostForm = () => {
+export const NewPostForm = ({username,loggedIn}) => {
     const [ title, setTitle ] = useState("");
     const [ message, setMessage ] = useState("");
 
@@ -18,7 +18,7 @@ export const NewPostForm = () => {
                 url: `${serverUrl}/forums/`,
                 data:{
                     "title":title,
-                    "username":"Dave",
+                    "username":username,
                     "first_message":message,}
           })
           console.log(res)
@@ -31,7 +31,7 @@ export const NewPostForm = () => {
 
     <p>NewPostForm</p>
 
-    <form onSubmit={handleFormEvent}>
+    <form onSubmit={handleFormEvent} disabled={!loggedIn}>
       <label htmlFor="Title">Post Title</label>
       <input 
         type="text" 
