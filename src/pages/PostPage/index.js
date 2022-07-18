@@ -9,6 +9,7 @@ import axios from "axios";
 import "./style.css";
 
 export const PostPage = () => {
+  const [showLoginFooter, setShowLoginFooter] = useState(false);
   const username = useSelector((state) => state.user.user);
   const loggedIn = useSelector((state) => state.loggedIn);
   const [postMessages, setPostMessages] = useState([]);
@@ -39,6 +40,25 @@ export const PostPage = () => {
     return () => {};
   }, [post]);
 
+  //Footer stuff
+
+  useEffect(() => {
+    let myScrollFunc = function () {
+      let y = window.scrollY;
+      if (y >= 10) {
+        setShowLoginFooter(true);
+      } else {
+        setShowLoginFooter(false);
+      }
+    };
+
+    window.addEventListener("scroll", myScrollFunc);
+
+    return () => {
+      window.removeEventListener("scroll", myScrollFunc);
+    };
+  }, []);
+
   return (
     <>
       <div className="container">
@@ -68,7 +88,7 @@ export const PostPage = () => {
           <p>no comments yet</p>
         )}
       </div>
-      <LoginFooter />
+      {showLoginFooter ? <LoginFooter /> : ""}
     </>
   );
 };
