@@ -36,10 +36,6 @@ export const Navbar = () => {
     toggle();
   }, []);
 
-  const handleLoginClick = () => {
-    console.log("clicked");
-  };
-
   return (
     <>
       <header className="navbar">

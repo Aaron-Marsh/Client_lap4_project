@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 // import { useDispatch, useSelector } from 'react-redux';
 
-import './style.css';
-import { SearchBar } from '../SearchBar';
-import { MultiCarousel } from '../Carousel';
+import "./style.css";
+import { SearchBar } from "../SearchBar";
+/* import { MultiCarousel } from '../Carousel'; */
 // import { getResult } from '../../actions';
 
 export const BooksResult = () => {
+
 	const [books, setBooks] = useState([]);
 	const [herringCarousel, setHerringCarousel] = useState([]);
 	const [fishCarousel, setFishCarousel] = useState([]);
@@ -147,6 +148,7 @@ export const BooksResult = () => {
 							alt={book.volumeInfo.title}
 							src={book.volumeInfo.imageLinks?.thumbnail}
 						/>
+
 					</div>
 				))}
 				;
@@ -174,20 +176,24 @@ export const BooksResult = () => {
 							src={book.volumeInfo.imageLinks?.thumbnail}
 						/>
 					</div>
+
 				))} */}
 			{/* </div> */}
 			{hasSearched && (
 				<div className='book-grid'>
 					{books.map((book) => (
 						<div role='img' className='image-container' key={book.id}>
+
 							<img
 								alt={book.volumeInfo.title}
 								src={book.volumeInfo.imageLinks.thumbnail}
 							/>
 						</div>
 					))}
+
 				</div>
 			)}
 		</>
 	);
+
 };

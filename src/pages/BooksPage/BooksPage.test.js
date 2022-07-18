@@ -14,8 +14,6 @@ describe('BooksPage', () => {
             </Provider>
         );
 
-        expect(
-            screen.getByText(/Take a look at all of these amazing books/i)
-        ).toBeInTheDocument();
+        expect(screen.getByText(/Take a look/i)).toBeInTheDocument();
     });
 });
