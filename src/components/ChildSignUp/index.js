@@ -98,6 +98,7 @@ export const ChildSignUpModal = (props) => {
                         required
                         placeholder="Username"
                         onChange={onUsernameChange}
+                        aria-label="username"
                     />
                     <label htmlFor="register-email"></label>
                     <input
@@ -106,6 +107,7 @@ export const ChildSignUpModal = (props) => {
                         required
                         placeholder="Email"
                         onChange={onEmailChange}
+                        aria-label="email"
                     />
                     <label htmlFor="register-password"></label>
                     <input
@@ -114,6 +116,7 @@ export const ChildSignUpModal = (props) => {
                         required
                         placeholder="Password"
                         onChange={onPasswordChange}
+                        aria-label="password"
                     />
                     <label htmlFor="confirm-register-password"></label>
                     <input
@@ -122,13 +125,18 @@ export const ChildSignUpModal = (props) => {
                         required
                         placeholder="Confirm password"
                         onChange={onConfirmPasswordChange}
+                        aria-label="confirm-password"
                     />
                     <div className="login-error">{error}</div>
                 </form>
             </Modal.Body>
             <Modal.Footer>
                 <button onClick={onSignUp}>Sign up</button>
-                <button id="toggle" onClick={() => props.setShowSignUp(false)}>
+                <button
+                    aria-label="toggle-to-log-in"
+                    id="toggle"
+                    onClick={() => props.setShowSignUp(false)}
+                >
                     Already have an account? Sign in
                 </button>
             </Modal.Footer>
