@@ -4,11 +4,12 @@ import { LoginFooter } from '../../components/index'
 import { PostHeader } from './PostHeader'
 import { PostComments } from './PostComments'
 import axios from "axios";
+import './style.css'
 
 export const PostPage = () => {
     
     let { postId } = useParams();
-    const [postMessages,setPostMessages] = useState([""])
+    const [postMessages,setPostMessages] = useState([])
     const [post, setPost] = useState("");
     
     useEffect(() => {
@@ -38,7 +39,7 @@ export const PostPage = () => {
         if (post) {
             console.log("Post Messages",post.messages);
             setPostMessages(post.messages)
-            post.messages.map((m)=>{
+            post.messages && post.messages.map((m)=>{
                 console.log("message_id:",m.message_id)
             })
         }
