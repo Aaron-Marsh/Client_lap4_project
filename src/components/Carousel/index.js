@@ -34,4 +34,3 @@ export const MultiCarousel = ({ children }) => {
 	);
 };
 
-export default Carousel;
