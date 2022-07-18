@@ -6,7 +6,7 @@ export const PostComments = ({ postMessages }) => {
             {postMessages &&
                 postMessages.map((m) => (
                     <PostComment
-                        username={m.username}
+                        post_username={m.username}
                         message={m.message}
                     />
                 ))}

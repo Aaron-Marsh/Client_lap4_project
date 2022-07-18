@@ -5,7 +5,7 @@ import { ForumPosts } from './ForumPosts'
 import { NewPostForm } from './NewPostForm'
 
 export const ForumsPage = () => {
-    const username = useSelector((state) => state.user);
+    const username = useSelector((state) => state.user.user);
     const loggedIn = useSelector((state) => state.loggedIn);
 
 	return (
