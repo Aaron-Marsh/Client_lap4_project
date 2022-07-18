@@ -9,174 +9,191 @@ import { SearchBar } from "../SearchBar";
 
 export const BooksResult = () => {
 
-  const [books, setBooks] = useState([]);
-  const [herringCarousel, setHerringCarousel] = useState([]);
-  const [fishCarousel, setFishCarousel] = useState([]);
-  const [cookingCarousel, setCookingCarousel] = useState([]);
+	const [books, setBooks] = useState([]);
+	const [herringCarousel, setHerringCarousel] = useState([]);
+	const [fishCarousel, setFishCarousel] = useState([]);
+	const [cookingCarousel, setCookingCarousel] = useState([]);
+	const [hasSearched, setHasSearched] = useState(false);
 
-  // fetch on load
-  const fetchHerringBooksOnLoad = async () => {
-    try {
-      const { data } = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=herring&key=AIzaSyAs423tpX5M6cZ3kHj87t7V0cnRwcAGpek`
-      );
-      console.log("herring", data);
+	// fetch on load
+	const fetchHerringBooksOnLoad = async () => {
+		try {
+			const data = {
+				query_type: 'intitle',
+				query: 'herring',
+				num_results: 10,
+			};
+			const options = {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			};
+			await axios.post(
+				`https://read-herring.herokuapp.com/books/api/`,
+				JSON.stringify(data),
+				options
+			);
 
-      setHerringCarousel(data.items);
-    } catch (err) {
-      throw new Error(err.message);
-    }
-  };
-  const fetchFishBooksOnLoad = async () => {
-    try {
-      const { data } = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=fish&key=AIzaSyAs423tpX5M6cZ3kHj87t7V0cnRwcAGpek`
-      );
-      console.log("fish", data);
+			setHerringCarousel(data.items);
+		} catch (err) {
+			throw new Error(err.message);
+		}
+	};
+	const fetchFishBooksOnLoad = async () => {
+		try {
+			const data = {
+				query_type: 'intitle',
+				query: 'fish',
+				num_results: 10,
+			};
+			const options = {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			};
+			await axios.post(
+				`https://read-herring.herokuapp.com/books/api/`,
+				JSON.stringify(data),
+				options
+			);
 
-      setFishCarousel(data.items);
-    } catch (err) {
-      throw new Error(err.message);
-    }
-  };
+			setFishCarousel(data.items);
+		} catch (err) {
+			throw new Error(err.message);
+		}
+	};
 
-  const fetchCookingBooksOnLoad = async () => {
-    try {
-      const { data } = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=cook+fish&key=AIzaSyAs423tpX5M6cZ3kHj87t7V0cnRwcAGpek`
-      );
-      console.log("cooking", data);
+	const fetchCookingBooksOnLoad = async () => {
+		try {
+			const data = {
+				query_type: 'intitle',
+				query: 'cooking',
+				num_results: 10,
+			};
+			const options = {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			};
+			await axios.post(
+				`https://read-herring.herokuapp.com/books/api/`,
+				JSON.stringify(data),
+				options
+			);
 
-      setCookingCarousel(data.items);
-    } catch (err) {
-      throw new Error(err.message);
-    }
-  };
+			setCookingCarousel(data.items);
+		} catch (err) {
+			throw new Error(err.message);
+		}
+	};
 
-  useEffect(() => {
-    fetchHerringBooksOnLoad();
-    fetchFishBooksOnLoad();
-    fetchCookingBooksOnLoad();
-  }, []);
+	useEffect(() => {
+		fetchHerringBooksOnLoad();
+		fetchFishBooksOnLoad();
+		fetchCookingBooksOnLoad();
+	}, []);
 
-  // post search to server
-  useEffect(() => {
-    fetchBooksServer();
-  }, []);
+	// post search to server
+	// req.body = query_type: intitle, query: searchTerm, num_results: whatevs
 
-  const fetchBooksServer = async (searchTerm) => {};
+	// useEffect, search Google api through server
+	const fetchBooks = async (searchTerm) => {
+		try {
+			// console.log(searchTerm);
+			const data = {
+				query_type: 'intitle',
+				query: { searchTerm },
+				num_results: 10,
+			};
+			const options = {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			};
+			await axios.post(
+				`https://read-herring.herokuapp.com/books/api/`,
+				JSON.stringify(data),
+				options
+			);
+			console.log('data', data);
 
-  // req.body = query_type: intitle, query: searchTerm, num_results: whatevs
+			setBooks(data.items);
+			setHasSearched(true);
+		} catch (err) {
+			throw new Error(err.message);
+		}
+	};
 
-  // useEffect, search Google api through server
-  const fetchBooks = async (searchTerm) => {
-    try {
-      console.log(searchTerm);
-      const options = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      const { data } = await axios.post(
-        `https://read-herring.herokuapp.com/books/api`,
-        options
-      );
-      console.log("data", data);
+	useEffect(() => {
+		console.log('setBooks', books);
+		console.log('hasSearched', hasSearched);
+	}, [books, hasSearched]);
 
-      setBooks(data.items);
-    } catch (err) {
-      throw new Error(err.message);
-    }
-  };
+	// console.log(books);
 
-  useEffect(() => {}, [books]);
+	return (
+		<>
+			<h2>Take a look at all of these amazing books!</h2>
+			<p>WOW!</p>
+			<SearchBar getResults={fetchBooks} />
+			{/* <div className='books-result-wrapper'> */}
+			{/* THIS CODE WILL BE USED WHEN EVERYTHING WORKS!!! */}
+			{/* {herringCarousel.map((book) => (
+					<div
+						role='img'
+						aria-label='Books with Herring in the title'
+						className='image-container'
+						key={book.id}>
+						<img
+							alt={book.volumeInfo.title}
+							src={book.volumeInfo.imageLinks?.thumbnail}
+						/>
 
-  // console.log(books);
-
-  return (
-    <>
-      <h2>Take a look at all of these amazing books!</h2>
-      <p>WOW!</p>
-      <SearchBar getResults={fetchBooks} />
-      <div className="books-result-wrapper">
-        {/* <MultiCarousel>
-
-					<div className='image-container'>
-						<img alt='' src='https://www.placecage.com/c/200/300' />
 					</div>
-					<div className='image-container'>
-						<img alt='' src='https://www.placecage.com/g/200/300' />
+				))}
+				;
+				{fishCarousel.map((book) => (
+					<div
+						role='img'
+						aria-label='Books with Fish in the title'
+						className='image-container'
+						key={book.id}>
+						<img
+							alt={book.volumeInfo.title}
+							src={book.volumeInfo.imageLinks?.thumbnail}
+						/>
 					</div>
-					<div className='image-container'>
-						<img alt='' src='https://www.placecage.com/200/300' />
+				))}
+				;
+				{cookingCarousel.map((book) => (
+					<div
+						role='img'
+						aria-label='Books with Cooking Fish in the title'
+						className='image-container'
+						key={book.id}>
+						<img
+							alt={book.volumeInfo.title}
+							src={book.volumeInfo.imageLinks?.thumbnail}
+						/>
 					</div>
-					<div className='image-container'>
-						<img alt='' src='https://www.placecage.com/gif/200/300' />
-					</div>
-					<div className='image-container'>
-						<img alt='' src='https://www.fillmurray.com/200/300' />
-					</div>
-					<div className='image-container'>
-						<img alt='' src='https://www.fillmurray.com/g/200/300' />
-					</div>
-					<div className='image-container'>
-						<img alt='' src='https://www.stevensegallery.com/200/300' />
-					</div>
-					<div className='image-container'>
-						<img alt='' src='https://www.stevensegallery.com/g/200/300' />
-					</div>
-				</MultiCarousel> */}
 
-        {/* THIS CODE WILL BE USED WHEN EVERYTHING WORKS!!! */}
-        {/* Still buggy though... something about ariaLabel in console.. */}
-
-        {/* <MultiCarousel>
-					{herringCarousel.map((book) => (
-						<div
-							role='img'
-							aria-label='Books with Herring in the title'
-							className='image-container'
-							key={book.id}>
+				))} */}
+			{/* </div> */}
+			{hasSearched && (
+				<div className='book-grid'>
+					{books.map((book) => (
+						<div role='img' className='image-container' key={book.id}>
 
 							<img
 								alt={book.volumeInfo.title}
-								src={book.volumeInfo.imageLinks?.thumbnail}
+								src={book.volumeInfo.imageLinks.thumbnail}
 							/>
 						</div>
 					))}
-					;
-				</MultiCarousel>
-				<MultiCarousel>
-					{fishCarousel.map((book) => (
-						<div
-							role='img'
-							aria-label='Books with Fish in the title'
-							className='image-container'
-							key={book.id}>
-							<img
-								alt={book.volumeInfo.title}
-								src={book.volumeInfo.imageLinks?.thumbnail}
-							/>
-						</div>
-					))}
-					;
-				</MultiCarousel>
-				<MultiCarousel>
-					{cookingCarousel.map((book) => (
-						<div
-							role='img'
-							aria-label='Books with Cooking Fish in the title'
-							className='image-container'
-							key={book.id}>
-							<img
-								alt={book.volumeInfo.title}
-								src={book.volumeInfo.imageLinks?.thumbnail}
-							/>
-						</div>
-					))}
-					;
-				</MultiCarousel> */}
-      </div>
-    </>
-  );
+
+				</div>
+			)}
+		</>
+	);
+
 };
