@@ -15,10 +15,10 @@ export const PostPage = () => {
   const [post, setPost] = useState("");
   let { postId } = useParams();
 
+  let serverURL = "https://read-herring.herokuapp.com";
   const loadData = async () => {
     try {
-      let myURL = "https://read-herring.herokuapp.com";
-      const { data } = await axios.get(`${myURL}/forums/${postId}`);
+      const { data } = await axios.get(`${serverURL}/forums/${postId}`);
       // const pertinentPost = await data.filter((p)=>{
       //     return p.id === postId
       // })
@@ -54,9 +54,16 @@ export const PostPage = () => {
           onComment={loadData}
           username={username}
           loggedIn={loggedIn}
+          serverURL={serverURL}
         />
         {postMessages ? (
-          <PostComments postMessages={postMessages} test="test" />
+          <PostComments
+            postMessages={postMessages}
+            loggedIn={loggedIn}
+            postId={postId}
+            serverURL={serverURL}
+            username={username}
+          />
         ) : (
           <p>no comments yet</p>
         )}
