@@ -9,7 +9,7 @@ import { login, setUser } from "../../actions";
 
 export const ChildLoginModal = (props) => {
   //Forms
-  const [email, setEmail] = useState("");
+  const [userInput, setUserInput] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -17,45 +17,52 @@ export const ChildLoginModal = (props) => {
 
   const dispatch = useDispatch();
 
-  const onSignIn = (e) => {
-    try {
-      if (email === "" || password === "") {
-        setError("Missing username or password!");
-      } else {
+  const onSignIn = async (e) => {
+    if (userInput === "" || password === "") {
+      setError("Missing username/email or password!");
+    } else {
+      try {
         let userDetails = {
-          email,
+          userInput,
           password,
         };
-
-        props.onHide();
-        dispatch(login()); /* axios
-        /*         dispatch(setUser(response.user));
-         
-          .post(
-            "http://127.0.0.1:8000/users/login/",
-            JSON.stringify(userDetails)
-          )
-          .then((response) => {})
-          .catch((error) => {
-            throw Error(error);
-          }); */
-        /* loginError.textContent = "Incorrect email or password"; */
-      }
-    } catch (err) {
-      if (!err.response) {
-        setError("No server response!");
-      } else if (err.response.status === 401) {
-        setError(
-          "Unauthorized! Create an account or check your email and password!"
+        let options = {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        console.log("trying");
+        const { data } = await axios.post(
+          "http://127.0.0.1:8000/users/login/",
+          JSON.stringify(userDetails),
+          options
         );
-      } else {
-        setError("Login failed!");
+        if (data.error) {
+          console.log("failing");
+          setError(data.error);
+        } else {
+          props.onHide();
+          dispatch(login());
+          dispatch(setUser(data.user));
+        }
+
+        /* loginError.textContent = "Incorrect email or password"; */
+      } catch (err) {
+        if (!err.response) {
+          setError("No server response!");
+        } else if (err.response.status === 401) {
+          setError(
+            "Unauthorized! Create an account or check your email and password!"
+          );
+        } else {
+          setError("Login failed!");
+        }
       }
     }
   };
 
-  const onEmailChange = (e) => {
-    setEmail(e.target.value);
+  const onUserInputChange = (e) => {
+    setUserInput(e.target.value);
   };
 
   const onPasswordChange = (e) => {
@@ -70,13 +77,13 @@ export const ChildLoginModal = (props) => {
           Log In
         </Modal.Title>
         <form className="login">
-          <label htmlFor="login-email"></label>
+          <label htmlFor="login-input"></label>
           <input
             type="text"
-            id="login-email"
+            id="login-input"
             required
-            placeholder="Email"
-            onChange={onEmailChange}
+            placeholder="Email or Username"
+            onChange={onUserInputChange}
           />
           <label htmlFor="login-password"></label>
           <input
@@ -86,7 +93,7 @@ export const ChildLoginModal = (props) => {
             placeholder="Password"
             onChange={onPasswordChange}
           />
-          <div className="login-error"></div>
+          <div className="login-error">{error}</div>
         </form>
       </Modal.Body>
       <Modal.Footer>
