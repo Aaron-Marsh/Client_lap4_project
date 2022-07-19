@@ -26,7 +26,33 @@ export const BooksResult = () => {
 
 	const popover = (
 		<Popover id='popover-basic'>
-			<Popover.Body>in here we'll add all of the fishes</Popover.Body>
+			<Popover.Body>
+				<img
+					className='popover-fish'
+					alt='Rate the book in fish'
+					src={require('../../imgs/fish_disabled.png')}
+				/>
+				<img
+					className='popover-fish'
+					alt='Rate the book in fish'
+					src={require('../../imgs/fish_disabled.png')}
+				/>
+				<img
+					className='popover-fish'
+					alt='Rate the book in fish'
+					src={require('../../imgs/fish_disabled.png')}
+				/>
+				<img
+					className='popover-fish'
+					alt='Rate the book in fish'
+					src={require('../../imgs/fish_disabled.png')}
+				/>
+				<img
+					className='popover-fish'
+					alt='Rate the book in fish'
+					src={require('../../imgs/fish_disabled.png')}
+				/>
+			</Popover.Body>
 		</Popover>
 	);
 
@@ -227,10 +253,22 @@ export const BooksResult = () => {
 									src={modalData && modalData.images.thumbnail}
 									className='modal-img'
 								/>
-								{modalData && modalData.author}
-								{modalData && modalData.num_rating > 0 && modalData.rating}{' '}
-								{modalData && modalData.num_rating > 0 && <p>/</p>}
-								{modalData && modalData.num_rating > 0 && modalData.num_rating}
+								<p>{modalData && modalData.author}</p>
+								<p>
+									Rating:{' '}
+									{modalData && modalData.num_rating < 1 && (
+										<p>
+											Oh no! This book hasn't been rated yet! Be the first
+											person to give this book some love (or hate. We're not
+											gonna judge)
+										</p>
+									)}{' '}
+									{modalData && modalData.num_rating > 0 && modalData.rating}{' '}
+									{modalData && modalData.num_rating > 0 && <p>/</p>}
+									{modalData &&
+										modalData.num_rating > 0 &&
+										modalData.num_rating}
+								</p>
 							</div>
 						</Modal.Body>
 						<Modal.Footer>
