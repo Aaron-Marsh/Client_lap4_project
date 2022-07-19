@@ -26,8 +26,6 @@ export const NewPostForm = ({ username, loggedIn }) => {
   };
   return (
     <>
-      <p>NewPostForm</p>
-
       <form onSubmit={handleFormEvent}>
         <label htmlFor="Title">Post Title</label>
         <input

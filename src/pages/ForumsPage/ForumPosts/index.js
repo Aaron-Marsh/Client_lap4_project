@@ -6,10 +6,10 @@ import axios from "axios";
 
 export const ForumPosts = ({ posts }) => {
   return (
-    <div className="post-wrapper">
+    <div className="posts-container">
       {posts.map((p) => (
         <Link
-          className="link-body"
+          className="link"
           to={{
             pathname: "/forums/" + p.id,
           }}

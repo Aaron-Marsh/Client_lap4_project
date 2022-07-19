@@ -34,28 +34,16 @@ export const ForumsPage = () => {
 
   // Hardcoded URL for now until we can get the env detection working!!!
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        let myURL = "https://read-herring.herokuapp.com";
-        const { data } = await axios.get(`${myURL}/forums/`);
-        data.map((d, idx) => {
-          d.key = idx;
-        });
-
-        setPosts(data);
-      } catch (err) {
-        throw new Error(err.message);
-      }
-    };
     fetchPosts();
   }, []);
 
   const fetchForums = async (searchTerm) => {
+    if (searchTerm == "") {
+      fetchPosts();
+    }
     try {
       const sendData = {
-        query_type: "intitle",
         query: searchTerm,
-        num_results: "12",
       };
       const options = {
         headers: {
@@ -63,12 +51,28 @@ export const ForumsPage = () => {
         },
       };
       let { data } = await axios.post(
-        `https://read-herring.herokuapp.com/books/api/`,
+        `https://read-herring.herokuapp.com/forums/search/`,
         JSON.stringify(sendData),
         options
       );
+      console.log(data);
       setPosts(data);
       setHasSearched(true);
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  };
+  //Generic Results
+
+  const fetchPosts = async () => {
+    try {
+      let myURL = "https://read-herring.herokuapp.com";
+      const { data } = await axios.get(`${myURL}/forums/`);
+      data.map((d, idx) => {
+        d.key = idx;
+      });
+
+      setPosts(data);
     } catch (err) {
       throw new Error(err.message);
     }
