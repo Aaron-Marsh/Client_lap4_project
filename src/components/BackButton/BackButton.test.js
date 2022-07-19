@@ -11,4 +11,10 @@ describe('BackButton', () => {
         const btn = screen.getByRole('button');
         expect(btn.textContent).toContain('Back');
     });
+
+    test('clicking  backbutton is recognised', () => {
+        const backButton = screen.getByLabelText('back-button');
+
+        fireEvent.click(backButton);
+    });
 });
