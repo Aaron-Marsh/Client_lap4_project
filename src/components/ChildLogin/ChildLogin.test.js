@@ -68,7 +68,9 @@ describe('ChildLogin', () => {
 });
 
 describe('ChildLogin following msw example', () => {
-    // const worker = setupWorker(rest.post(''));
+    const worker = setupWorker(rest.post('/users/login'), (req, res, ctx) => {
+        return res(ctx.json({ userInput: 'bunny' }));
+    });
     const server = setupServer(
         rest.post('/users/login', (req, res, ctx) => {
             return res(ctx.json({ token: 'mocked_user_token' }));
