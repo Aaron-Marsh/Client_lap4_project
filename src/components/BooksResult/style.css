@@ -48,6 +48,10 @@ img {
 	row-gap: 30px;
 }
 
+.book-title {
+	margin-top: 25px;
+}
+
 /* Modal */
 .modal-wrapper {
 	display: flex;
@@ -73,9 +77,6 @@ img {
 	margin-left: 5px;
 }
 
-
-
-
 /* Book rotating CSS */
 
 .book-container2 {
@@ -84,18 +85,18 @@ img {
 	align-items: center;
 	justify-content: center;
 	perspective: 600px;
-  }
-  
-  @keyframes initAnimation {
+}
+
+@keyframes initAnimation {
 	0% {
-	  transform: rotateY(0deg);
+		transform: rotateY(0deg);
 	}
 	100% {
-	  transform: rotateY(-30deg);
+		transform: rotateY(-30deg);
 	}
-  }
-  
-  .book10 {
+}
+
+.book10 {
 	width: 200px;
 	height: 300px;
 	position: relative;
@@ -103,13 +104,13 @@ img {
 	transform: rotateY(-30deg);
 	transition: 1s ease;
 	animation: 1s ease 0s 1 initAnimation;
-  }
-  
-  .book10:hover {
+}
+
+.book10:hover {
 	transform: rotateY(0deg);
-  }
-  
-  .book10 > :first-child {
+}
+
+.book10 > :first-child {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -120,9 +121,9 @@ img {
 	background-color: #01060f;
 	border-radius: 0 2px 2px 0;
 	box-shadow: 5px 5px 20px #666;
-  }
-  
-  .book10::before {
+}
+
+.book10::before {
 	position: absolute;
 	content: ' ';
 	background-color: blue;
@@ -131,32 +132,33 @@ img {
 	width: 48px;
 	height: 294px;
 	transform: translateX(172px) rotateY(90deg);
-	background: linear-gradient(90deg, 
-	  #fff 0%,
-	  #f9f9f9 5%,
-	  #fff 10%,
-	  #f9f9f9 15%,
-	  #fff 20%,
-	  #f9f9f9 25%,
-	  #fff 30%,
-	  #f9f9f9 35%,
-	  #fff 40%,
-	  #f9f9f9 45%,
-	  #fff 50%,
-	  #f9f9f9 55%,
-	  #fff 60%,
-	  #f9f9f9 65%,
-	  #fff 70%,
-	  #f9f9f9 75%,
-	  #fff 80%,
-	  #f9f9f9 85%,
-	  #fff 90%,
-	  #f9f9f9 95%,
-	  #fff 100%
-	  );
-  }
-  
-  .book10::after {
+	background: linear-gradient(
+		90deg,
+		#fff 0%,
+		#f9f9f9 5%,
+		#fff 10%,
+		#f9f9f9 15%,
+		#fff 20%,
+		#f9f9f9 25%,
+		#fff 30%,
+		#f9f9f9 35%,
+		#fff 40%,
+		#f9f9f9 45%,
+		#fff 50%,
+		#f9f9f9 55%,
+		#fff 60%,
+		#f9f9f9 65%,
+		#fff 70%,
+		#f9f9f9 75%,
+		#fff 80%,
+		#f9f9f9 85%,
+		#fff 90%,
+		#f9f9f9 95%,
+		#fff 100%
+	);
+}
+
+.book10::after {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -167,5 +169,4 @@ img {
 	background-color: var(--slate-blue2);
 	border-radius: 0 2px 2px 0;
 	box-shadow: -10px 0 50px 10px #666;
-  }
-  
+}
