@@ -34,6 +34,7 @@ export function LoginFooter() {
           </div>
           <div className="login-footer-buttons">
             <button
+              className="dark-button"
               onClick={() => {
                 setModalShow(true);
                 setRegisterShow(false);
@@ -42,6 +43,7 @@ export function LoginFooter() {
               Sign in
             </button>
             <button
+              className="dark-button"
               onClick={() => {
                 setModalShow(true);
                 setRegisterShow(true);
