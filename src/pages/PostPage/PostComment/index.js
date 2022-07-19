@@ -23,7 +23,7 @@ export const PostComment = ({
     e.preventDefault();
     e.stopPropagation();
     try {
-      const res = await axios({
+      const { data } = await axios({
         method: "PATCH",
         url: `http://127.0.0.1:8000/forums/${postId}`,
         data: {
@@ -31,19 +31,27 @@ export const PostComment = ({
           username: username,
           reply: reply,
           message_id: messageId,
-          reply_to: "john",
+          reply_to: "",
         },
       });
+      setRepliesArray((current) => [...current, data]);
 
       setReply("");
     } catch (err) {}
   };
+  useEffect(() => {
+    console.log(repliesArray);
+  }, [repliesArray]);
 
   return (
     <div className="message-box">
       <div className="message-open-reply"></div>
       <div className="message-content">
-        <div className="message-username">{message_username}</div>
+        <div className="message-username">
+          <a href={`http://localhost:3000/profile/message_username`}>
+            {message_username}
+          </a>
+        </div>
         <div className="message-message">{message}</div>
       </div>
       <div className="message-replies">
