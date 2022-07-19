@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 // import { useDispatch, useSelector } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
+import Popover from 'react-bootstrap/Popover';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 import './style.css';
 import { SearchBar } from '../SearchBar';
 import { Button } from 'react-bootstrap';
+
 // import { getResult } from '../../actions';
 
 export const BooksResult = () => {
@@ -20,6 +23,12 @@ export const BooksResult = () => {
 	const [modalData, setModalData] = useState(null);
 
 	const handleClose = () => setShow(false);
+
+	const popover = (
+		<Popover id='popover-basic'>
+			<Popover.Body>in here we'll add all of the fishes</Popover.Body>
+		</Popover>
+	);
 
 	// fetch on load
 	const fetchHerringBooksOnLoad = async () => {
@@ -205,30 +214,35 @@ export const BooksResult = () => {
 						aria-labelledby='contained-modal-title-vcenter'
 						centered>
 						<Modal.Header closeButton>
-							<Modal.Title>
-								{modalData && modalData.title} &nbsp;{' '}
-								{modalData && modalData.author} &nbsp;{' '}
-							</Modal.Title>
+							<Modal.Title>{modalData && modalData.title} &nbsp; </Modal.Title>
 						</Modal.Header>
 
-						<Modal.Body>
-							<img
-								alt={modalData && modalData.title}
-								src={modalData && modalData.images.thumbnail}
-								className='img-fluid'
-							/>
-							{modalData && modalData.num_rating > 0 && modalData.rating}{' '}
-							{modalData && modalData.num_rating > 0 && <p>/</p>}
-							{modalData && modalData.num_rating > 0 && modalData.num_rating}
-							<br />
-							{modalData && modalData.description}
+						<Modal.Body className='modal-wrapper'>
+							<div className='modal-description'>
+								{modalData && modalData.description}
+							</div>
+							<div className='modal-container'>
+								<img
+									alt={modalData && modalData.title}
+									src={modalData && modalData.images.thumbnail}
+									className='modal-img'
+								/>
+								{modalData && modalData.author}
+								{modalData && modalData.num_rating > 0 && modalData.rating}{' '}
+								{modalData && modalData.num_rating > 0 && <p>/</p>}
+								{modalData && modalData.num_rating > 0 && modalData.num_rating}
+							</div>
 						</Modal.Body>
 						<Modal.Footer>
+							<OverlayTrigger trigger='click' placement='top' overlay={popover}>
+								<Button variant='success'>Rate🌟</Button>
+							</OverlayTrigger>
+
 							<Button variant='primary' onClick={handleClose}>
-								Rate
+								Add to Read Bookshelf
 							</Button>
-							<Button variant='primary' onClick={handleClose}>
-								Add to bookshelf
+							<Button variant='warning' onClick={handleClose}>
+								Add to Reading List
 							</Button>
 						</Modal.Footer>
 					</Modal>
