@@ -226,8 +226,12 @@ export const BooksResult = () => {
 									setShow(true);
 									setModalData(book);
 								}}>
-								<img alt={book.title} src={book.images.thumbnail} />
-								<h4>{book.title}</h4>
+								<div class="book-container2">
+  									<div class="book10">
+    								{<img alt="The Outstanding Developer by Sebastien Castiel" src={book.images.thumbnail}/>}
+  			 						</div>
+								</div>
+
 							</div>
 						))}
 					</div>

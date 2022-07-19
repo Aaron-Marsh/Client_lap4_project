@@ -1,5 +1,7 @@
-import React from 'react';
-import { PostComment } from '../PostComment';
+
+import React, { useState, useEffect } from "react";
+import { PostComment } from "../PostComment";
+
 export const PostComments = ({
     postMessages,
     loggedIn,
@@ -7,26 +9,31 @@ export const PostComments = ({
     serverURL,
     username,
 }) => {
-    return (
-        <div
-            data-testid="container post-comments"
-            className="container post-comments"
-        >
-            {postMessages.length > 0
-                ? postMessages.map((m) => (
-                      <PostComment
-                          data-testid="contact-name"
-                          message_username={m.username}
-                          message={m.message}
-                          replies={m.replies}
-                          loggedIn={loggedIn}
-                          postId={postId}
-                          serverURL={serverURL}
-                          messageId={m.message_id}
-                          username={username}
-                      />
-                  ))
-                : ''}
-        </div>
-    );
+
+  const [allReplies, setAllReplies] = useState([]);
+
+  useEffect(() => {
+    console.log("im changing");
+    setAllReplies(postMessages);
+  }, [postMessages]);
+
+  return (
+    <div className="container post-comments">
+      {allReplies.length > 0
+        ? allReplies.map((m) => (
+            <PostComment
+              message_username={m.username}
+              message={m.message}
+              replies={m.replies}
+              loggedIn={loggedIn}
+              postId={postId}
+              serverURL={serverURL}
+              messageId={m.message_id}
+              username={username}
+            />
+          ))
+        : ""}
+    </div>
+  );
+
 };

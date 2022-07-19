@@ -13,38 +13,41 @@ export const NewCommentForm = ({
   const handleFormEvent = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-
-    try {
-      const res = await axios({
-        method: "patch",
-        url: `${serverURL}/forums/${postId}`,
-        data: {
-          method: "thread_message",
-          username: username,
-          message: message,
-        },
-      });
-
-      setMessage("");
-      onComment();
-    } catch (err) {}
+    if (message != "") {
+      try {
+        const res = await axios({
+          method: "patch",
+          url: `${serverURL}/forums/${postId}`,
+          data: {
+            method: "thread_message",
+            username: username,
+            message: message,
+          },
+        });
+        setMessage("");
+        onComment();
+      } catch (err) {
+        console.error(err);
+      }
+    }
   };
 
   return (
     <>
-      <p>New Comment:</p>
-
-      <form onSubmit={handleFormEvent}>
-        <label htmlFor="message">Message:</label>
-        <input
+      <form className="new-message-form" onSubmit={handleFormEvent}>
+        <label htmlFor="message"></label>
+        <textarea
           type="text"
+          className="orange-input "
           id="message"
           name="message"
-          placeholder="Type here..."
+          placeholder="Add a comment here..."
           value={message}
+          rows="4"
+          cols="50"
           onChange={handleMessageInput}
         />
-        <input type="submit" disabled={!loggedIn} />
+        <input className="orange-button" type="submit" disabled={!loggedIn} />
       </form>
     </>
   );

@@ -14,15 +14,24 @@ export const PostComment = ({
 }) => {
   const [reply, setReply] = useState("");
   const [isShown, setIsShown] = useState(false);
+  const [isReplyButton, setIsReplyButton] = useState(true);
+  const [isWidth, setIsWidth] = useState(false);
   const [repliesArray, setRepliesArray] = useState([]);
   const handleReplyInput = (e) => setReply(e.target.value);
   let clicked = false;
+  let width = false;
+  const handleWidth = () => {
+    setIsWidth((current) => !current);
+  };
   const handleShown = () => {
     setIsShown((current) => !current);
   };
+  const handleReplyButton = () => {
+    setIsReplyButton((current) => !current);
+  };
 
   useEffect(() => {
-    setRepliesArray(replies.reverse());
+    setRepliesArray(replies);
   }, []);
 
   const handleReplyEvent = async (e) => {
@@ -40,7 +49,7 @@ export const PostComment = ({
           reply_to: "",
         },
       });
-      setRepliesArray((current) => [data, ...current]);
+      setRepliesArray((current) => [...current, data]);
 
       setReply("");
     } catch (err) {}
@@ -72,25 +81,6 @@ export const PostComment = ({
         <div className="message-message">{message}</div>
       </div>
       <div className="reply-container" id={messageId}>
-        <div className="reply-form-container">
-          <button onClick={handleShown}>Reply</button>
-          <div className="message-replies">
-            {isShown && (
-              <form className="message-reply-input" onSubmit={handleReplyEvent}>
-                <label htmlFor="reply"></label>
-                <input
-                  type="text"
-                  id="reply"
-                  name="reply"
-                  placeholder="Type here..."
-                  value={reply}
-                  onChange={handleReplyInput}
-                />
-                <input type="submit" disabled={!loggedIn} />
-              </form>
-            )}
-          </div>
-        </div>
         {repliesArray.length > 0
           ? repliesArray.map((reply) => (
               <div className="reply-content">
@@ -106,6 +96,58 @@ export const PostComment = ({
               </div>
             ))
           : ""}
+        <div className="reply-form-container">
+          {!isReplyButton ? (
+            ""
+          ) : (
+            <button
+              className="white-button"
+              onClick={() => {
+                handleShown();
+                handleWidth();
+                handleReplyButton();
+              }}
+            >
+              Reply
+            </button>
+          )}
+          <div className="message-replies">
+            <form
+              className={
+                isShown
+                  ? isWidth
+                    ? "message-reply-input width"
+                    : "message-reply-input "
+                  : "message-reply-input"
+              }
+              onSubmit={handleReplyEvent}
+            >
+              <label htmlFor="reply"></label>
+              <input
+                type="text"
+                id="reply"
+                name="reply"
+                className="orange-input"
+                placeholder="Add your reply..."
+                value={reply}
+                onChange={handleReplyInput}
+              />
+              <input
+                className="orange-button"
+                type="submit"
+                disabled={!loggedIn}
+              />
+              <div
+                className="close-reply-field"
+                onClick={() => {
+                  handleShown();
+                  handleWidth();
+                  handleReplyButton();
+                }}
+              ></div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   );
