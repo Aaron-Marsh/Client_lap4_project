@@ -3,6 +3,7 @@ import { screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from '../../../store';
+import { renderHook, act } from '@testing-library/react-hooks';
 
 import { PostComments } from '.';
 
@@ -35,10 +36,10 @@ describe('PostComment', () => {
         var serverURL = serverURL;
         var username = 'fred';
 
-        var replies = [{ one: 1 }, { two: 2 }];
-        useEffect(() => {
-            setRepliesArray(replies.reverse());
-        }, []);
+        // var replies = [{ one: 1 }, { two: 2 }];
+        // useEffect(() => {
+        //     setRepliesArray(replies.reverse());
+        // }, []);
         const { getByTestId } = render(
             <Provider store={store}>
                 <BrowserRouter>
