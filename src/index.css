@@ -59,6 +59,7 @@ body {
   border-radius: 5px;
   padding-left: 0.4rem;
   height: fit-content;
+  padding-block: 0.2rem;
   margin-right: 0.25rem;
 }
 
@@ -79,7 +80,7 @@ body {
   color: var(--off-white);
   -webkit-transition-duration: 0.25s;
   transition-duration: 0.25s;
-  padding: 0.175rem 0.6rem;
+  padding: 0.3rem 0.6rem;
 }
 
 .orange-button:hover {
@@ -154,10 +155,12 @@ body {
 
 input:disabled {
   background-color: grey !important;
+  border: none;
   cursor: auto;
 }
 input:disabled:hover {
   background-color: grey;
+  border: none;
   color: white;
 }
 
@@ -186,8 +189,9 @@ input:disabled:hover {
   margin-right: auto;
   padding-left: calc(min(1rem, 5%));
   padding-top: 0.5rem;
-  width: 3.5em;
-  height: 3.5em;
+  width: 3.75em;
+  height: 3.75em;
+
   position: relative;
   margin-bottom: 1rem;
 }

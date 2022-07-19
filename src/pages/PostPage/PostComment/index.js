@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -17,9 +17,13 @@ export const PostComment = ({
   const [isReplyButton, setIsReplyButton] = useState(true);
   const [isWidth, setIsWidth] = useState(false);
   const [repliesArray, setRepliesArray] = useState([]);
-  const handleReplyInput = (e) => setReply(e.target.value);
+
+  const replyRef = useRef(null);
+
   let clicked = false;
   let width = false;
+
+  const handleReplyInput = (e) => setReply(e.target.value);
   const handleWidth = () => {
     setIsWidth((current) => !current);
   };
@@ -106,6 +110,9 @@ export const PostComment = ({
                 handleShown();
                 handleWidth();
                 handleReplyButton();
+                setTimeout(() => {
+                  replyRef.current.focus();
+                }, 100);
               }}
             >
               Reply
@@ -124,6 +131,7 @@ export const PostComment = ({
             >
               <label htmlFor="reply"></label>
               <input
+                ref={replyRef}
                 type="text"
                 id="reply"
                 name="reply"
