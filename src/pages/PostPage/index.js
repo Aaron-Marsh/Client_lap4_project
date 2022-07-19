@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { LoginFooter } from "../../components/index";
+import { LoginFooter, BackButton } from "../../components/index";
 import { PostHeader } from "./PostHeader";
 import { PostComments } from "./PostComments";
 import { NewCommentForm } from "./NewCommentForm";
 import axios from "axios";
-import "./style.css";
+import "./PostPage.css";
 
 export const PostPage = () => {
   const [showLoginFooter, setShowLoginFooter] = useState(false);
@@ -61,7 +61,7 @@ export const PostPage = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container header-space">
         <h2>PostPage</h2>
         <pre>Post ID: {postId}</pre>
         <PostHeader
@@ -76,6 +76,7 @@ export const PostPage = () => {
           loggedIn={loggedIn}
           serverURL={serverURL}
         />
+        <BackButton/>
         {postMessages ? (
           <PostComments
             postMessages={postMessages}
