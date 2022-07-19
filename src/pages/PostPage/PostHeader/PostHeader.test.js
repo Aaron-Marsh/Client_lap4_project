@@ -7,7 +7,7 @@ import { PostHeader } from '.';
 
 describe('PostHeader', () => {
     test('it has a link there', () => {
-        const { container } = render(
+        render(
             <Provider store={store}>
                 <BrowserRouter>
                     <PostHeader />
