@@ -61,7 +61,7 @@ export const PostPage = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container header-space">
         <h2>PostPage</h2>
         <pre>Post ID: {postId}</pre>
         <PostHeader
