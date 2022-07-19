@@ -45,9 +45,10 @@ export const ForumPosts = () => {
     <div className="post-wrapper">
       {posts.map((p) => (
         <Link
+          className="link-body"
           to={{
             pathname: "/forums/" + p.id,
-          }}
+            }}
         >
           <ForumPost
             title={p.title}
