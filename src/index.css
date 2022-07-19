@@ -157,7 +157,7 @@ body {
   }
   .mobile-nav-button {
     display: block;
-    position: absolute;
+    position: fixed;
     background: url(./imgs/hamburger.png);
     background-repeat: no-repeat;
     background-size: cover;
