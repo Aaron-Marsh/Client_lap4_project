@@ -82,17 +82,18 @@ export const ChildSignUpModal = (props) => {
     return (
         <>
             <Modal.Header className="align-items-center">
+            </Modal.Header>
+            <Modal.Body>
                 <Modal.Title
-                    id="contained-modal-title-vcenter"
-                    className="ms-auto"
+                id="contained-modal-title-vcenter"
+                className="login-title"
                 >
                     Sign Up
                 </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
                 <form className="register">
                     <label htmlFor="register-username"></label>
                     <input
+                        className="login-input"
                         type="text"
                         id="register-username"
                         required
@@ -102,6 +103,7 @@ export const ChildSignUpModal = (props) => {
                     />
                     <label htmlFor="register-email"></label>
                     <input
+                        className="login-input"
                         type="text"
                         id="register-email"
                         required
@@ -111,6 +113,7 @@ export const ChildSignUpModal = (props) => {
                     />
                     <label htmlFor="register-password"></label>
                     <input
+                        className="login-input"
                         type="password"
                         id="register-password"
                         required
@@ -120,6 +123,7 @@ export const ChildSignUpModal = (props) => {
                     />
                     <label htmlFor="confirm-register-password"></label>
                     <input
+                        className="login-input"
                         type="password"
                         id="confirm-register-password"
                         required
@@ -131,16 +135,22 @@ export const ChildSignUpModal = (props) => {
                 </form>
             </Modal.Body>
             <Modal.Footer>
-                <button data-testid="signup" onClick={onSignUp}>
+            <div className="login-button-group">
+                <button 
+                className="login-button"
+                data-testid="signup" 
+                onClick={onSignUp}>
                     Sign up
                 </button>
                 <button
+                    className="login-button-link"
                     aria-label="toggle-to-log-in"
                     id="toggle"
                     onClick={() => props.setShowSignUp(false)}
-                >
+                    >
                     Already have an account? Sign in
                 </button>
+                </div>
             </Modal.Footer>
         </>
     );
