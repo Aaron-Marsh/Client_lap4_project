@@ -48,6 +48,10 @@ img {
   row-gap: 30px;
 }
 
+.book-title {
+	margin-top: 25px;
+}
+
 /* Modal */
 .modal-wrapper {
   display: flex;
@@ -165,4 +169,5 @@ img {
   background-color: var(--slate-blue2);
   border-radius: 0 2px 2px 0;
   box-shadow: -10px 0 50px 10px #666;
+
 }
