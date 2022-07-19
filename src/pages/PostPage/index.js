@@ -35,7 +35,7 @@ export const PostPage = () => {
   useEffect(() => {
     if (post) {
       setPostMessages(post.messages);
-      post.messages && post.messages.map((m) => {});
+      post.messages && post.messages.reverse().map((m) => {});
     }
     return () => {};
   }, [post]);
