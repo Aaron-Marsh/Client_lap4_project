@@ -5,16 +5,16 @@ body {
 }
 
 .container {
-    padding: 1rem;
+  padding: 1rem;
 }
 
 .post-header {
-    background: #fff9f9;
-    margin-bottom: 2rem;
-    border-radius: 15px;
+  background: #fff9f9;
+  margin-bottom: 2rem;
+  border-radius: 15px;
 }
 
 .post-comments {
-    background: #fff9f9;
-    border-radius: 15px;
+  background: #fff9f9;
+  border-radius: 15px;
 }

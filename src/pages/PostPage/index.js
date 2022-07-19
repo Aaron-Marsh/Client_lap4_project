@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { LoginFooter } from "../../components/index";
+import { LoginFooter, BackButton } from "../../components/index";
 import { PostHeader } from "./PostHeader";
 import { PostComments } from "./PostComments";
 import { NewCommentForm } from "./NewCommentForm";
@@ -9,16 +9,17 @@ import axios from "axios";
 import "./PostPage.css";
 
 export const PostPage = () => {
+  const [showLoginFooter, setShowLoginFooter] = useState(false);
   const username = useSelector((state) => state.user.user);
   const loggedIn = useSelector((state) => state.loggedIn);
   const [postMessages, setPostMessages] = useState([]);
   const [post, setPost] = useState("");
   let { postId } = useParams();
 
+  let serverURL = "https://read-herring.herokuapp.com";
   const loadData = async () => {
     try {
-      let myURL = "https://read-herring.herokuapp.com";
-      const { data } = await axios.get(`${myURL}/forums/${postId}`);
+      const { data } = await axios.get(`${serverURL}/forums/${postId}`);
       // const pertinentPost = await data.filter((p)=>{
       //     return p.id === postId
       // })
@@ -39,6 +40,25 @@ export const PostPage = () => {
     return () => {};
   }, [post]);
 
+  //Footer stuff
+
+  useEffect(() => {
+    let myScrollFunc = function () {
+      let y = window.scrollY;
+      if (y >= 10) {
+        setShowLoginFooter(true);
+      } else {
+        setShowLoginFooter(false);
+      }
+    };
+
+    window.addEventListener("scroll", myScrollFunc);
+
+    return () => {
+      window.removeEventListener("scroll", myScrollFunc);
+    };
+  }, []);
+
   return (
     <>
       <div className="container">
@@ -54,14 +74,22 @@ export const PostPage = () => {
           onComment={loadData}
           username={username}
           loggedIn={loggedIn}
+          serverURL={serverURL}
         />
+        <BackButton/>
         {postMessages ? (
-          <PostComments postMessages={postMessages} test="test" />
+          <PostComments
+            postMessages={postMessages}
+            loggedIn={loggedIn}
+            postId={postId}
+            serverURL={serverURL}
+            username={username}
+          />
         ) : (
           <p>no comments yet</p>
         )}
       </div>
-      <LoginFooter />
+      {showLoginFooter ? <LoginFooter /> : ""}
     </>
   );
 };

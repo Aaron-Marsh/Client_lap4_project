@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 // import { useDispatch, useSelector } from 'react-redux';
+import Modal from 'react-bootstrap/Modal';
 
-import "./style.css";
-import { SearchBar } from "../SearchBar";
-/* import { MultiCarousel } from '../Carousel'; */
+import './style.css';
+import { SearchBar } from '../SearchBar';
+import { Button } from 'react-bootstrap';
 // import { getResult } from '../../actions';
 
 export const BooksResult = () => {
@@ -14,6 +15,16 @@ export const BooksResult = () => {
 	const [fishCarousel, setFishCarousel] = useState([]);
 	const [cookingCarousel, setCookingCarousel] = useState([]);
 	const [hasSearched, setHasSearched] = useState(false);
+
+	// Modal
+	const [show, setShow] = useState(false);
+	const [modalData, setModalData] = useState(null);
+
+	const handleClose = () => setShow(false);
+	// const handleShow = () => {
+	// 	setShow(true);
+	// 	setModalData(book);
+	// };
 
 	// fetch on load
 	const fetchHerringBooksOnLoad = async () => {
@@ -99,37 +110,27 @@ export const BooksResult = () => {
 	// useEffect, search Google api through server
 	const fetchBooks = async (searchTerm) => {
 		try {
-			// console.log(searchTerm);
-			const data = {
+			const sendData = {
 				query_type: 'intitle',
-				query: { searchTerm },
-				num_results: 10,
+				query: searchTerm,
+				num_results: '12',
 			};
 			const options = {
 				headers: {
 					'Content-Type': 'application/json',
 				},
 			};
-			await axios.post(
+			let { data } = await axios.post(
 				`https://read-herring.herokuapp.com/books/api/`,
-				JSON.stringify(data),
+				JSON.stringify(sendData),
 				options
 			);
-			console.log('data', data);
-
-			setBooks(data.items);
+			setBooks(data);
 			setHasSearched(true);
 		} catch (err) {
 			throw new Error(err.message);
 		}
 	};
-
-	useEffect(() => {
-		console.log('setBooks', books);
-		console.log('hasSearched', hasSearched);
-	}, [books, hasSearched]);
-
-	// console.log(books);
 
 	return (
 		<>
@@ -139,6 +140,7 @@ export const BooksResult = () => {
 			{/* <div className='books-result-wrapper'> */}
 			{/* THIS CODE WILL BE USED WHEN EVERYTHING WORKS!!! */}
 			{/* {herringCarousel.map((book) => (
+
 					<div
 						role='img'
 						aria-label='Books with Herring in the title'
@@ -178,20 +180,41 @@ export const BooksResult = () => {
 					</div>
 
 				))} */}
+
 			{/* </div> */}
+
 			{hasSearched && (
-				<div className='book-grid'>
-					{books.map((book) => (
-						<div role='img' className='image-container' key={book.id}>
+				<>
+					<div className='book-grid'>
+						{books.map((book) => (
+							<div
+								key={book.ISBN}
+								role='img'
+								className='image-container'
+								onClick={() => {
+									setShow(true);
+									setModalData(book);
+								}}>
+								<img alt={book.title} src={book.images.thumbnail} />
+							</div>
+						))}
+					</div>
+					{/* <Modal show={show} onHide={handleClose}>
+						<Modal.Header closeButton>
+							<Modal.Title>{modalData.title}</Modal.Title>
+						</Modal.Header>
 
-							<img
-								alt={book.volumeInfo.title}
-								src={book.volumeInfo.imageLinks.thumbnail}
-							/>
-						</div>
-					))}
-
-				</div>
+						<Modal.Body></Modal.Body>
+						<Modal.Footer>
+							<Button variant='secondary' onClick={handleClose}>
+								Close
+							</Button>
+							<Button variant='primary' onClick={handleClose}>
+								Save Changes
+							</Button>
+						</Modal.Footer>
+					</Modal> */}
+				</>
 			)}
 		</>
 	);
