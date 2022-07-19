@@ -1,44 +1,41 @@
 import React, { useState } from "react";
 import axios from "axios";
-
-export const NewPostForm = ({ username, loggedIn }) => {
-  const [title, setTitle] = useState("");
+export const NewCommentForm = ({
+  postId,
+  onComment,
+  username,
+  loggedIn,
+  serverURL,
+}) => {
   const [message, setMessage] = useState("");
-
-  const handleTitleInput = (e) => setTitle(e.target.value);
   const handleMessageInput = (e) => setMessage(e.target.value);
 
   const handleFormEvent = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const serverUrl = "https://read-herring.herokuapp.com";
+
     try {
       const res = await axios({
-        method: "post",
-        url: `${serverUrl}/forums/`,
+        method: "patch",
+        url: `${serverURL}/forums/${postId}`,
         data: {
-          title: title,
+          method: "thread_message",
           username: username,
-          first_message: message,
+          message: message,
         },
       });
+
+      setMessage("");
+      onComment();
     } catch (err) {}
   };
+
   return (
     <>
-      <p>NewPostForm</p>
+      <p>New Comment:</p>
 
       <form onSubmit={handleFormEvent}>
-        <label htmlFor="Title">Post Title</label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          placeholder="Type here..."
-          value={title}
-          onChange={handleTitleInput}
-        />
-        <label htmlFor="message">Post message</label>
+        <label htmlFor="message">Message:</label>
         <input
           type="text"
           id="message"

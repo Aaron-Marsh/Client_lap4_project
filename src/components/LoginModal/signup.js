@@ -28,7 +28,7 @@
 //                     headers: { 'Content-Type': 'application/json' },
 //                 }
 //             );
-//             // console.log(username)
+//
 //             dispatch({ type: 'SET USER', payload: username });
 //             navigate('/home');
 //         }

@@ -1,66 +1,74 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { LoginFooter } from '../../components/index'
-import { PostHeader } from './PostHeader'
-import { PostComments } from './PostComments'
+import { LoginFooter } from "../../components/index";
+import { PostHeader } from "./PostHeader";
+import { PostComments } from "./PostComments";
+import { NewCommentForm } from "./NewCommentForm";
 import axios from "axios";
-import './style.css'
+import "./style.css";
 
 export const PostPage = () => {
-    
-    let { postId } = useParams();
-    const [postMessages,setPostMessages] = useState([])
-    const [post, setPost] = useState("");
-    
-    useEffect(() => {
-        console.log("hello from inside useEffect");
-        const loadData = async () => {
-            try {
-                console.log("Entering Try Block in PostPage");
-                console.log("postId: ", postId);
-                let myURL = "https://read-herring.herokuapp.com";
-                const { data } = await axios.get(`${myURL}/forums`);
-                // let postData = await data.filter((p) => data.indexOf(p) === postId);
-                // data.length > 0
-                //     ? setPost(await data[postId])
-                //     : setPost({ title: "No Post Found" });
-                console.log("post data: ", await data[postId])
-                // console.log("post message data: ", await data[postId].messages)
-                setPost(await data[postId])
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        loadData();
-        return () => {};
-    }, []);
+  const username = useSelector((state) => state.user.user);
+  const loggedIn = useSelector((state) => state.loggedIn);
+  const [postMessages, setPostMessages] = useState([]);
+  const [post, setPost] = useState("");
+  let { postId } = useParams();
 
-    useEffect(()=>{
-        if (post) {
-            console.log("Post Messages",post.messages);
-            setPostMessages(post.messages)
-            post.messages && post.messages.map((m)=>{
-                console.log("message_id:",m.message_id)
-            })
-        }
-        return () => {};
-    },[post])
+  let serverURL = "https://read-herring.herokuapp.com";
+  const loadData = async () => {
+    try {
+      const { data } = await axios.get(`${serverURL}/forums/${postId}`);
+      // const pertinentPost = await data.filter((p)=>{
+      //     return p.id === postId
+      // })
+      setPost(await data);
+    } catch (err) {}
+  };
+  // get post data by id in route
+  useEffect(() => {
+    loadData();
+    return () => {};
+  }, []);
 
-    return (
-        <>
-            <div className="container">
-                <h2>PostPage</h2>
-                <pre>Post ID: {postId}</pre>
-                <PostHeader 
-                    title={post.title} 
-                    username={post.username}
-                    first_message={post.first_message}
-                />
-                {postMessages
-                ? <PostComments postMessages={postMessages} test="test"/> 
-                : <p>no comments yet</p>}
-            </div>
-            <LoginFooter />
-        </>
-    );
+  useEffect(() => {
+    if (post) {
+      setPostMessages(post.messages);
+      post.messages && post.messages.map((m) => {});
+    }
+    return () => {};
+  }, [post]);
+
+  return (
+    <>
+      <div className="container">
+        <h2>PostPage</h2>
+        <pre>Post ID: {postId}</pre>
+        <PostHeader
+          title={post.title}
+          post_username={post.username}
+          first_message={post.first_message}
+        />
+        <NewCommentForm
+          postId={postId}
+          onComment={loadData}
+          username={username}
+          loggedIn={loggedIn}
+          serverURL={serverURL}
+        />
+        {postMessages ? (
+          <PostComments
+            postMessages={postMessages}
+            loggedIn={loggedIn}
+            postId={postId}
+            serverURL={serverURL}
+            username={username}
+          />
+        ) : (
+          <p>no comments yet</p>
+        )}
+      </div>
+      <LoginFooter />
+    </>
+  );
 };

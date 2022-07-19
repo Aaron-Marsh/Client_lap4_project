@@ -31,19 +31,19 @@ export const ChildLoginModal = (props) => {
                         'Content-Type': 'application/json',
                     },
                 };
-                console.log('trying');
+
                 const { data } = await axios.post(
                     'http://127.0.0.1:8000/users/login/',
                     JSON.stringify(userDetails),
                     options
                 );
                 if (data.error) {
-                    console.log('failing');
                     setError(data.error);
                 } else {
                     props.onHide();
                     dispatch(login());
-                    dispatch(setUser(data.user));
+
+                    dispatch(setUser(data.username));
                 }
 
                 /* loginError.textContent = "Incorrect email or password"; */
@@ -98,13 +98,13 @@ export const ChildLoginModal = (props) => {
                         onChange={onPasswordChange}
                         aria-label="password"
                     />
-                    <div data-testid="login-error" className="login-error">
-                        {error}
-                    </div>
+                    <div className="login-error">{error}</div>
                 </form>
             </Modal.Body>
             <Modal.Footer>
-                <button onClick={onSignIn}>Sign in</button>
+                <button data-testid="login-error" onClick={onSignIn}>
+                    Sign in
+                </button>
                 <button
                     id="toggle"
                     aria-label="toggle-to-sign-up"
