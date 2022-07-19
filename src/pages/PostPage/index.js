@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { LoginFooter } from "../../components/index";
+import { LoginFooter, BackButton } from "../../components/index";
 import { PostHeader } from "./PostHeader";
 import { PostComments } from "./PostComments";
 import { NewCommentForm } from "./NewCommentForm";
@@ -55,6 +55,7 @@ export const PostPage = () => {
           username={username}
           loggedIn={loggedIn}
         />
+        <BackButton/>
         {postMessages ? (
           <PostComments postMessages={postMessages} test="test" />
         ) : (
