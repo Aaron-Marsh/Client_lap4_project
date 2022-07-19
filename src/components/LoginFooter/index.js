@@ -58,6 +58,7 @@ export function LoginFooter() {
                     <button
                         onClick={() => dispatch(close())}
                         className="login-footer-close"
+                        aria-label="login-footer-close"
                     >
                         <span className="sr-only">Close log in footer</span>
                     </button>
