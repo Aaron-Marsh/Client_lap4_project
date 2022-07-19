@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { SearchBar, LoginFooter } from "../../components/index";
-import { ForumPosts } from "./ForumPosts";
-import { NewPostForm } from "./NewPostForm";
-
+import { ForumPosts } from './ForumPosts'
+import { NewPostForm } from './NewPostForm'
+import './ForumsPage.css'
 export const ForumsPage = () => {
   const username = useSelector((state) => state.user.user);
   const loggedIn = useSelector((state) => state.loggedIn);

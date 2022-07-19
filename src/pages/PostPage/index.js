@@ -6,7 +6,7 @@ import { PostHeader } from "./PostHeader";
 import { PostComments } from "./PostComments";
 import { NewCommentForm } from "./NewCommentForm";
 import axios from "axios";
-import "./style.css";
+import "./PostPage.css";
 
 export const PostPage = () => {
   const [showLoginFooter, setShowLoginFooter] = useState(false);
