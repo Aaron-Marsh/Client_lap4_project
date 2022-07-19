@@ -61,35 +61,37 @@ export const PostPage = () => {
 
   return (
     <>
-      <div className="container header-space">
-        <h2>PostPage</h2>
-        <pre>Post ID: {postId}</pre>
-        <PostHeader
-          title={post.title}
-          post_username={post.username}
-          first_message={post.first_message}
-        />
-        <NewCommentForm
-          postId={postId}
-          onComment={loadData}
-          username={username}
-          loggedIn={loggedIn}
-          serverURL={serverURL}
-        />
-        <BackButton/>
-        {postMessages ? (
-          <PostComments
-            postMessages={postMessages}
-            loggedIn={loggedIn}
-            postId={postId}
-            serverURL={serverURL}
-            username={username}
+      <div className="post-page-container">
+        <div className="container header-space">
+          <h2>PostPage</h2>
+          <pre>Post ID: {postId}</pre>
+          <PostHeader
+            title={post.title}
+            post_username={post.username}
+            first_message={post.first_message}
           />
-        ) : (
-          <p>no comments yet</p>
-        )}
+          <NewCommentForm
+            postId={postId}
+            onComment={loadData}
+            username={username}
+            loggedIn={loggedIn}
+            serverURL={serverURL}
+          />
+          <BackButton />
+          {postMessages ? (
+            <PostComments
+              postMessages={postMessages}
+              loggedIn={loggedIn}
+              postId={postId}
+              serverURL={serverURL}
+              username={username}
+            />
+          ) : (
+            <p>no comments yet</p>
+          )}
+        </div>
+        {showLoginFooter ? <LoginFooter /> : ""}
       </div>
-      {showLoginFooter ? <LoginFooter /> : ""}
     </>
   );
 };

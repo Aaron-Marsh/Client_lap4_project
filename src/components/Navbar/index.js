@@ -7,6 +7,7 @@ export const Navbar = () => {
   const [modalShow, setModalShow] = useState(false);
 
   const loggedIn = useSelector((state) => state.loggedIn);
+  const username = useSelector((state) => state.user.user);
 
   function toggle() {
     let navItems = document.querySelector(".nav-items");
@@ -105,7 +106,9 @@ export const Navbar = () => {
                     color: isActive ? "white" : "",
                     borderBottom: isActive ? "4px solid white" : "",
                   })}
-                  to="/profile"
+                  to={{
+                    pathname: "/profile/" + username,
+                  }}
                 >
                   {loggedIn ? "Profile" : "Sign in"}
                 </NavLink>

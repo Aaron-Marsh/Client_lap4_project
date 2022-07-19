@@ -118,7 +118,7 @@
   color: white;
   padding-bottom: 1rem;
   width: fit-content;
-  border-bottom: 3px solid #281e32;
+  border-bottom: 3px solid var(--slate-blue2);
   font-weight: 600;
   margin-bottom: 2rem;
 }
@@ -139,7 +139,7 @@
 
 .home-random {
   height: 100vh;
-  background-color: #281e32;
+  background-color: var(--slate-blue2);
   position: relative;
 }
 

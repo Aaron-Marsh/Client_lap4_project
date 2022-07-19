@@ -47,8 +47,12 @@ export const PostComment = ({
     <div className="message-box">
       <div className="message-open-reply"></div>
       <div className="message-content">
-        <div className="message-username">
-          <a href={`http://localhost:3000/profile/message_username`}>
+        <div className="message-line"></div>
+        <div>
+          <a
+            className="message-username"
+            href={`http://localhost:3000/profile/message_username`}
+          >
             {message_username}
           </a>
         </div>
