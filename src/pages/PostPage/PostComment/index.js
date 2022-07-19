@@ -16,7 +16,7 @@ export const PostComment = ({
   const [isShown, setIsShown] = useState(false);
   const [repliesArray, setRepliesArray] = useState([]);
   const handleReplyInput = (e) => setReply(e.target.value);
-
+  let clicked = false;
   const handleShown = () => {
     setIsShown((current) => !current);
   };
@@ -45,15 +45,22 @@ export const PostComment = ({
       setReply("");
     } catch (err) {}
   };
-  useEffect(() => {
-    console.log(repliesArray);
-  }, [repliesArray]);
 
   return (
     <div className="message-box">
       <div className="message-open-reply"></div>
       <div className="message-content">
-        <div className="message-line"></div>
+        <div
+          className="message-line"
+          onClick={() => {
+            clicked
+              ? document
+                  .getElementById(messageId)
+                  .classList.remove("hide-reply")
+              : document.getElementById(messageId).classList.add("hide-reply");
+            clicked = !clicked;
+          }}
+        ></div>
         <div>
           <Link
             className="message-username"
@@ -64,22 +71,26 @@ export const PostComment = ({
         </div>
         <div className="message-message">{message}</div>
       </div>
-      {!isShown && <button onClick={handleShown}>Reply</button>}
-      <div className="message-replies">
-        {isShown && (
-          <form className="message-reply-input" onSubmit={handleReplyEvent}>
-            <label htmlFor="reply"></label>
-            <input
-              type="text"
-              id="reply"
-              name="reply"
-              placeholder="Type here..."
-              value={reply}
-              onChange={handleReplyInput}
-            />
-            <input type="submit" disabled={!loggedIn} />
-          </form>
-        )}
+      <div className="reply-container" id={messageId}>
+        <div className="reply-form-container">
+          <button onClick={handleShown}>Reply</button>
+          <div className="message-replies">
+            {isShown && (
+              <form className="message-reply-input" onSubmit={handleReplyEvent}>
+                <label htmlFor="reply"></label>
+                <input
+                  type="text"
+                  id="reply"
+                  name="reply"
+                  placeholder="Type here..."
+                  value={reply}
+                  onChange={handleReplyInput}
+                />
+                <input type="submit" disabled={!loggedIn} />
+              </form>
+            )}
+          </div>
+        </div>
         {repliesArray.length > 0
           ? repliesArray.map((reply) => (
               <div className="reply-content">
