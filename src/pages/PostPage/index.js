@@ -33,9 +33,9 @@ export const PostPage = () => {
   }, []);
 
   useEffect(() => {
-    if (post) {
+    if (post && post.messages) {
       setPostMessages(post.messages);
-      post.messages && post.messages.reverse().map((m) => {});
+      /* post.messages && post.messages.reverse().map((m) => {}); */
     }
     return () => {};
   }, [post]);
@@ -63,6 +63,7 @@ export const PostPage = () => {
     <>
       <div className="post-page-container">
         <div className="container header-space">
+          <BackButton />
           <PostHeader
             title={post.title}
             post_username={post.username}
@@ -75,7 +76,6 @@ export const PostPage = () => {
             loggedIn={loggedIn}
             serverURL={serverURL}
           />
-          <BackButton />
           {postMessages ? (
             <PostComments
               postMessages={postMessages}

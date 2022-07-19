@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { PostComment } from "../PostComment";
 export const PostComments = ({
   postMessages,
@@ -7,10 +7,17 @@ export const PostComments = ({
   serverURL,
   username,
 }) => {
+  const [allReplies, setAllReplies] = useState([]);
+
+  useEffect(() => {
+    console.log("im changing");
+    setAllReplies(postMessages);
+  }, [postMessages]);
+
   return (
     <div className="container post-comments">
-      {postMessages.length > 0
-        ? postMessages.map((m) => (
+      {allReplies.length > 0
+        ? allReplies.map((m) => (
             <PostComment
               message_username={m.username}
               message={m.message}
