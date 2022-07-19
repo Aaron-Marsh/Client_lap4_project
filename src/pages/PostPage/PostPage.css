@@ -1,8 +1,8 @@
-/* body {
+body {
     background-attachment: fixed;
-    background-image: linear-gradient(to left bottom, #8c713b, #987734, #a57d2d, #b28223, #bf8817);
+    background-image: linear-gradient(to right top, #fe5f37, #fd6235, #fc6633, #fa6931, #f96c2f);
 
-} */
+}
 
 .container {
     padding: 1rem;
