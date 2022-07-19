@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export const PostHeader = ({ title, post_username, first_message }) => {
-  console.log(post_username);
   return (
     <div className="post-header">
       <h3>{title}</h3>

@@ -4,51 +4,15 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 // import { useSelector } from "react-redux";
 
-export const ForumPosts = () => {
-  // const storeServerURL = useSelector((state) => state.serverReducer);
-  const [posts, setPosts] = useState([]);
-  // const [serverURL, setServerURL] = useState("");
-
-  // insert code here to get post info from the db to render the post
-  // Info Including:
-  // - Post Title
-  // - Post Content
-  // - Post Reacts
-  // - Post Comment Count
-
-  // useEffect(() => {
-  // 	console.log("firing useEffect1")
-  //     setServerURL(storeServerURL);
-  // }, []);
-
-  // Hardcoded URL for now until we can get the env detection working!!!
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        let myURL = "https://read-herring.herokuapp.com";
-        const { data } = await axios.get(`${myURL}/forums/`);
-        data.map((d, idx) => {
-          d.key = idx;
-        });
-
-        setPosts(await data);
-      } catch (err) {
-        throw new Error(err.message);
-      }
-    };
-    fetchPosts();
-  }, []);
-
-  // Each forum post will be wrapped in a link that will take you to the posts page
-  // Here you will be able to add to react and comment on the post
+export const ForumPosts = ({ posts }) => {
   return (
-    <div className="post-wrapper">
+    <div className="posts-container">
       {posts.map((p) => (
         <Link
-          className="link-body"
+          className="link"
           to={{
             pathname: "/forums/" + p.id,
-            }}
+          }}
         >
           <ForumPost
             title={p.title}
