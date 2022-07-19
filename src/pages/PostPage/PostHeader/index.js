@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export const PostHeader = ({ title, post_username, first_message }) => {
+
     console.log(post_username);
     return (
         <div className="post-header">
@@ -18,4 +19,5 @@ export const PostHeader = ({ title, post_username, first_message }) => {
             <p>{first_message}</p>
         </div>
     );
+
 };
