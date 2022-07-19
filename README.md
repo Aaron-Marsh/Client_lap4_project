@@ -47,6 +47,8 @@ Access the deployed client site [here](https://read-herring.netlify.app/).
 
 ## Contribution guide
 
+Look for a file named CONTRIBUTING on a file root level.
+
 ## Bugs
 
 ## Future features
