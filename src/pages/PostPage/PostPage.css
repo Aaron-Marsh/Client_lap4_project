@@ -15,11 +15,13 @@
   color: var(--off-white);
   padding-inline: 2rem;
   padding-block: 1rem;
+  margin-inline: 4rem;
 }
 
 .post-comments {
   margin: 0;
   padding: 0;
+  margin-bottom: 10rem;
 }
 .message-box {
   background: var(--slate-blue2);
@@ -29,6 +31,7 @@
   padding-inline: 2rem;
   padding-block: 1.5rem;
   color: var(--off-white);
+  margin-inline: 4rem;
 }
 
 .message-line {
@@ -74,6 +77,15 @@
   margin-left: 1rem;
 }
 
+.reply-form-container {
+  display: flex;
+  gap: 1rem;
+}
+
 .header-space {
-  margin-top: 9rem;
+  margin-top: 11rem;
+}
+
+.hide-reply {
+  display: none;
 }
