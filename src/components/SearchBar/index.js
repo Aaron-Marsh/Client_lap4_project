@@ -10,7 +10,6 @@ export const SearchBar = ({ getResults }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		getResults(search);
-		console.log(search);
 	};
 
 	const updateInput = (e) => {
