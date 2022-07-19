@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 export const PostComment = ({
   message_username,
@@ -13,13 +13,13 @@ export const PostComment = ({
   username,
 }) => {
   const [reply, setReply] = useState("");
-  const [isShown, setIsShown] = useState(false)
+  const [isShown, setIsShown] = useState(false);
   const [repliesArray, setRepliesArray] = useState([]);
   const handleReplyInput = (e) => setReply(e.target.value);
 
   const handleShown = () => {
-    setIsShown(current => !current)
-    }
+    setIsShown((current) => !current);
+  };
 
   useEffect(() => {
     setRepliesArray(replies.reverse());
@@ -40,7 +40,7 @@ export const PostComment = ({
           reply_to: "",
         },
       });
-      setRepliesArray((current) => [data,...current]);
+      setRepliesArray((current) => [data, ...current]);
 
       setReply("");
     } catch (err) {}
@@ -53,14 +53,12 @@ export const PostComment = ({
     <div className="message-box">
       <div className="message-open-reply"></div>
       <div className="message-content">
-
         <div className="message-line"></div>
         <div>
-          <a
+          <Link
             className="message-username"
-            href={`http://localhost:3000/profile/message_username`}
+            to={`/profile/${message_username}`}
           >
-
             {message_username}
           </Link>
         </div>
@@ -68,21 +66,33 @@ export const PostComment = ({
       </div>
       {!isShown && <button onClick={handleShown}>Reply</button>}
       <div className="message-replies">
-        {isShown && <form className="message--reply-input" onSubmit={handleReplyEvent}>
-          <label htmlFor="reply"></label>
-          <input
-            type="text"
-            id="reply"
-            name="reply"
-            placeholder="Type here..."
-            value={reply}
-            onChange={handleReplyInput}
-          />
-          <input type="submit" disabled={!loggedIn} />
-        </form>}
+        {isShown && (
+          <form className="message-reply-input" onSubmit={handleReplyEvent}>
+            <label htmlFor="reply"></label>
+            <input
+              type="text"
+              id="reply"
+              name="reply"
+              placeholder="Type here..."
+              value={reply}
+              onChange={handleReplyInput}
+            />
+            <input type="submit" disabled={!loggedIn} />
+          </form>
+        )}
         {repliesArray.length > 0
           ? repliesArray.map((reply) => (
-              <div className="message-reply">{reply.reply}</div>
+              <div className="reply-content">
+                <div>
+                  <Link
+                    className="message-username"
+                    to={`/profile/${reply.username}`}
+                  >
+                    {reply.username}
+                  </Link>
+                </div>
+                <div className="reply-message">{reply.reply}</div>
+              </div>
             ))
           : ""}
       </div>
