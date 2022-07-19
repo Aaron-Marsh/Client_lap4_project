@@ -6,7 +6,7 @@ export const BackButton = () => {
 
     return (
         <button
-            className="white-button"
+            className="dark-light-button"
             aria-label="back-button"
             id="back-button"
             onClick={() => goTo(-1)}

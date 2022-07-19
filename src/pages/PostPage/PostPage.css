@@ -2,7 +2,7 @@
   display: flex;
   margin-inline: 4rem;
 
-  max-width: 700px;
+  max-width: 500px;
 
   align-items: flex-end;
   margin-bottom: 2rem;
@@ -27,8 +27,8 @@
 .post-author {
   color: var(--pale-orange);
   text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-weight: 400;
+  font-size: 0.85rem;
 }
 .post-author:hover {
   color: var(--off-white);
@@ -40,7 +40,7 @@
   border-radius: 15px;
   color: var(--off-white);
   padding-inline: 2rem;
-  padding-block: 1rem;
+  padding-block: 1.5rem;
   margin-inline: 4rem;
   font-weight: 600;
 }
@@ -100,7 +100,7 @@
   color: var(--pale-orange);
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
 }
 .message-username:hover {
   color: var(--off-white);

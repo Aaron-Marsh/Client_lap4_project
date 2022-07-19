@@ -10,7 +10,7 @@ export const SearchBar = ({ getResults }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     getResults(search);
-    console.log(search);
+    setSearch("");
   };
 
   const updateInput = (e) => {
@@ -19,10 +19,17 @@ export const SearchBar = ({ getResults }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="search">Search</label>
-      <input id="search" type="text" onChange={updateInput} value={search} />
-      <input type="submit" value="Search" />
+    <form className="search-form" onSubmit={handleSubmit}>
+      <label htmlFor="search"></label>
+      <input
+        id="search"
+        type="text"
+        placeholder="Search for books here..."
+        className="orange-input"
+        onChange={updateInput}
+        value={search}
+      />
+      <input type="submit" className="orange-button" value="Search" />
     </form>
   );
 };

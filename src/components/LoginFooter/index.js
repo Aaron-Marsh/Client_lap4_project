@@ -37,6 +37,7 @@ export function LoginFooter() {
                     </div>
                     <div className="login-footer-buttons">
                         <button
+                            className="dark-button"
                             onClick={() => {
                                 setModalShow(true);
                                 setRegisterShow(false);
@@ -45,6 +46,7 @@ export function LoginFooter() {
                             Sign in
                         </button>
                         <button
+                            className="dark-button"
                             onClick={() => {
                                 setModalShow(true);
                                 setRegisterShow(true);
@@ -56,7 +58,6 @@ export function LoginFooter() {
                     <button
                         onClick={() => dispatch(close())}
                         className="login-footer-close"
-                        aria-label="login-footer-close"
                     >
                         <span className="sr-only">Close log in footer</span>
                     </button>
