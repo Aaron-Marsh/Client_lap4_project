@@ -1,12 +1,15 @@
+
 import React, { useState, useEffect } from "react";
 import { PostComment } from "../PostComment";
+
 export const PostComments = ({
-  postMessages,
-  loggedIn,
-  postId,
-  serverURL,
-  username,
+    postMessages,
+    loggedIn,
+    postId,
+    serverURL,
+    username,
 }) => {
+
   const [allReplies, setAllReplies] = useState([]);
 
   useEffect(() => {
@@ -32,4 +35,5 @@ export const PostComments = ({
         : ""}
     </div>
   );
+
 };

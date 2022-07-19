@@ -56,7 +56,8 @@
             "src/**/*.{js,jsx}",
             "!src/index.js",
             "!src/pages/HomePage/index.js",
-            "!src/components/ChildLogin/fetch.jsx"
+            "!src/components/ChildLogin/fetch.jsx",
+            "!src/components/ChildSignUp/fetch.jsx"
         ]
     }
 }

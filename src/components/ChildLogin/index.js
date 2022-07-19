@@ -75,13 +75,14 @@ export const ChildLoginModal = (props) => {
             <Modal.Body>
                 <Modal.Title
                     id="contained-modal-title-vcenter"
-                    className="ms-auto"
+                    className="login-title"
                 >
                     Log In
                 </Modal.Title>
                 <form className="login">
                     <label htmlFor="login-input"></label>
                     <input
+                        className="login-input"
                         type="text"
                         id="login-input"
                         required
@@ -91,6 +92,7 @@ export const ChildLoginModal = (props) => {
                     />
                     <label htmlFor="login-password"></label>
                     <input
+                        className="login-input"
                         type="password"
                         id="login-password"
                         required
@@ -102,16 +104,22 @@ export const ChildLoginModal = (props) => {
                 </form>
             </Modal.Body>
             <Modal.Footer>
-                <button data-testid="login-error" onClick={onSignIn}>
+                <div className="login-button-group">
+                <button 
+                    className="login-button"
+                    data-testid="login" 
+                    onClick={onSignIn}>
                     Sign in
                 </button>
                 <button
+                    className="login-button-link"
                     id="toggle"
                     aria-label="toggle-to-sign-up"
                     onClick={() => props.setShowSignUp(true)}
-                >
-                    Create account
+                    >
+                    Don't have an account? Create account
                 </button>
+                </div>
             </Modal.Footer>
         </>
     );

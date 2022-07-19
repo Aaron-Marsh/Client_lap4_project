@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 // import { useDispatch, useSelector } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
+import Popover from 'react-bootstrap/Popover';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 import './style.css';
 import { SearchBar } from '../SearchBar';
 import { Button } from 'react-bootstrap';
+
 // import { getResult } from '../../actions';
 
 export const BooksResult = () => {
@@ -20,10 +23,38 @@ export const BooksResult = () => {
 	const [modalData, setModalData] = useState(null);
 
 	const handleClose = () => setShow(false);
-	// const handleShow = () => {
-	// 	setShow(true);
-	// 	setModalData(book);
-	// };
+
+	const popover = (
+		<Popover id='popover-basic'>
+			<Popover.Body>
+				<img
+					className='popover-fish'
+					alt='Rate the book in fish'
+					src={require('../../imgs/fish_disabled.png')}
+				/>
+				<img
+					className='popover-fish'
+					alt='Rate the book in fish'
+					src={require('../../imgs/fish_disabled.png')}
+				/>
+				<img
+					className='popover-fish'
+					alt='Rate the book in fish'
+					src={require('../../imgs/fish_disabled.png')}
+				/>
+				<img
+					className='popover-fish'
+					alt='Rate the book in fish'
+					src={require('../../imgs/fish_disabled.png')}
+				/>
+				<img
+					className='popover-fish'
+					alt='Rate the book in fish'
+					src={require('../../imgs/fish_disabled.png')}
+				/>
+			</Popover.Body>
+		</Popover>
+	);
 
 	// fetch on load
 	const fetchHerringBooksOnLoad = async () => {
@@ -102,9 +133,6 @@ export const BooksResult = () => {
 		fetchFishBooksOnLoad();
 		fetchCookingBooksOnLoad();
 	}, []);
-
-	// post search to server
-	// req.body = query_type: intitle, query: searchTerm, num_results: whatevs
 
 	// useEffect, search Google api through server
 	const fetchBooks = async (searchTerm) => {
@@ -199,24 +227,63 @@ export const BooksResult = () => {
 									setModalData(book);
 								}}>
 								<img alt={book.title} src={book.images.thumbnail} />
+								<h4>{book.title}</h4>
 							</div>
 						))}
 					</div>
-					{/* <Modal show={show} onHide={handleClose}>
+
+					{/* Modal */}
+					<Modal
+						show={show}
+						onHide={handleClose}
+						size='lg'
+						aria-labelledby='contained-modal-title-vcenter'
+						centered>
 						<Modal.Header closeButton>
-							<Modal.Title>{modalData.title}</Modal.Title>
+							<Modal.Title>{modalData && modalData.title} &nbsp; </Modal.Title>
 						</Modal.Header>
 
-						<Modal.Body></Modal.Body>
+						<Modal.Body className='modal-wrapper'>
+							<div className='modal-description'>
+								{modalData && modalData.description}
+							</div>
+							<div className='modal-container'>
+								<img
+									alt={modalData && modalData.title}
+									src={modalData && modalData.images.thumbnail}
+									className='modal-img'
+								/>
+								<p>{modalData && modalData.author}</p>
+								<p>
+									Rating:{' '}
+									{modalData && modalData.num_rating < 1 && (
+										<p>
+											Oh no! This book hasn't been rated yet! Be the first
+											person to give this book some love (or hate. We're not
+											gonna judge)
+										</p>
+									)}{' '}
+									{modalData && modalData.num_rating > 0 && modalData.rating}{' '}
+									{modalData && modalData.num_rating > 0 && <p>/</p>}
+									{modalData &&
+										modalData.num_rating > 0 &&
+										modalData.num_rating}
+								</p>
+							</div>
+						</Modal.Body>
 						<Modal.Footer>
-							<Button variant='secondary' onClick={handleClose}>
-								Close
-							</Button>
+							<OverlayTrigger trigger='click' placement='top' overlay={popover}>
+								<Button variant='success'>Rate🌟</Button>
+							</OverlayTrigger>
+
 							<Button variant='primary' onClick={handleClose}>
-								Save Changes
+								Add to Read Bookshelf
+							</Button>
+							<Button variant='warning' onClick={handleClose}>
+								Add to Reading List
 							</Button>
 						</Modal.Footer>
-					</Modal> */}
+					</Modal>
 				</div>
 			)}
 		</div>
