@@ -98,35 +98,30 @@ export const BooksResult = () => {
   // useEffect, search Google api through server
   const fetchBooks = async (searchTerm) => {
     try {
-      const data = {
+      const sendData = {
         query_type: "intitle",
-        query: { searchTerm },
-        num_results: 10,
+        query: searchTerm,
+        num_results: "10",
       };
       const options = {
         headers: {
           "Content-Type": "application/json",
         },
       };
-      await axios.post(
+      let { data } = await axios.post(
         `https://read-herring.herokuapp.com/books/api/`,
-        JSON.stringify(data),
+        JSON.stringify(sendData),
         options
       );
-
-      setBooks(data.items);
+      console.log(data);
+      setBooks(data);
       setHasSearched(true);
     } catch (err) {
       throw new Error(err.message);
     }
   };
 
-  useEffect(() => {
-    console.log("setBooks", books);
-    console.log("hasSearched", hasSearched);
-  }, [books, hasSearched]);
-
-  // console.log(books);
+  useEffect(() => {}, [books, hasSearched]);
 
   return (
     <>
@@ -180,10 +175,8 @@ export const BooksResult = () => {
         <div className="book-grid">
           {books.map((book) => (
             <div role="img" className="image-container" key={book.id}>
-              <img
-                alt={book.volumeInfo.title}
-                src={book.volumeInfo.imageLinks.thumbnail}
-              />
+              <img alt={book.title} src={book.images.thumbnail} />
+              <h3>{book.title}</h3>
             </div>
           ))}
         </div>
