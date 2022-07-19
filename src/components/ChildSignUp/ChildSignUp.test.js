@@ -111,7 +111,7 @@ test('allows the user to sign up', async () => {
     expect(screen.getByTestId('signup')).toHaveTextContent('Sign up');
 });
 
-test('loads and displays greeting', async () => {
+test('', async () => {
     const { getByLabelText } = render(
         <Provider store={store}>
             <BrowserRouter>
