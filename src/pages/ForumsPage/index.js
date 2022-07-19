@@ -55,7 +55,7 @@ export const ForumsPage = () => {
         JSON.stringify(sendData),
         options
       );
-      console.log(data);
+
       setPosts(data);
       setHasSearched(true);
     } catch (err) {

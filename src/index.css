@@ -234,8 +234,6 @@ input:disabled:hover {
 
 .link:hover {
   color: white;
-  padding-bottom: 1.4rem;
-  border-bottom: 4px solid white;
 }
 
 .sr-only {
