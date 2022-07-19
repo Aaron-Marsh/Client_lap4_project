@@ -9,6 +9,7 @@ import { Button } from 'react-bootstrap';
 // import { getResult } from '../../actions';
 
 export const BooksResult = () => {
+
 	const [books, setBooks] = useState([]);
 	const [herringCarousel, setHerringCarousel] = useState([]);
 	const [fishCarousel, setFishCarousel] = useState([]);
@@ -139,6 +140,7 @@ export const BooksResult = () => {
 			{/* <div className='books-result-wrapper'> */}
 			{/* THIS CODE WILL BE USED WHEN EVERYTHING WORKS!!! */}
 			{/* {herringCarousel.map((book) => (
+
 					<div
 						role='img'
 						aria-label='Books with Herring in the title'
@@ -178,6 +180,7 @@ export const BooksResult = () => {
 					</div>
 
 				))} */}
+
 			{/* </div> */}
 
 			{hasSearched && (
@@ -215,4 +218,5 @@ export const BooksResult = () => {
 			)}
 		</>
 	);
+
 };

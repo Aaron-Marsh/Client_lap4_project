@@ -60,7 +60,6 @@ export const Navbar = () => {
                 className="link"
                 style={({ isActive }) => ({
                   color: isActive ? "white" : "",
-                  backgroundColor: isActive ? "#281e32" : "",
                 })}
                 to="/"
               >
@@ -72,7 +71,7 @@ export const Navbar = () => {
                 className="link"
                 style={({ isActive }) => ({
                   color: isActive ? "white" : "",
-                  backgroundColor: isActive ? "#281e32" : "",
+                  borderBottom: isActive ? "4px solid white" : "",
                 })}
                 to="/books"
               >
@@ -84,7 +83,7 @@ export const Navbar = () => {
                 className="link"
                 style={({ isActive }) => ({
                   color: isActive ? "white" : "",
-                  backgroundColor: isActive ? "#281e32" : "",
+                  borderBottom: isActive ? "4px solid white" : "",
                 })}
                 to="/forums"
               >
@@ -104,7 +103,7 @@ export const Navbar = () => {
                   className="link"
                   style={({ isActive }) => ({
                     color: isActive ? "white" : "",
-                    backgroundColor: isActive ? "#281e32" : "",
+                    borderBottom: isActive ? "4px solid white" : "",
                   })}
                   to="/profile"
                 >
