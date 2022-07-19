@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom'
 
 export const PostComment = ({
   message_username,
@@ -12,11 +13,16 @@ export const PostComment = ({
   username,
 }) => {
   const [reply, setReply] = useState("");
+  const [isShown, setIsShown] = useState(false)
   const [repliesArray, setRepliesArray] = useState([]);
   const handleReplyInput = (e) => setReply(e.target.value);
 
+  const handleShown = () => {
+    setIsShown(current => !current)
+    }
+
   useEffect(() => {
-    setRepliesArray(replies);
+    setRepliesArray(replies.reverse());
   }, []);
 
   const handleReplyEvent = async (e) => {
@@ -34,7 +40,7 @@ export const PostComment = ({
           reply_to: "",
         },
       });
-      setRepliesArray((current) => [...current, data]);
+      setRepliesArray((current) => [data,...current]);
 
       setReply("");
     } catch (err) {}
@@ -48,14 +54,15 @@ export const PostComment = ({
       <div className="message-open-reply"></div>
       <div className="message-content">
         <div className="message-username">
-          <a href={`http://localhost:3000/profile/message_username`}>
+          <Link to={`http://localhost:3000/profile/message_username`}>
             {message_username}
-          </a>
+          </Link>
         </div>
         <div className="message-message">{message}</div>
       </div>
+      {!isShown && <button onClick={handleShown}>Reply</button>}
       <div className="message-replies">
-        <form className="message--reply-input" onSubmit={handleReplyEvent}>
+        {isShown && <form className="message--reply-input" onSubmit={handleReplyEvent}>
           <label htmlFor="reply"></label>
           <input
             type="text"
@@ -66,7 +73,7 @@ export const PostComment = ({
             onChange={handleReplyInput}
           />
           <input type="submit" disabled={!loggedIn} />
-        </form>
+        </form>}
         {repliesArray.length > 0
           ? repliesArray.map((reply) => (
               <div className="message-reply">{reply.reply}</div>
