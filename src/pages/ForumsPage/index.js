@@ -29,7 +29,7 @@ export const ForumsPage = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="container header-space">
         <h2>Forums page</h2>
         <SearchBar />
         <NewPostForm username={username} loggedIn={loggedIn} />
