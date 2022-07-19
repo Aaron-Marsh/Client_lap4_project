@@ -98,7 +98,9 @@ export const ChildLoginModal = (props) => {
                         onChange={onPasswordChange}
                         aria-label="password"
                     />
-                    <div className="login-error">{error}</div>
+                    <div data-testid="login-error" className="login-error">
+                        {error}
+                    </div>
                 </form>
             </Modal.Body>
             <Modal.Footer>
