@@ -47,3 +47,22 @@ img {
 	grid-template-columns: repeat(4, 1fr);
 	row-gap: 30px;
 }
+
+/* Modal */
+.modal-wrapper {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.modal-description {
+	width: 70%;
+}
+
+.modal-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.modal-img {
+	border: 1px solid black;
+}
