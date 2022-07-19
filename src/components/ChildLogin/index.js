@@ -102,7 +102,7 @@ export const ChildLoginModal = (props) => {
                 </form>
             </Modal.Body>
             <Modal.Footer>
-                <button data-testid="login-error" onClick={onSignIn}>
+                <button data-testid="login" onClick={onSignIn}>
                     Sign in
                 </button>
                 <button
