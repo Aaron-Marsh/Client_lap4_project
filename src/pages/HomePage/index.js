@@ -19,7 +19,7 @@ export const HomePage = () => {
       window.innerWidth ||
       document.documentElement.clientWidth ||
       document.body.clientWidth;
-    let h = water.offsetHeight * 0.75;
+    let h = water.offsetHeight * 0.85;
     function fishJump(peix, reflex, i) {
       setTimeout(function () {
         let angle = Math.PI - (Math.PI / (images / 2)) * i;
