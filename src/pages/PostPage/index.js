@@ -63,8 +63,6 @@ export const PostPage = () => {
     <>
       <div className="post-page-container">
         <div className="container header-space">
-          <h2>PostPage</h2>
-          <pre>Post ID: {postId}</pre>
           <PostHeader
             title={post.title}
             post_username={post.username}

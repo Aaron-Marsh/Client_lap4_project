@@ -1,14 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const PostHeader = ({ title, post_username, first_message }) => {
   return (
     <div className="container post-header">
       <h3>{title}</h3>
       <h5>
-        Author:{" "}
-        <a href="http://localhost:3000/profile/{post_username}">
+        <Link className="message-username" to={`/profile/${post_username}`}>
           {post_username}
-        </a>
+        </Link>
       </h5>
       <p>{first_message}</p>
     </div>
