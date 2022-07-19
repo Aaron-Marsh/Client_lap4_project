@@ -1,17 +1,18 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const BackButton = () => {
-  const goTo = useNavigate();
+    const goTo = useNavigate();
 
-  return (
-    <button
-      className="white-button"
-      id="back-button"
-      onClick={() => goTo(-1)}
-      style={{ cursor: "pointer" }}
-    >
-      Back
-    </button>
-  );
+    return (
+        <button
+            className="white-button"
+            aria-label="back-button"
+            id="back-button"
+            onClick={() => goTo(-1)}
+            style={{ cursor: 'pointer' }}
+        >
+            Back
+        </button>
+    );
 };
