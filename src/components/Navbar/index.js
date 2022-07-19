@@ -7,6 +7,7 @@ export const Navbar = () => {
   const [modalShow, setModalShow] = useState(false);
 
   const loggedIn = useSelector((state) => state.loggedIn);
+  const username = useSelector((state) => state.user.user);
 
   function toggle() {
     let navItems = document.querySelector(".nav-items");
@@ -60,7 +61,6 @@ export const Navbar = () => {
                 className="link"
                 style={({ isActive }) => ({
                   color: isActive ? "white" : "",
-                  backgroundColor: isActive ? "#281e32" : "",
                 })}
                 to="/"
               >
@@ -72,7 +72,7 @@ export const Navbar = () => {
                 className="link"
                 style={({ isActive }) => ({
                   color: isActive ? "white" : "",
-                  backgroundColor: isActive ? "#281e32" : "",
+                  borderBottom: isActive ? "4px solid white" : "",
                 })}
                 to="/books"
               >
@@ -84,7 +84,7 @@ export const Navbar = () => {
                 className="link"
                 style={({ isActive }) => ({
                   color: isActive ? "white" : "",
-                  backgroundColor: isActive ? "#281e32" : "",
+                  borderBottom: isActive ? "4px solid white" : "",
                 })}
                 to="/forums"
               >
@@ -104,9 +104,11 @@ export const Navbar = () => {
                   className="link"
                   style={({ isActive }) => ({
                     color: isActive ? "white" : "",
-                    backgroundColor: isActive ? "#281e32" : "",
+                    borderBottom: isActive ? "4px solid white" : "",
                   })}
-                  to="/profile"
+                  to={{
+                    pathname: "/profile/" + username,
+                  }}
                 >
                   {loggedIn ? "Profile" : "Sign in"}
                 </NavLink>

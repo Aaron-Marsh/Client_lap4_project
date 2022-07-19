@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { LoginFooter } from "../../components/index";
+import { LoginFooter, BackButton } from "../../components/index";
 import { PostHeader } from "./PostHeader";
 import { PostComments } from "./PostComments";
 import { NewCommentForm } from "./NewCommentForm";
 import axios from "axios";
-import "./style.css";
+import "./PostPage.css";
 
 export const PostPage = () => {
+  const [showLoginFooter, setShowLoginFooter] = useState(false);
   const username = useSelector((state) => state.user.user);
   const loggedIn = useSelector((state) => state.loggedIn);
   const [postMessages, setPostMessages] = useState([]);
@@ -34,41 +35,61 @@ export const PostPage = () => {
   useEffect(() => {
     if (post) {
       setPostMessages(post.messages);
-      post.messages && post.messages.map((m) => {});
+      post.messages && post.messages.reverse().map((m) => {});
     }
     return () => {};
   }, [post]);
 
+  //Footer stuff
+
+  useEffect(() => {
+    let myScrollFunc = function () {
+      let y = window.scrollY;
+      if (y >= 10) {
+        setShowLoginFooter(true);
+      } else {
+        setShowLoginFooter(false);
+      }
+    };
+
+    window.addEventListener("scroll", myScrollFunc);
+
+    return () => {
+      window.removeEventListener("scroll", myScrollFunc);
+    };
+  }, []);
+
   return (
     <>
-      <div className="container">
-        <h2>PostPage</h2>
-        <pre>Post ID: {postId}</pre>
-        <PostHeader
-          title={post.title}
-          post_username={post.username}
-          first_message={post.first_message}
-        />
-        <NewCommentForm
-          postId={postId}
-          onComment={loadData}
-          username={username}
-          loggedIn={loggedIn}
-          serverURL={serverURL}
-        />
-        {postMessages ? (
-          <PostComments
-            postMessages={postMessages}
-            loggedIn={loggedIn}
-            postId={postId}
-            serverURL={serverURL}
-            username={username}
+      <div className="post-page-container">
+        <div className="container header-space">
+          <PostHeader
+            title={post.title}
+            post_username={post.username}
+            first_message={post.first_message}
           />
-        ) : (
-          <p>no comments yet</p>
-        )}
+          <NewCommentForm
+            postId={postId}
+            onComment={loadData}
+            username={username}
+            loggedIn={loggedIn}
+            serverURL={serverURL}
+          />
+          <BackButton />
+          {postMessages ? (
+            <PostComments
+              postMessages={postMessages}
+              loggedIn={loggedIn}
+              postId={postId}
+              serverURL={serverURL}
+              username={username}
+            />
+          ) : (
+            <p>no comments yet</p>
+          )}
+        </div>
+        {showLoginFooter ? <LoginFooter /> : ""}
       </div>
-      <LoginFooter />
     </>
   );
 };
