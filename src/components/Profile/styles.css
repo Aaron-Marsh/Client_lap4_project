@@ -31,3 +31,17 @@
   grid-template-columns: repeat(4, 1fr);
 }
 
+.shelf {
+  margin: 1rem;
+}
+
+.shelf-favourited-book {
+  color: red;
+}
+
+
+
+
+
+
+
