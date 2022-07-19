@@ -9,7 +9,6 @@ import { Button } from 'react-bootstrap';
 // import { getResult } from '../../actions';
 
 export const BooksResult = () => {
-
 	const [books, setBooks] = useState([]);
 	const [herringCarousel, setHerringCarousel] = useState([]);
 	const [fishCarousel, setFishCarousel] = useState([]);
@@ -133,10 +132,14 @@ export const BooksResult = () => {
 	};
 
 	return (
-		<>
-			<h2>Take a look at all of these amazing books!</h2>
-			<p>WOW!</p>
-			<SearchBar getResults={fetchBooks} />
+		<div className='books-wrapper'>
+			<div className='books-container'>
+				<h2>Looking for a book to add to your bookshelf?</h2>
+				<p>Use the search bar below</p>
+
+				<SearchBar getResults={fetchBooks} />
+			</div>
+
 			{/* <div className='books-result-wrapper'> */}
 			{/* THIS CODE WILL BE USED WHEN EVERYTHING WORKS!!! */}
 			{/* {herringCarousel.map((book) => (
@@ -184,7 +187,7 @@ export const BooksResult = () => {
 			{/* </div> */}
 
 			{hasSearched && (
-				<>
+				<div className='books-container'>
 					<div className='book-grid'>
 						{books.map((book) => (
 							<div
@@ -214,9 +217,8 @@ export const BooksResult = () => {
 							</Button>
 						</Modal.Footer>
 					</Modal> */}
-				</>
+				</div>
 			)}
-		</>
+		</div>
 	);
-
 };
