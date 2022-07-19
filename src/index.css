@@ -5,12 +5,15 @@
 }
 
 /* color variables */
-:root{
-  --off-white: #FFF9F9;
-  --pale-orange: #FE6E4A;
+:root {
+  --off-white: #fff9f9;
+  --pale-orange: #fe6e4a;
   --intense-orange: rgb(255, 107, 1);
-  --slate-blue: #281E32;
+
+  --slate-blue: #281e32;
+  --slate-blue2: #2b3956;
   --book-page:#F2EECB;
+
 }
 
 header {
@@ -51,7 +54,7 @@ body {
 .navbar {
   display: flex;
   align-items: center;
-  background-color: #281e32;
+  background-color: var(--slate-blue2);
   width: 100%;
   position: absolute;
   z-index: 100;

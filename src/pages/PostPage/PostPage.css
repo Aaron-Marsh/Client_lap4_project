@@ -1,30 +1,79 @@
-body {
-    background-attachment: fixed;
-    background-image: linear-gradient(
-        to right top,
-        #fe5f37,
-        #fd6235,
-        #fc6633,
-        #fa6931,
-        #f96c2f
-    );
+/* .post-page-container {
+  height: 100vh;
+  width: 100%;
+  background-attachment: fixed;
+  background-image: linear-gradient(
+    to right top,
+    #fe5f37,
+    #fd6235,
+    #fc6633,
+    #fa6931,
+    #f96c2f
+  );
 }
-
 .container {
-    padding: 1rem;
-}
+  padding: 1rem;
+} */
 
 .post-header {
-    background: var(--off-white);
-    margin-bottom: 2rem;
-    border-radius: 15px;
+  background: var(--slate-blue2);
+  margin-bottom: 2rem;
+  border-radius: 15px;
+  color: var(--off-white);
+  padding-inline: 2rem;
+  padding-block: 1rem;
 }
 
 .post-comments {
-    background: var(--off-white);
-    border-radius: 15px;
+}
+.message-box {
+  background: var(--slate-blue2);
+  margin-bottom: 1rem;
+  border-radius: 15px;
+  position: relative;
+  padding-inline: 2rem;
+  padding-block: 1.5rem;
+  color: var(--off-white);
+}
+
+.message-line {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.4);
+  left: 1.125rem;
+  top: 0;
+  width: 2px;
+  height: calc(100%-2rem);
+
+  margin-top: 2rem;
+
+  cursor: pointer;
+}
+.message-line:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.message-content {
+  display: flex;
+  gap: 0.1rem;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.message-username {
+  color: var(--pale-orange);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.message-username:hover {
+  color: var(--off-white);
+  text-decoration: underline;
+}
+
+.message-message {
+  font-size: 1.125rem;
 }
 
 .header-space {
-    margin-top: 4.5rem;
+  margin-top: 4.5rem;
 }

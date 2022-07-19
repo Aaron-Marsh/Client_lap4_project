@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { SearchBar, LoginFooter } from "../../components/index";
-import { ForumPosts } from './ForumPosts'
-import { NewPostForm } from './NewPostForm'
-import './ForumsPage.css'
+import { ForumPosts } from "./ForumPosts";
+import { NewPostForm } from "./NewPostForm";
+import "./ForumsPage.css";
 export const ForumsPage = () => {
   const username = useSelector((state) => state.user.user);
   const loggedIn = useSelector((state) => state.loggedIn);
@@ -29,13 +29,15 @@ export const ForumsPage = () => {
 
   return (
     <>
-      <div className="container header-space">
-        <h2>Forums page</h2>
-        <SearchBar />
-        <NewPostForm username={username} loggedIn={loggedIn} />
-        <ForumPosts />
+      <div className="forum-page-container">
+        <div className="container header-space">
+          <h2>Forums page</h2>
+          <SearchBar />
+          <NewPostForm username={username} loggedIn={loggedIn} />
+          <ForumPosts />
+        </div>
+        {showLoginFooter ? <LoginFooter /> : ""}
       </div>
-      {showLoginFooter ? <LoginFooter /> : ""}
     </>
   );
 };
