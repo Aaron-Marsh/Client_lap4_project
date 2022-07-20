@@ -13,22 +13,40 @@ export const Bookcase = ({ data }) => {
   function myRandomClass() {
     return `bookshelf-book book-${randomNumber()}`;
   }
+  function myFavouriteClass() {
+    return `bookshelf-book book-favourite`;
+  }
   return (
     <>
       <div className="bookshelf">
         {data &&
-          data.map((book) => (
-            <div
-              key={book.ISBN}
-              className={myRandomClass}
-              onClick={() => {
-                setOpen((prev) => !prev);
-                setModalData(book);
-              }}
-            >
-              <h2>{book.title}</h2>
-            </div>
-          ))}
+          data.map((book) =>
+            book.favourited ? (
+              <div className="book-tilted">
+                <div
+                  key={book.ISBN}
+                  className={myFavouriteClass()}
+                  onClick={() => {
+                    setOpen((prev) => !prev);
+                    setModalData(book);
+                  }}
+                >
+                  <h2>{book.title}</h2>
+                </div>
+              </div>
+            ) : (
+              <div
+                key={book.ISBN}
+                className={myRandomClass()}
+                onClick={() => {
+                  setOpen((prev) => !prev);
+                  setModalData(book);
+                }}
+              >
+                <h2>{book.title}</h2>
+              </div>
+            )
+          )}
         <div className={myRandomClass()}>
           <h2>Harry Potter</h2>
         </div>

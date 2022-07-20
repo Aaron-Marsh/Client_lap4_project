@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // import axios from 'axios';
 // import { useSelector, useDispatch } from 'react-redux';
 
-export const SearchBar = ({ getResults }) => {
+export const SearchBar = ({ getResults, text }) => {
   // checks if user is logged in for search results
   // const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const [search, setSearch] = useState("");
@@ -24,7 +24,7 @@ export const SearchBar = ({ getResults }) => {
       <input
         id="search"
         type="text"
-        placeholder="Search for books here..."
+        placeholder={text}
         className="orange-input"
         onChange={updateInput}
         value={search}

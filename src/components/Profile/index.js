@@ -61,11 +61,11 @@ export const Profile = () => {
 
         <div className="shelf-user-wrapper">
           <div className="bookshelf-container">
-            <h3>Books I've Read</h3>
+            <h3 className="bookshelf-title">Books I've Read</h3>
             <Bookcase data={userData.has_read} />
           </div>
           <div className="bookshelf-container">
-            <h3>Books to read</h3>
+            <h3 className="bookshelf-title">Books to read</h3>
             <Bookcase data={userData.has_read} />
           </div>
         </div>
@@ -78,47 +78,20 @@ export const Profile = () => {
     profile = (
       <main className="main-profile">
         <div className="intro-wrapper">
-          <h2 className="profile-title">Hey there! I'm {username}!</h2>
+          <h2 className="profile-title">Welcome back, {username}!</h2>
           <p className="about-me">{userData.about_me}</p>
         </div>
 
         <div className="shelf-user-wrapper">
           <div className="bookshelf-container">
-            <h3>Read Books</h3>
+            <h3 className="bookshelf-title">Books I've Read</h3>
+            <Bookcase data={userData.has_read} />
+          </div>
+          <div className="bookshelf-container">
+            <h3 className="bookshelf-title">Books to read</h3>
             <Bookcase data={userData.has_read} />
           </div>
         </div>
-
-        {/* <div className='following-wrapper'>
-					<h3>Followers</h3>
-
-					<div className='following-users'>
-						<div className='image-container'>
-							<img alt='' src='https://www.placecage.com/c/200/300' />
-						</div>
-						<div className='image-container'>
-							<img alt='' src='https://www.placecage.com/g/200/300' />
-						</div>
-						<div className='image-container'>
-							<img alt='' src='https://www.placecage.com/200/300' />
-						</div>
-						<div className='image-container'>
-							<img alt='' src='https://www.placecage.com/gif/200/300' />
-						</div>
-						<div className='image-container'>
-							<img alt='' src='https://www.fillmurray.com/200/300' />
-						</div>
-						<div className='image-container'>
-							<img alt='' src='https://www.fillmurray.com/g/200/300' />
-						</div>
-						<div className='image-container'>
-							<img alt='' src='https://www.stevensegallery.com/200/300' />
-						</div>
-						<div className='image-container'>
-							<img alt='' src='https://www.stevensegallery.com/g/200/300' />
-						</div> */}
-        {/* </div> */}
-        {/* </div> */}
       </main>
     );
 
