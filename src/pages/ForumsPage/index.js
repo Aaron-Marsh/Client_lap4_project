@@ -83,10 +83,20 @@ export const ForumsPage = () => {
       <div className="forum-page-container">
         <div className="container header-space">
           <h1 className="mb-4">Welcome to the Forums</h1>
-          <div className="container forum-button-group">
-            <NewPostForm username={username} loggedIn={loggedIn} onCreate={fetchPosts}/>
-            <SearchBar getResults={fetchForums} />
+
+          <div className="forum-search">
+            <SearchBar
+              text="Search for a discussion here..."
+              className="forum-search"
+              getResults={fetchForums}
+            />
           </div>
+          <NewPostForm
+            username={username}
+            loggedIn={loggedIn}
+            onCreate={fetchPosts}
+          />
+
           <ForumPosts posts={posts} />
         </div>
         {showLoginFooter ? <LoginFooter /> : ""}

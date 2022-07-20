@@ -82,6 +82,7 @@ body {
   height: fit-content;
   padding-block: 0.2rem;
   margin-right: 0.25rem;
+  width: 100%;
 }
 
 .orange-input:focus {
