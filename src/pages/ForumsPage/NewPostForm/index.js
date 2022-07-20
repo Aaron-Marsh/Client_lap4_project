@@ -12,12 +12,10 @@ export const NewPostForm = ({ username, loggedIn, onCreate }) => {
 
   const handleShown = () => {
     setIsShown((current) => !current);
-    console.log("isShown", isShown);
   };
 
   const handleWidth = () => {
     setIsWidth((current) => !current);
-    console.log("isWidth", isWidth);
   };
 
   const handleNewPostButton = () => {

@@ -14,6 +14,7 @@
   flex-direction: column;
   background-color: white;
   height: fit-content;
+  margin-bottom: 10rem;
 }
 
 .intro-wrapper {
@@ -130,5 +131,30 @@ Bookshelf */
   font-size: 1em;
   transform-origin: 0% 0%;
   transform: rotate(0.25turn) translateY(-35px);
-  width: 170px;
+  width: 190px;
+}
+
+/* Star--------------- */
+
+.star {
+  visibility: hidden;
+  font-size: 30px;
+  cursor: pointer;
+  color: black;
+}
+.star:before {
+  content: "\2605";
+  position: absolute;
+  visibility: visible;
+}
+.star:checked:before {
+  content: "\2606";
+  position: absolute;
+  color: yellow;
+}
+
+.modal-header-book {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
 }

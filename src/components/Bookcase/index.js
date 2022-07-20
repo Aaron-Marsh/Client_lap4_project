@@ -18,7 +18,6 @@ export const Bookcase = ({ data }) => {
   }
 
   const findBook = async (isbn) => {
-    console.log(isbn);
     try {
       const sendData = {
         query_type: "isbn",
@@ -37,8 +36,6 @@ export const Bookcase = ({ data }) => {
       );
       setOpen((prev) => !prev);
       setModalData(data[0]);
-
-      console.log(data);
     } catch (err) {
       throw new Error(err.message);
     }

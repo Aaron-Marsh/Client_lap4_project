@@ -11,7 +11,7 @@ export const ForumsPage = () => {
   const [showLoginFooter, setShowLoginFooter] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
 
-  const username = useSelector((state) => state.user.user);
+  const username = useSelector((state) => state.user.data.username);
   const loggedIn = useSelector((state) => state.loggedIn);
   const [posts, setPosts] = useState([]);
 

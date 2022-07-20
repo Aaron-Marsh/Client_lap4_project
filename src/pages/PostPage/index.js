@@ -10,7 +10,7 @@ import "./PostPage.css";
 
 export const PostPage = () => {
   const [showLoginFooter, setShowLoginFooter] = useState(false);
-  const username = useSelector((state) => state.user.user);
+  const username = useSelector((state) => state.user.data.username);
   const loggedIn = useSelector((state) => state.loggedIn);
   const [postMessages, setPostMessages] = useState([]);
   const [post, setPost] = useState("");

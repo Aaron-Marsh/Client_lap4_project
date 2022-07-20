@@ -40,10 +40,10 @@ export const ChildLoginModal = (props) => {
         if (data.error) {
           setError(data.error);
         } else {
-          props.onHide();
           dispatch(login());
 
-          dispatch(setUser(data.username));
+          dispatch(setUser(data));
+          props.onHide();
         }
 
         /* loginError.textContent = "Incorrect email or password"; */

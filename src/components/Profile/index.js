@@ -12,7 +12,8 @@ export const Profile = () => {
   const [userData, setUserData] = useState({});
   const [error, setError] = useState("");
 
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.user.data.username);
+
   const loggedIn = useSelector((state) => state.loggedIn);
 
   let profile;
@@ -51,7 +52,7 @@ export const Profile = () => {
         </Link>
       </div>
     );
-  } else if (user === username) {
+  } else if (user == username) {
     profile = (
       <main className="main-profile">
         <div className="intro-wrapper">
@@ -66,7 +67,7 @@ export const Profile = () => {
           </div>
           <div className="bookshelf-container">
             <h3 className="bookshelf-title">Books to read</h3>
-            <Bookcase data={userData.has_read} />
+            <Bookcase data={userData.wants_to_read} />
           </div>
         </div>
       </main>
@@ -78,7 +79,7 @@ export const Profile = () => {
     profile = (
       <main className="main-profile">
         <div className="intro-wrapper">
-          <h2 className="profile-title">Welcome back, {username}!</h2>
+          <h2 className="profile-title">Check out {username}'s collection!</h2>
           <p className="about-me">{userData.about_me}</p>
         </div>
 
@@ -89,7 +90,7 @@ export const Profile = () => {
           </div>
           <div className="bookshelf-container">
             <h3 className="bookshelf-title">Books to read</h3>
-            <Bookcase data={userData.has_read} />
+            <Bookcase data={userData.wants_to_read} />
           </div>
         </div>
       </main>

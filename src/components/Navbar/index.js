@@ -7,7 +7,7 @@ export const Navbar = () => {
   const [modalShow, setModalShow] = useState(false);
 
   const loggedIn = useSelector((state) => state.loggedIn);
-  const username = useSelector((state) => state.user.user);
+  const username = useSelector((state) => state.user.data.username);
 
   function toggle() {
     let navItems = document.querySelector(".nav-items");

@@ -20,7 +20,7 @@
 }
 
 /* *********************** Fonts *********************** */
-@import url('https://fonts.googleapis.com/css2?family=Kreon&family=Nunito:ital,wght@1,800&family=Poppins&family=Roboto+Slab&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kreon&family=Nunito:ital,wght@1,800&family=Poppins&family=Roboto+Slab&display=swap");
 
 /* 
 font-family: 'Nunito', sans-serif;
@@ -30,13 +30,13 @@ font-family: 'Roboto Slab', serif;
 */
 
 h1 {
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   font-size: 2.5rem;
-  color:var(--intense-orange);
+  color: var(--intense-orange);
 }
 
 h2 {
-  font-family: 'Kreon', serif;
+  font-family: "Kreon", serif;
 }
 
 header {
@@ -46,7 +46,7 @@ header {
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto Slab', serif;
+  font-family: "Roboto Slab", serif;
   overflow-x: hidden;
   overflow-y: scroll !important;
 }
@@ -202,6 +202,16 @@ input:disabled {
   cursor: auto;
 }
 input:disabled:hover {
+  background-color: grey;
+  border: none;
+  color: white;
+}
+button:disabled {
+  background-color: grey !important;
+  border: none;
+  cursor: auto;
+}
+button:disabled:hover {
   background-color: grey;
   border: none;
   color: white;
