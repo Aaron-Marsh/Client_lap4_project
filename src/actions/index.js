@@ -12,10 +12,10 @@ export const logout = () => {
   };
 };
 
-export const setUser = (username) => {
+export const setUser = (data) => {
   return {
     type: "SET USER",
-    payload: username,
+    payload: data,
   };
 };
 

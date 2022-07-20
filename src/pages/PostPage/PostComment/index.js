@@ -14,9 +14,11 @@ export const PostComment = ({
 }) => {
   // Edit Messages Section
   const [isEditShown, setIsEditShown] = useState(false);
+
   const [editMessage, setEditMessage] = useState('');
   const [isEditWidth, setIsEditWidth] = useState(false);
   const [currentMessage, setCurrentMessage] = useState('');
+
 
   const handleEditButton = () => {
     setEditMessage(message);
@@ -37,11 +39,13 @@ export const PostComment = ({
     setIsEditWidth((current) => !current);
   };
 
+
   useEffect(() => {
     setCurrentMessage(message);
   }, []);
 
   const [reply, setReply] = useState('');
+
   const [isReplyShown, setIsReplyShown] = useState(false);
   const [isReplyButton, setIsReplyButton] = useState(true);
   const [isWidth, setIsWidth] = useState(false);
@@ -102,8 +106,10 @@ export const PostComment = ({
         data: {
           method: 'thread_message',
           username: username,
+
           message: editMessage,
           message_id: messageId,
+
         },
       });
       // setRepliesArray((current) => [...current, data]);
@@ -125,7 +131,7 @@ export const PostComment = ({
           message_id: messageId,
         },
       });
-      console.log(message_username, username);
+
       setDeleted(true);
     } catch (err) {}
   };
@@ -169,6 +175,7 @@ export const PostComment = ({
               >
                 {message_username}
               </Link>
+
               {/* EDIT BUTTON TO SHOW FORM */}
               <button onClick={handleEditButton}>edit</button>
             </div>
@@ -202,6 +209,7 @@ export const PostComment = ({
             ) : (
               // PASS IN MESSAGE
               <div className="message-message">{currentMessage}</div>
+
             )}
           </div>
           <div className="reply-container" id={messageId}>

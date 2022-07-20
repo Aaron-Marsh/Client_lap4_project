@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useState } from 'react';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { PaginationComponent } from '../';
 
 import './style.css';
-import { SearchBar, BookModal, Books } from '../';
+import { SearchBar, BookModal, Books, PaginationComponent } from '../';
 
 export const BooksResult = () => {
 	const [books, setBooks] = useState([]);
@@ -47,6 +46,10 @@ export const BooksResult = () => {
 			setBooks(data);
 			setLoading(false);
 		} catch (err) {
+			alert('book does not exist, please try again');
+
+			setLoading(false);
+
 			throw new Error(err.message);
 		}
 	};
@@ -78,4 +81,5 @@ export const BooksResult = () => {
 			)}
 		</div>
 	);
+
 };

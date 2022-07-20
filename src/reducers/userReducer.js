@@ -1,9 +1,17 @@
-const initialState = { user: "" };
+const initialState = {
+  data: {
+    username: "",
+    email: "",
+    about_me: "",
+    has_read: [],
+    wants_to_read: [],
+  },
+};
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET USER":
-      return { user: action.payload };
+      return { ...state, data: action.payload };
     case "SET ERROR":
       return {
         ...state,
