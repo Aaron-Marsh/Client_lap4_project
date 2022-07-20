@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { ForumPost } from "../ForumPost";
 import { Link } from "react-router-dom";
-import axios from "axios";
-// import { useSelector } from "react-redux";
 
 export const ForumPosts = ({ posts }) => {
   return (

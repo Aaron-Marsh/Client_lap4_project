@@ -11,6 +11,7 @@ export const PostComment = ({
   serverURL,
   messageId,
   username,
+  m_user
 }) => {
   const [reply, setReply] = useState("");
   const [isShown, setIsShown] = useState(false);
@@ -77,6 +78,7 @@ export const PostComment = ({
   };
 
   return (
+
     <>
       {" "}
       {!deleted && (
@@ -84,6 +86,7 @@ export const PostComment = ({
           {message_username == username && loggedIn ? (
             <div
               className="delete-message"
+
               onClick={() => {
                 handleDeleteReplyEvent();
               }}
@@ -91,6 +94,7 @@ export const PostComment = ({
           ) : (
             ""
           )}
+
           <div className="message-content">
             <div
               className="message-line"
@@ -193,5 +197,6 @@ export const PostComment = ({
         </div>
       )}
     </>
+
   );
 };
