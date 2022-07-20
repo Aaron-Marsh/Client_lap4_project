@@ -23,7 +23,7 @@ export const Bookcase = ({ data }) => {
               className={myRandomClass}
               onClick={() => {
                 setOpen((prev) => !prev);
-                //   setModalData(book);
+                setModalData(book);
               }}
             >
               <h2>{book.title}</h2>
@@ -41,12 +41,7 @@ export const Bookcase = ({ data }) => {
         <div className={myRandomClass()}>
           <h2>Time to read some books!</h2>
         </div>
-        {/* <BookModal
-          modalData={modalData}
-          open={open}
-          addToHasRead={addToHasRead}
-          addToWantsToRead={addToWantsToRead}
-        /> */}
+        <BookModal modalData={modalData} open={open} />
       </div>
     </>
   );

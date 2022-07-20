@@ -61,7 +61,11 @@ export const Profile = () => {
 
         <div className="shelf-user-wrapper">
           <div className="bookshelf-container">
-            <h3>Read Books</h3>
+            <h3>Books I've Read</h3>
+            <Bookcase data={userData.has_read} />
+          </div>
+          <div className="bookshelf-container">
+            <h3>Books to read</h3>
             <Bookcase data={userData.has_read} />
           </div>
         </div>
