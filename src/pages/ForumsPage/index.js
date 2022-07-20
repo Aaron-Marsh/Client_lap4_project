@@ -82,6 +82,7 @@ export const ForumsPage = () => {
     <>
       <div className="forum-page-container">
         <div className="container header-space">
+          <h1>Welcome to the Forums</h1>
           <SearchBar getResults={fetchForums} />
           <NewPostForm username={username} loggedIn={loggedIn} />
           <ForumPosts posts={posts} />
