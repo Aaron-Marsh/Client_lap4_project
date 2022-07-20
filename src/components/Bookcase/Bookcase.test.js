@@ -15,7 +15,18 @@ describe("Bookcase", () => {
       </Provider>
     );
   });
-  test("it should render the first ", () => {
-    expect(screen.getByText(/Read Herring/i)).toBeInTheDocument();
+  test("it should render the first ", async () => {
+    const favouritedDivBook = await screen.findByTestId("favourited-book-0");
+    expect(favouritedDivBook).toBeInTheDocument();
+  });
+
+  test("it should render multiple books ", async () => {
+    const favouritedDivBooks = await screen.findAllByTestId(/favourited-book/i);
+    expect(favouritedDivBooks).toBeInTheDocument();
+  });
+
+  test("it should render the first ", async () => {
+    const favouritedDivBooks = await screen.findAllByTestId(/favourited-book/i);
+    expect(favouritedDivBooks).toBeInTheDocument();
   });
 });
