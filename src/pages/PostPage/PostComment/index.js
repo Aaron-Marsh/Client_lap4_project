@@ -12,8 +12,24 @@ export const PostComment = ({
   messageId,
   username,
 }) => {
+  // Edit Messages Section
+  const [isEditShown, setIsEditShown] = useState(false);
+  const [editMessage,setEditMessage] = useState("")
+  const [editMessageId,setEditMessageId] = useState("")
+
+  const handleEditShown = () => {
+    setIsEditShown((current) => !current);
+  };
+  const handleEditMessage = () => {
+    setEditMessage((e) => e.target.value);
+  };
+  const handleEditMessageId = () => {
+    setEditMessageId((current) => !current);
+  };
+
+
   const [reply, setReply] = useState("");
-  const [isShown, setIsShown] = useState(false);
+  const [isReplyShown, setIsReplyShown] = useState(false);
   const [isReplyButton, setIsReplyButton] = useState(true);
   const [isWidth, setIsWidth] = useState(false);
   const [repliesArray, setRepliesArray] = useState([]);
@@ -28,9 +44,10 @@ export const PostComment = ({
   const handleWidth = () => {
     setIsWidth((current) => !current);
   };
-  const handleShown = () => {
-    setIsShown((current) => !current);
+  const handleReplyShown = () => {
+    setIsReplyShown((current) => !current);
   };
+
   const handleReplyButton = () => {
     setIsReplyButton((current) => !current);
   };
@@ -39,6 +56,7 @@ export const PostComment = ({
     setRepliesArray(replies);
   }, []);
 
+  // Send Reply to Backend
   const handleReplyEvent = async (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -52,6 +70,27 @@ export const PostComment = ({
           reply: reply,
           message_id: messageId,
           reply_to: "",
+        },
+      });
+      setRepliesArray((current) => [...current, data]);
+
+      setReply("");
+    } catch (err) {}
+  };
+
+  // Editing Comments
+  const handleEditEvent = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      const { data } = await axios({
+        method: "PATCH",
+        url: `https://read-herring.herokuapp.com/forums/${postId}`,
+        data: {
+          method: "thread_message",
+          username: username,
+          message: {editMessage},
+          message_id: {editMessageId}
         },
       });
       setRepliesArray((current) => [...current, data]);
@@ -109,15 +148,21 @@ export const PostComment = ({
                 clicked = !clicked;
               }}
             ></div>
-            <div>
+            {/* MESSAGE USERNAME */}
+            <div className="message-header">
               <Link
                 className="message-username"
                 to={`/profile/${message_username}`}
               >
                 {message_username}
               </Link>
+            <button onClick={handleEditShown}>edit</button>
             </div>
-            <div className="message-message">{message}</div>
+            {/* MESSAGE MESSAGE */}
+            {/* LOGIC FOR EDIT MESSAGE FORM */}
+            {isEditShown 
+            ? <div>Form Here</div>
+            : <div className="message-message">{message}</div>}
           </div>
           <div className="reply-container" id={messageId}>
             {repliesArray.length > 0
@@ -144,7 +189,7 @@ export const PostComment = ({
                 <button
                   className="white-button"
                   onClick={() => {
-                    handleShown();
+                    handleReplyShown();
                     handleWidth();
                     handleReplyButton();
                     setTimeout(() => {
@@ -158,7 +203,7 @@ export const PostComment = ({
               <div className="message-replies">
                 <form
                   className={
-                    isShown
+                    isReplyShown
                       ? isWidth
                         ? "message-reply-input width"
                         : "message-reply-input "
@@ -186,7 +231,7 @@ export const PostComment = ({
                   <div
                     className="close-reply-field"
                     onClick={() => {
-                      handleShown();
+                      handleReplyShown();
                       handleWidth();
                       handleReplyButton();
                     }}
