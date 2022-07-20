@@ -9,6 +9,5 @@ export { LoginFooter } from './LoginFooter';
 export { MultiCarousel } from './Carousel';
 
 export { Navbar } from './Navbar';
-export { PaginationComponent } from './PaginationComponent';
 export { Profile } from './Profile';
 export { SearchBar } from './SearchBar';
