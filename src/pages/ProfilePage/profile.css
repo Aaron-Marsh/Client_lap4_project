@@ -22,7 +22,11 @@
   width: 80%;
   margin: auto;
   display: flex;
+  flex-direction: column;
   align-content: space-around;
+}
+.bookshelf-title {
+  margin-left: 6rem;
 }
 
 .following-users {
@@ -42,7 +46,7 @@ Bookshelf */
   width: 100%;
   height: 100%;
   margin: 0 auto;
-  border: 10px #a87328 solid;
+  border: 8px #a87328 solid;
   overflow: hidden;
   background-image: linear-gradient(
     #241909,
@@ -61,13 +65,13 @@ Bookshelf */
 .bookshelf-book {
   height: 200px;
   width: 50px;
-  margin-right: 5px;
+  margin-inline: 2px;
   float: left;
   color: white;
   font-size: 0.9em;
   font-family: Verdana, sans-serif;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin-bottom: 15px;
+  margin-top: 15px;
   transform: scale(1);
   transition: transform 0.4s ease;
 }
