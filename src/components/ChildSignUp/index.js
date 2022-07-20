@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import Modal from 'react-bootstrap/Modal';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import React, { useState } from "react";
+import Modal from "react-bootstrap/Modal";
+import axios from "axios";
+import { useDispatch } from "react-redux";
 
-import { login, setUser } from '../../actions';
+import { login, setUser } from "../../actions";
 
 export const ChildSignUpModal = (props) => {
-    const [signup, setSignup] = useState(null);
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [error, setError] = useState('');
+  const [signup, setSignup] = useState(null);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
     const onSignUp = async (e) => {
         if (email === '' || password === '') {
@@ -35,20 +35,22 @@ export const ChildSignUpModal = (props) => {
                     },
                 };
 
-                const { data } = await axios.post(
-                    'http://127.0.0.1:8000/users/register/',
-                    JSON.stringify(registerDetails),
-                    options
-                );
 
-                if (data.error) {
-                    setError(data.error);
-                } else {
-                    props.onHide();
-                    dispatch(login());
+        const { data } = await axios.post(
+          "https://read-herring.herokuapp.com/users/register/",
+          JSON.stringify(registerDetails),
+          options
+        );
 
-                    dispatch(setUser(registerDetails.username));
-                }
+        if (data.error) {
+          setError(data.error);
+        } else {
+          props.onHide();
+          dispatch(login());
+
+          dispatch(setUser(registerDetails.username));
+        }
+
 
                 /* loginError.textContent = "Incorrect email or password"; */
             } catch (err) {
@@ -62,24 +64,28 @@ export const ChildSignUpModal = (props) => {
                     setError('Sign up failed!');
                 }
             }
+
         }
-    };
+      }
+    }
+  };
 
-    const onUsernameChange = (e) => {
-        setUsername(e.target.value);
-    };
+  const onUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
 
-    const onEmailChange = (e) => {
-        setEmail(e.target.value);
-    };
+  const onEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
 
-    const onPasswordChange = (e) => {
-        setPassword(e.target.value);
-    };
+  const onPasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
 
-    const onConfirmPasswordChange = (e) => {
-        setConfirmPassword(e.target.value);
-    };
+  const onConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
 
     return (
         <>
@@ -156,4 +162,5 @@ export const ChildSignUpModal = (props) => {
             </Modal.Footer>
         </>
     );
+
 };
