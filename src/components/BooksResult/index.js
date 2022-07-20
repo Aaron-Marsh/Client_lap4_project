@@ -1,9 +1,14 @@
-
 import React, { useState } from 'react';
 import axios from 'axios';
 
 import './style.css';
-import { SearchBar, BookModal, Books, PaginationComponent } from '../';
+import {
+	SearchBar,
+	BookModal,
+	Books,
+	PaginationComponent,
+	LoadScreen,
+} from '../';
 
 export const BooksResult = () => {
 	const [books, setBooks] = useState([]);
@@ -56,12 +61,15 @@ export const BooksResult = () => {
 
 	return (
 		<div className='books-wrapper'>
-			<div className='search-books-container'>
-				<h2>Looking for a book to add to your bookshelf?</h2>
-				<p>Use the search bar below</p>
+			{!loading && (
+				<div className='search-books-container'>
+					<h2>Looking for a book to add to your bookshelf?</h2>
+					<p>Use the search bar below</p>
 
-				<SearchBar getResults={fetchBooks} />
-			</div>
+					<SearchBar getResults={fetchBooks} />
+				</div>
+			)}
+			{loading && <LoadScreen />}
 
 			{currentBooks && (
 				<>
@@ -81,5 +89,4 @@ export const BooksResult = () => {
 			)}
 		</div>
 	);
-
 };
