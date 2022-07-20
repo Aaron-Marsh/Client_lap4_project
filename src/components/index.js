@@ -1,14 +1,13 @@
 export { BackButton } from './BackButton';
+export { Bookcase } from './Bookcase';
 export { BookModal } from './BookModal';
+export { Books } from './Books';
 export { BooksResult } from './BooksResult';
 export { HomeIntro } from './HomeIntro';
 export { HomeRandom } from './HomeRandom';
 export { LoginModal } from './LoginModal';
 export { LoginFooter } from './LoginFooter';
-export { Bookcase } from './Bookcase';
-export { Books } from './Books';
-
-export { MultiCarousel } from './Carousel';
+export { LogoutButton } from './LogoutButton';
 
 export { Navbar } from './Navbar';
 
