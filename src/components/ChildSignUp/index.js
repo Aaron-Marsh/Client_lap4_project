@@ -18,11 +18,15 @@ export const ChildSignUpModal = (props) => {
   const onSignUp = async (e) => {
     if (email === "" || password === "") {
       setError("Missing username or password!");
-    } else if (password !== confirmPassword) {
-      setError("Passwords do not match!");
-    } else if (!email.includes("@")) {
-      setError("Email is invalid! Check for @ symbol.");
-    } else {
+    }
+    //  else if (password !== confirmPassword) {
+    //   setError("Passwords do not match!");
+    // } else if (!email.includes("@")) {
+    //   setError("Email is invalid! Check for @ symbol.");
+    // } else if (password.length < 8) {
+    //   setError("Password is too short, please make it 8 characters");
+    // }
+    else {
       try {
         let registerDetails = {
           username,
