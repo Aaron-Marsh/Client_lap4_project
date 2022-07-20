@@ -17,24 +17,20 @@ export const ChildLoginModal = (props) => {
 
   const dispatch = useDispatch();
 
-
-    const onSignIn = async (e) => {
-        if (userInput === '' || password === '') {
-            setError('Missing username/email or password!');
-        } else if (password.length < 8) {
-            setError('Password has to be at least 8 characters long!');
-        } else {
-            try {
-                let userDetails = {
-                    user_input: userInput,
-                    password,
-                };
-                let options = {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                };
-
+  const onSignIn = async (e) => {
+    if (userInput === "" || password === "") {
+      setError("Missing username/email or password!");
+    } else {
+      try {
+        let userDetails = {
+          user_input: userInput,
+          password,
+        };
+        let options = {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
 
         const { data } = await axios.post(
           "https://read-herring.herokuapp.com/users/login/",
@@ -72,7 +68,6 @@ export const ChildLoginModal = (props) => {
   const onPasswordChange = (e) => {
     setPassword(e.target.value);
   };
-
 
   return (
     <>
@@ -126,5 +121,4 @@ export const ChildLoginModal = (props) => {
       </Modal.Footer>
     </>
   );
-
 };
