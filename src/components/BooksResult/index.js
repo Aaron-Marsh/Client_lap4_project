@@ -1,141 +1,152 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 // import { useDispatch, useSelector } from 'react-redux';
-import { BookModal } from "../";
 
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-
-import "./style.css";
-import { SearchBar } from "../";
+import './style.css';
+import { SearchBar, BookModal, PaginationComponent } from '../';
+import { Books } from '../Books';
 
 // import { getResult } from '../../actions';
 
 export const BooksResult = () => {
-  const [books, setBooks] = useState([]);
-  const [herringCarousel, setHerringCarousel] = useState([]);
-  const [fishCarousel, setFishCarousel] = useState([]);
-  const [cookingCarousel, setCookingCarousel] = useState([]);
-  const [hasSearched, setHasSearched] = useState(false);
+	const [books, setBooks] = useState([]);
+	const [herringCarousel, setHerringCarousel] = useState([]);
+	const [fishCarousel, setFishCarousel] = useState([]);
+	const [cookingCarousel, setCookingCarousel] = useState([]);
+	const [hasSearched, setHasSearched] = useState(false);
+	const [loading, setLoading] = useState(false);
 
-  // Modal
-  const [open, setOpen] = useState(false);
-  const [modalData, setModalData] = useState(null);
+	// Modal
+	const [open, setOpen] = useState(false);
+	const [modalData, setModalData] = useState(null);
 
-  // fetch on load
-  const fetchHerringBooksOnLoad = async () => {
-    try {
-      const data = {
-        query_type: "intitle",
-        query: "herring",
-        num_results: 10,
-      };
-      const options = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      await axios.post(
-        `https://read-herring.herokuapp.com/books/api/`,
-        JSON.stringify(data),
-        options
-      );
+	// Pagination
+	const [currentPage, setCurrentPage] = useState(1);
+	const [booksPerPage] = useState(12);
 
-      setHerringCarousel(data.items);
-    } catch (err) {
-      throw new Error(err.message);
-    }
-  };
-  const fetchFishBooksOnLoad = async () => {
-    try {
-      const data = {
-        query_type: "intitle",
-        query: "fish",
-        num_results: 10,
-      };
-      const options = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      await axios.post(
-        `https://read-herring.herokuapp.com/books/api/`,
-        JSON.stringify(data),
-        options
-      );
+	const indexOfLastBook = currentPage * booksPerPage;
+	const indexOfFirstBook = indexOfLastBook - booksPerPage;
+	const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
 
-      setFishCarousel(data.items);
-    } catch (err) {
-      throw new Error(err.message);
-    }
-  };
+	// fetch on load
+	const fetchHerringBooksOnLoad = async () => {
+		try {
+			const data = {
+				query_type: 'intitle',
+				query: 'herring',
+				num_results: 10,
+			};
+			const options = {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			};
+			await axios.post(
+				`https://read-herring.herokuapp.com/books/api/`,
+				JSON.stringify(data),
+				options
+			);
 
-  const fetchCookingBooksOnLoad = async () => {
-    try {
-      const data = {
-        query_type: "intitle",
-        query: "cooking",
-        num_results: 10,
-      };
-      const options = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      await axios.post(
-        `https://read-herring.herokuapp.com/books/api/`,
-        JSON.stringify(data),
-        options
-      );
+			setHerringCarousel(data.items);
+		} catch (err) {
+			throw new Error(err.message);
+		}
+	};
+	const fetchFishBooksOnLoad = async () => {
+		try {
+			const data = {
+				query_type: 'intitle',
+				query: 'fish',
+				num_results: 10,
+			};
+			const options = {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			};
+			await axios.post(
+				`https://read-herring.herokuapp.com/books/api/`,
+				JSON.stringify(data),
+				options
+			);
 
-      setCookingCarousel(data.items);
-    } catch (err) {
-      throw new Error(err.message);
-    }
-  };
+			setFishCarousel(data.items);
+		} catch (err) {
+			throw new Error(err.message);
+		}
+	};
 
-  useEffect(() => {
-    fetchHerringBooksOnLoad();
-    fetchFishBooksOnLoad();
-    fetchCookingBooksOnLoad();
-  }, []);
+	const fetchCookingBooksOnLoad = async () => {
+		try {
+			const data = {
+				query_type: 'intitle',
+				query: 'cooking',
+				num_results: 10,
+			};
+			const options = {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			};
+			await axios.post(
+				`https://read-herring.herokuapp.com/books/api/`,
+				JSON.stringify(data),
+				options
+			);
 
-  // useEffect, search Google api through server
-  const fetchBooks = async (searchTerm) => {
-    try {
-      const sendData = {
-        query_type: "intitle",
-        query: searchTerm,
-        num_results: "12",
-      };
-      const options = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      let { data } = await axios.post(
-        `https://read-herring.herokuapp.com/books/api/`,
-        JSON.stringify(sendData),
-        options
-      );
-      setBooks(data);
-      setHasSearched(true);
-    } catch (err) {
-      throw new Error(err.message);
-    }
-  };
+			setCookingCarousel(data.items);
+		} catch (err) {
+			throw new Error(err.message);
+		}
+	};
 
-  return (
-    <div className="books-wrapper">
-      <div className="search-books-container">
-        <h2>Looking for a book to add to your bookshelf?</h2>
-        <p>Use the search bar below</p>
+	useEffect(() => {
+		fetchHerringBooksOnLoad();
+		fetchFishBooksOnLoad();
+		fetchCookingBooksOnLoad();
+	}, []);
 
-        <SearchBar getResults={fetchBooks} />
-      </div>
+	// useEffect, search Google api through server
+	const fetchBooks = async (searchTerm) => {
+		setLoading(true);
+		try {
+			console.log(loading);
+			const sendData = {
+				query_type: 'intitle',
+				query: searchTerm,
+				num_results: '40',
+			};
+			const options = {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			};
+			let { data } = await axios.post(
+				`https://read-herring.herokuapp.com/books/api/`,
+				JSON.stringify(sendData),
+				options
+			);
+			setBooks(data);
+			setHasSearched(true);
+			setLoading(false);
+			console.log(loading);
+		} catch (err) {
+			throw new Error(err.message);
+		}
+	};
 
-      {/* <div className='books-result-wrapper'> */}
-      {/* THIS CODE WILL BE USED WHEN EVERYTHING WORKS!!! */}
-      {/* {herringCarousel.map((book) => (
+	return (
+		<div className='books-wrapper'>
+			<div className='search-books-container'>
+				<h2>Looking for a book to add to your bookshelf?</h2>
+				<p>Use the search bar below</p>
+
+				<SearchBar getResults={fetchBooks} />
+			</div>
+
+			{/* <div className='books-result-wrapper'> */}
+			{/* THIS CODE WILL BE USED WHEN EVERYTHING WORKS!!! */}
+			{/* {herringCarousel.map((book) => (
 
 					<div
 						role='img'
@@ -177,38 +188,25 @@ export const BooksResult = () => {
 
 				))} */}
 
-      {/* </div> */}
+			{/* </div> */}
 
-      {hasSearched && (
-        <div className="books-container">
-          <div className="book-grid">
-            {books.map((book) => (
-              <div key={book.ISBN} role="img" className="image-container">
-                <div class="book-container2">
-                  <div
-                    class="book10"
-                    onClick={() => {
-                      setOpen((prev) => !prev);
-                      setModalData(book);
-                    }}
-                  >
-                    {
-                      <img
-                        className="book-picture"
-                        alt={book.title}
-                        src={book.images.thumbnail}
-                      />
-                    }
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+			{hasSearched && (
+				<>
+					<Books
+						books={currentBooks}
+						loading={loading}
+						setModalData={setModalData}
+						setOpen={setOpen}
+					/>
 
-          {/* Modal */}
-          <BookModal modalData={modalData} open={open} />
-        </div>
-      )}
-    </div>
-  );
+					<BookModal modalData={modalData} open={open} />
+
+					<PaginationComponent
+						booksPerPage={booksPerPage}
+						totalBooks={books.length}
+					/>
+				</>
+			)}
+		</div>
+	);
 };
