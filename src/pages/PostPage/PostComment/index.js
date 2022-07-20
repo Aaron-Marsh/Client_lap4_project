@@ -96,7 +96,6 @@ export const PostComment = ({
                     <div className="message-content">
                         <div
                             className="message-line"
-                            aria-label="message-line"
                             onClick={() => {
                                 clicked
                                     ? document
@@ -110,7 +109,6 @@ export const PostComment = ({
                         ></div>
                         <div>
                             <Link
-                                aria-label="link-to-message-poster"
                                 className="message-username"
                                 to={`/profile/${message_username}`}
                             >
@@ -119,11 +117,7 @@ export const PostComment = ({
                         </div>
                         <div className="message-message">{message}</div>
                     </div>
-                    <div
-                        className="reply-container"
-                        aria-label="replies"
-                        id={messageId}
-                    >
+                    <div className="reply-container" id={messageId}>
                         {repliesArray.length > 0
                             ? repliesArray.map((reply) => (
                                   <div className="reply-content">
