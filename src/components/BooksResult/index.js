@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
+import { PaginationComponent } from '../';
 
 import './style.css';
 import { SearchBar, BookModal, Books } from '../';
 
 export const BooksResult = () => {
+
 	const [books, setBooks] = useState([]);
 	const [hasSearched, setHasSearched] = useState(false);
 	const [loading, setLoading] = useState(false);
@@ -13,6 +15,17 @@ export const BooksResult = () => {
 	// Modal
 	const [open, setOpen] = useState(false);
 	const [modalData, setModalData] = useState(null);
+  
+    // Pagination
+    const [currentPage, setCurrentPage] = useState(1);
+    const [booksPerPage, setBooksPerPage] = useState(12);
+
+    const indexOfLastBook = currentPage * booksPerPage;
+    const indexOfFirstBook = indexOfLastBook - booksPerPage;
+    const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
+
+    //change page
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 	// 	Add book to has read: (PATCH)
 	// "method": "add_to_read",
@@ -72,18 +85,24 @@ export const BooksResult = () => {
 				<SearchBar getResults={fetchBooks} />
 			</div>
 
-			{hasSearched && (
-				<>
-					<Books
-						books={books}
-						loading={loading}
-						setModalData={setModalData}
-						setOpen={setOpen}
-					/>
-
-					<BookModal modalData={modalData} open={open} />
-				</>
-			)}
+		 {currentBooks && (
+                    <>
+                        <Books
+                            books={currentBooks}
+                            loading={loading}
+                            setModalData={setModalData}
+                            setOpen={setOpen}
+                        >
+                            <PaginationComponent
+                                booksPerPage={booksPerPage}
+                                totalBooks={books.length}
+                                paginate={paginate}
+                            />
+                        </Books>
+                        <BookModal modalData={modalData} open={open} />
+                    </>
+                )}
 		</div>
 	);
+
 };
