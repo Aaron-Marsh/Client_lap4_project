@@ -20,10 +20,12 @@ export const ChildLoginModal = (props) => {
     const onSignIn = async (e) => {
         if (userInput === '' || password === '') {
             setError('Missing username/email or password!');
+        } else if (userInput && password.length < 8) {
+            setError('Password has to be at least 8 characters long!');
         } else {
             try {
                 let userDetails = {
-                    userInput,
+                    user_input: userInput,
                     password,
                 };
                 let options = {
@@ -105,20 +107,21 @@ export const ChildLoginModal = (props) => {
             </Modal.Body>
             <Modal.Footer>
                 <div className="login-button-group">
-                <button 
-                    className="login-button"
-                    data-testid="login" 
-                    onClick={onSignIn}>
-                    Sign in
-                </button>
-                <button
-                    className="login-button-link"
-                    id="toggle"
-                    aria-label="toggle-to-sign-up"
-                    onClick={() => props.setShowSignUp(true)}
+                    <button
+                        className="login-button"
+                        data-testid="login"
+                        onClick={onSignIn}
                     >
-                    Don't have an account? Create account
-                </button>
+                        Sign in
+                    </button>
+                    <button
+                        className="login-button-link"
+                        id="toggle"
+                        aria-label="toggle-to-sign-up"
+                        onClick={() => props.setShowSignUp(true)}
+                    >
+                        Don't have an account? Create account
+                    </button>
                 </div>
             </Modal.Footer>
         </>
