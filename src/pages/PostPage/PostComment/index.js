@@ -11,6 +11,7 @@ export const PostComment = ({
   serverURL,
   messageId,
   username,
+  m_user
 }) => {
   const [reply, setReply] = useState("");
   const [isShown, setIsShown] = useState(false);
@@ -61,7 +62,6 @@ export const PostComment = ({
 
   return (
     <div className="message-box">
-      <div className="message-open-reply"></div>
       <div className="message-content">
         <div
           className="message-line"
@@ -128,7 +128,7 @@ export const PostComment = ({
                   : "message-reply-input"
               }
               onSubmit={handleReplyEvent}
-            >
+              >
               <label htmlFor="reply"></label>
               <input
                 ref={replyRef}
@@ -144,6 +144,7 @@ export const PostComment = ({
                 className="orange-button"
                 type="submit"
                 disabled={!loggedIn}
+                value="Post"
               />
               <div
                 className="close-reply-field"
@@ -157,6 +158,6 @@ export const PostComment = ({
           </div>
         </div>
       </div>
-    </div>
+    </div> /* className="message-box" */
   );
 };
