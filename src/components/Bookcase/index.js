@@ -65,14 +65,16 @@ export const Bookcase = ({ data }) => {
                 </div>
               </div>
             ) : (
-              <div
-                key={book.ISBN}
-                className={myRandomClass()}
-                onClick={() => {
-                  findBook(book.ISBN);
-                }}
-              >
-                <h2>{book.title}</h2>
+              <div className="not-tilted">
+                <div
+                  key={book.ISBN}
+                  className={myRandomClass()}
+                  onClick={() => {
+                    findBook(book.ISBN);
+                  }}
+                >
+                  <h2>{book.title}</h2>
+                </div>
               </div>
             )
           )
