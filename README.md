@@ -24,10 +24,13 @@ Access the deployed client site [here](https://read-herring.netlify.app/).
 
 ## Installation & usage
 
--   Clone or download code:
-
-    -   cd into the folder
-    -   npm start:
+-   Clone or download code
+-   cd in the the folder
+-   Exectute the following commands:
+```
+npm install
+npm run start
+```
         -   Runs the app in the development mode.
         -   Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
         -   The page will reload when you make changes.
