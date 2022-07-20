@@ -5,7 +5,7 @@ export function HomeRandom() {
 
   return (
     <div className="home-random">
-      <div className="title">Our recommendations</div>
+      <h1 className="title">Our Recommendations</h1>
       <div class="imgLoader"></div>
 
       <div class="book">

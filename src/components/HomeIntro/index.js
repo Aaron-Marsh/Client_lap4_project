@@ -4,7 +4,7 @@ export function HomeIntro() {
   return (
     <div className="home" id="home-intro">
       <div className="home-intro">
-        <h4>Let us get you hooked</h4>
+        <h2 className="subheading">Let us get you hooked</h2>
         <div className="home-intro-text">
           Read Herring allows you to find those words that have been missing
           from your life. You can search for books, find others who like what
