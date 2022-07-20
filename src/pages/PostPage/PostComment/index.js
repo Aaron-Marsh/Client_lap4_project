@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export const PostComment = ({
   message_username,
@@ -14,20 +14,38 @@ export const PostComment = ({
 }) => {
   // Edit Messages Section
   const [isEditShown, setIsEditShown] = useState(false);
-  const [editMessage, setEditMessage] = useState("");
-  const [editMessageId, setEditMessageId] = useState("");
+
+  const [editMessage, setEditMessage] = useState('');
+  const [isEditWidth, setIsEditWidth] = useState(false);
+  const [currentMessage, setCurrentMessage] = useState('');
+
+
+  const handleEditButton = () => {
+    setEditMessage(message);
+    handleEditShown();
+    handleEditWidth();
+  };
 
   const handleEditShown = () => {
-    setIsEditShown((current) => !current);
-  };
-  const handleEditMessage = () => {
-    setEditMessage((e) => e.target.value);
-  };
-  const handleEditMessageId = () => {
-    setEditMessageId((current) => !current);
+    setIsEditShown((current) => {
+      console.log('editShown: ', !current);
+      return !current;
+    });
   };
 
-  const [reply, setReply] = useState("");
+  const handleEditMessage = (e) => setEditMessage(e.target.value);
+
+  const handleEditWidth = () => {
+    setIsEditWidth((current) => !current);
+  };
+
+
+  useEffect(() => {
+    setCurrentMessage(message);
+  }, []);
+
+  const [reply, setReply] = useState('');
+
   const [isReplyShown, setIsReplyShown] = useState(false);
   const [isReplyButton, setIsReplyButton] = useState(true);
   const [isWidth, setIsWidth] = useState(false);
@@ -61,19 +79,19 @@ export const PostComment = ({
     e.stopPropagation();
     try {
       const { data } = await axios({
-        method: "PATCH",
+        method: 'PATCH',
         url: `https://read-herring.herokuapp.com/forums/${postId}`,
         data: {
-          method: "reply_message",
+          method: 'reply_message',
           username: username,
           reply: reply,
           message_id: messageId,
-          reply_to: "",
+          reply_to: '',
         },
       });
       setRepliesArray((current) => [...current, data]);
 
-      setReply("");
+      setReply('');
     } catch (err) {}
   };
 
@@ -83,28 +101,32 @@ export const PostComment = ({
     e.stopPropagation();
     try {
       const { data } = await axios({
-        method: "PATCH",
+        method: 'PATCH',
         url: `https://read-herring.herokuapp.com/forums/${postId}`,
         data: {
-          method: "thread_message",
+          method: 'thread_message',
           username: username,
-          message: { editMessage },
-          message_id: { editMessageId },
+
+          message: editMessage,
+          message_id: messageId,
+
         },
       });
-      setRepliesArray((current) => [...current, data]);
-
-      setReply("");
-    } catch (err) {}
+      // setRepliesArray((current) => [...current, data]);
+    } catch (err) {
+      console.log(err);
+    }
+    handleEditButton();
+    setCurrentMessage(editMessage);
   };
 
   const handleDeleteReplyEvent = async () => {
     try {
       const { data } = await axios({
-        method: "PATCH",
+        method: 'PATCH',
         url: `https://read-herring.herokuapp.com/forums/${postId}`,
         data: {
-          method: "delete_message",
+          method: 'delete_message',
 
           message_id: messageId,
         },
@@ -116,7 +138,7 @@ export const PostComment = ({
 
   return (
     <>
-      {" "}
+      {' '}
       {/* ******** Boolean Toggle for Hiding Deleted Comments ******** */}
       {!deleted && (
         <div className="message-box">
@@ -128,7 +150,7 @@ export const PostComment = ({
               }}
             ></div>
           ) : (
-            ""
+            ''
           )}
 
           <div className="message-content">
@@ -138,10 +160,10 @@ export const PostComment = ({
                 clicked
                   ? document
                       .getElementById(messageId)
-                      .classList.remove("hide-reply")
+                      .classList.remove('hide-reply')
                   : document
                       .getElementById(messageId)
-                      .classList.add("hide-reply");
+                      .classList.add('hide-reply');
                 clicked = !clicked;
               }}
             ></div>
@@ -153,14 +175,41 @@ export const PostComment = ({
               >
                 {message_username}
               </Link>
-              <button onClick={handleEditShown}>edit</button>
+
+              {/* EDIT BUTTON TO SHOW FORM */}
+              <button onClick={handleEditButton}>edit</button>
             </div>
             {/* MESSAGE MESSAGE */}
             {/* LOGIC FOR EDIT MESSAGE FORM */}
-            {isEditShown ? (
-              <div>Form Here</div>
+            {isEditShown && isEditWidth ? (
+              // EDIT MESSAGE FORM
+              <div className="reply-form-container width">
+                <form onSubmit={handleEditEvent}>
+                  <label htmlFor="edit"></label>
+                  <input
+                    type="text"
+                    id="edit"
+                    name="edit"
+                    className="orange-input"
+                    onChange={handleEditMessage}
+                    value={editMessage}
+                  ></input>
+                  <input
+                    type="submit"
+                    value="Save"
+                    className="orange-button"
+                    disabled={!loggedIn}
+                  ></input>
+                  <div
+                    className="close-edit-field"
+                    onClick={handleEditButton}
+                  ></div>
+                </form>
+              </div>
             ) : (
-              <div className="message-message">{message}</div>
+              // PASS IN MESSAGE
+              <div className="message-message">{currentMessage}</div>
+
             )}
           </div>
           <div className="reply-container" id={messageId}>
@@ -180,10 +229,10 @@ export const PostComment = ({
                     </div>
                   </div>
                 ))
-              : ""}
+              : ''}
             <div className="reply-form-container">
               {!isReplyButton ? (
-                ""
+                ''
               ) : (
                 <button
                   className="white-button"
@@ -204,9 +253,9 @@ export const PostComment = ({
                   className={
                     isReplyShown
                       ? isWidth
-                        ? "message-reply-input width"
-                        : "message-reply-input "
-                      : "message-reply-input"
+                        ? 'message-reply-input width'
+                        : 'message-reply-input '
+                      : 'message-reply-input'
                   }
                   onSubmit={handleReplyEvent}
                 >
