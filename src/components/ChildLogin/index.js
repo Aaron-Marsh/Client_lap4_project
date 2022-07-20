@@ -23,7 +23,7 @@ export const ChildLoginModal = (props) => {
         } else {
             try {
                 let userDetails = {
-                    userInput,
+                    user_input: userInput,
                     password,
                 };
                 let options = {
