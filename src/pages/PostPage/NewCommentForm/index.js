@@ -47,7 +47,11 @@ export const NewCommentForm = ({
           cols="50"
           onChange={handleMessageInput}
         />
-        <input className="orange-button" type="submit" disabled={!loggedIn} />
+        <input 
+        className="orange-button" 
+        type="submit" 
+        disabled={!loggedIn} 
+        value="Post"/>
       </form>
     </>
   );
