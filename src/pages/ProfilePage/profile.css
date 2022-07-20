@@ -67,7 +67,7 @@ Bookshelf */
 
 .bookshelf-book {
   height: 200px;
-  width: 50px;
+
   margin-inline: 2px;
   float: left;
   color: white;
@@ -97,10 +97,12 @@ Bookshelf */
   background-color: #2b3956;
   border-left: 2px solid black;
   border-right: 2px solid black;
+  width: 55px;
 }
 
 .book-2 {
   background-color: #485a7e;
+  width: 70px;
   border-left: 2px solid black;
   border-right: 2px solid black;
 }
@@ -109,12 +111,14 @@ Bookshelf */
   background-color: #002369;
   border-left: 2px solid black;
   border-right: 2px solid black;
+  width: 60px;
 }
 
 .book-4 {
   background-color: #1e2738;
   border-left: 2px solid black;
   border-right: 2px solid black;
+  width: 50px;
   color: white;
 }
 
@@ -123,11 +127,12 @@ Bookshelf */
   border-left: 2px solid black;
   border-right: 2px solid black;
   color: white;
+  width: 60px;
 }
 
 .bookshelf-book h2 {
   padding-inline: 0.4rem;
-  margin-left: 0.5rem;
+  margin-left: 0.7rem;
   font-size: 1em;
   transform-origin: 0% 0%;
   transform: rotate(0.25turn) translateY(-35px);
@@ -150,6 +155,13 @@ Bookshelf */
 .star:checked:before {
   content: "\2606";
   position: absolute;
+  color: yellow;
+}
+
+.star:disabled:hover {
+  color: black;
+}
+.star:hover {
   color: yellow;
 }
 

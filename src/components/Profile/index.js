@@ -11,6 +11,7 @@ export const Profile = () => {
 
   const [userData, setUserData] = useState({});
   const [error, setError] = useState("");
+  const [count, setCount] = useState(0);
 
   const user = useSelector((state) => state.user.data.username);
 
@@ -41,7 +42,7 @@ export const Profile = () => {
 
   useEffect(() => {
     fetchUserOnLoad();
-  }, []);
+  }, [count]);
 
   if (error) {
     profile = (

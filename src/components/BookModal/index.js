@@ -13,6 +13,8 @@ export const BookModal = ({ modalData, open }) => {
   const [wantsToRead, setWantsToRead] = useState(false);
   const [userHasReadBool, setUserHasReadBool] = useState(false);
   const [userWantsToReadBool, setUserWantsToReadBool] = useState(false);
+  const [starBool, setStarBool] = useState(false);
+  const [changeStar, setChangeStar] = useState(false);
 
   const isMounted = useRef(false);
 
@@ -58,6 +60,18 @@ export const BookModal = ({ modalData, open }) => {
     }
   }, [wantsToRead, show]);
 
+  useEffect(() => {
+    if (loggedIn && show) {
+      userHasReadBooks.map((book) => {
+        if (book.ISBN === modalData.ISBN) {
+          if (book.favourited != starBool) {
+            setStarBool((prev) => !prev);
+          }
+        }
+      });
+    }
+  }, [changeStar, show]);
+
   const handleClose = () => setShow(false);
 
   const fetchUser = async () => {
@@ -77,6 +91,7 @@ export const BookModal = ({ modalData, open }) => {
         dispatch(setUser(data));
         setHasRead(true);
         setWantsToRead(true);
+        setChangeStar((prev) => !prev);
       }
     } catch (err) {
       throw new Error(err.message);
@@ -163,6 +178,29 @@ export const BookModal = ({ modalData, open }) => {
     }
   };
 
+  const clickedStar = async (isbn) => {
+    try {
+      const sendData = {
+        method: "edit_favourite_status",
+        ISBN: isbn,
+        set_favourited: !starBool,
+      };
+      const options = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const { data } = await axios.patch(
+        `https://read-herring.herokuapp.com/users/${username}`,
+        JSON.stringify(sendData),
+        options
+      );
+      fetchUser();
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  };
+
   return (
     <Modal
       show={show}
@@ -178,7 +216,12 @@ export const BookModal = ({ modalData, open }) => {
             id="star1"
             class="star"
             type="checkbox"
+            checked={starBool}
+            disabled={!loggedIn || !userHasReadBool}
             title="bookmark page"
+            onClick={() => {
+              clickedStar(modalData.ISBN);
+            }}
           />
         </div>
       </Modal.Header>
