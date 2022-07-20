@@ -42,7 +42,7 @@
 
 ### Add book to wants to read: (PATCH)
 /users/:username
-"method": "add_to_to_read",
+"method": "add_to_wants_to_read",
  	"ISBN": "12345",
  	"title":"title",
  	"author":"author"
