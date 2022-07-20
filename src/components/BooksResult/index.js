@@ -1,18 +1,14 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 
-
-import "./style.css";
-import { SearchBar, BookModal, Books } from "../";
+import './style.css';
+import { SearchBar, BookModal, Books } from '../';
 
 export const BooksResult = () => {
-
 	const [books, setBooks] = useState([]);
 	const [hasSearched, setHasSearched] = useState(false);
 	const [loading, setLoading] = useState(false);
-	const username = useSelector((state) => state.user.user);
 
 	// Modal
 	const [open, setOpen] = useState(false);
@@ -23,31 +19,6 @@ export const BooksResult = () => {
 	//  	"ISBN": "12345",
 	//  	"title":"title",
 	//  	"author":"author"
-
-	const addToHasRead = async (isbn) => {
-		try {
-			const sendData = {
-				method: 'add_to_read',
-				ISBN: isbn,
-				title: 'title',
-				author: 'author',
-			};
-			const options = {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			};
-			const { data } = await axios.patch(
-				`https://read-herring.herokuapp.com/users/${username}`,
-				JSON.stringify(sendData),
-				options
-			);
-
-			console.log(data);
-		} catch (err) {
-			throw new Error(err.message);
-		}
-	};
 
 	//  To add books to wants_to_read:
 	//  Patch to users/username
@@ -110,15 +81,9 @@ export const BooksResult = () => {
 						setOpen={setOpen}
 					/>
 
-					<BookModal
-						modalData={modalData}
-						open={open}
-						addToHasRead={addToHasRead}
-						addToWantsToRead={addToWantsToRead}
-					/>
+					<BookModal modalData={modalData} open={open} />
 				</>
 			)}
 		</div>
 	);
-
 };
