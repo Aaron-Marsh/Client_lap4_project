@@ -1,3 +1,14 @@
+.profile-error {
+  margin-top: 10rem;
+  margin-inline: auto;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+}
+
 .main-profile,
 .bookshelf {
   display: flex;
@@ -38,10 +49,3 @@
 .shelf-favourited-book {
   color: red;
 }
-
-
-
-
-
-
-

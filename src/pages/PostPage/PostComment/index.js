@@ -45,7 +45,7 @@ export const PostComment = ({
     try {
       const { data } = await axios({
         method: "PATCH",
-        url: `http://127.0.0.1:8000/forums/${postId}`,
+        url: `https://read-herring.herokuapp.com/forums/${postId}`,
         data: {
           method: "reply_message",
           username: username,
@@ -64,7 +64,7 @@ export const PostComment = ({
     try {
       const { data } = await axios({
         method: "PATCH",
-        url: `http://127.0.0.1:8000/forums/${postId}`,
+        url: `https://read-herring.herokuapp.com/forums/${postId}`,
         data: {
           method: "delete_message",
 
