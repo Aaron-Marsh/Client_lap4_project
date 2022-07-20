@@ -7,18 +7,15 @@ import './style.css';
 import { SearchBar, BookModal, Books } from '../';
 
 export const BooksResult = () => {
-    const [books, setBooks] = useState([]);
-    const [herringCarousel, setHerringCarousel] = useState([]);
-    const [fishCarousel, setFishCarousel] = useState([]);
-    const [cookingCarousel, setCookingCarousel] = useState([]);
-    const [hasSearched, setHasSearched] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const username = useSelector((state) => state.user.user);
 
-    // Modal
-    const [open, setOpen] = useState(false);
-    const [modalData, setModalData] = useState(null);
+	const [books, setBooks] = useState([]);
+	const [hasSearched, setHasSearched] = useState(false);
+	const [loading, setLoading] = useState(false);
 
+	// Modal
+	const [open, setOpen] = useState(false);
+	const [modalData, setModalData] = useState(null);
+  
     // Pagination
     const [currentPage, setCurrentPage] = useState(1);
     const [booksPerPage, setBooksPerPage] = useState(12);
@@ -30,87 +27,65 @@ export const BooksResult = () => {
     //change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-    // 	Add book to has read: (PATCH)
-    // "method": "add_to_read",
-    //  	"ISBN": "12345",
-    //  	"title":"title",
-    //  	"author":"author"
+	// 	Add book to has read: (PATCH)
+	// "method": "add_to_read",
+	//  	"ISBN": "12345",
+	//  	"title":"title",
+	//  	"author":"author"
 
-    const addToHasRead = async (isbn) => {
-        try {
-            const sendData = {
-                method: 'add_to_read',
-                ISBN: isbn,
-                title: 'title',
-                author: 'author',
-            };
-            const options = {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            };
-            const { data } = await axios.patch(
-                `https://read-herring.herokuapp.com/users/${username}`,
-                JSON.stringify(sendData),
-                options
-            );
+	//  To add books to wants_to_read:
+	//  Patch to users/username
+	//  {
+	//    "method": "add_to_wants_to_read",
+	//    "ISBN": "123",
+	//    "title":"book title",
+	//    "author": "book's author"
+	//  }
 
-            console.log(data);
-        } catch (err) {
-            throw new Error(err.message);
-        }
-    };
+	const addToWantsToRead = () => {};
 
-    //  To add books to wants_to_read:
-    //  Patch to users/username
-    //  {
-    //    "method": "add_to_wants_to_read",
-    //    "ISBN": "123",
-    //    "title":"book title",
-    //    "author": "book's author"
-    //  }
+	// useEffect, search Google api through server
+	const fetchBooks = async (searchTerm) => {
+		setLoading(true);
+		try {
+			const sendData = {
+				query_type: 'intitle',
+				query: searchTerm,
+				num_results: '40',
+			};
+			const options = {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			};
+			let { data } = await axios.post(
+				`https://read-herring.herokuapp.com/books/api/`,
+				JSON.stringify(sendData),
+				options
+			);
+			setBooks(data);
+			setHasSearched(true);
+			setLoading(false);
+		} catch (err) {
+			throw new Error(err.message);
+		}
+	};
 
-    const addToWantsToRead = () => {};
+	useEffect(() => {
+		console.log(books);
+		console.log(books.length);
+	}, [books]);
 
-    // useEffect, search Google api through server
-    const fetchBooks = async (searchTerm) => {
-        setLoading(true);
-        try {
-            const sendData = {
-                query_type: 'intitle',
-                query: searchTerm,
-                num_results: '40',
-            };
-            const options = {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            };
-            let { data } = await axios.post(
-                `https://read-herring.herokuapp.com/books/api/`,
-                JSON.stringify(sendData),
-                options
-            );
-            setBooks(data);
-            setHasSearched(true);
-            setLoading(false);
-        } catch (err) {
-            throw new Error(err.message);
-        }
-    };
+	return (
+		<div className='books-wrapper'>
+			<div className='search-books-container'>
+				<h2>Looking for a book to add to your bookshelf?</h2>
+				<p>Use the search bar below</p>
 
-    useEffect(() => {
-        console.log(books);
-        console.log(books.length);
-    }, [books]);
+				<SearchBar getResults={fetchBooks} />
+			</div>
 
-    return (
-        <div className="books-wrapper">
-            <div className="search-books-container">
-                <h2>Looking for a book to add to your bookshelf?</h2>
-                <p>Use the search bar below</p>
-                <SearchBar getResults={fetchBooks} />
-                {currentBooks && (
+		 {currentBooks && (
                     <>
                         <Books
                             books={currentBooks}
@@ -127,7 +102,7 @@ export const BooksResult = () => {
                         <BookModal modalData={modalData} open={open} />
                     </>
                 )}
-            </div>
-        </div>
-    );
+		</div>
+	);
+
 };
