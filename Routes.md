@@ -13,6 +13,17 @@
 "username": "User2",
 "message": "this is another message in the thread"
 
+### Edit a reply to message in thread: (PATCH)
+"method":"reply_message",
+"username": "user10",
+"reply": "This is changed",
+"reply_id": "e6f32bfd-b1ca-4bbd-94f5-438b40b86e3c",
+"reply_to": ""
+
+### Delete a reply to message in thread: (PATCH)
+"method": "delete_reply",
+"reply_id": "886" (edited) 
+
 ### Add reply to message in thread (add reply_id to Edit existing reply): (PATCH)
 /forms/:forumId
 "method":"reply_message",
