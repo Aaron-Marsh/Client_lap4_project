@@ -1,21 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
 import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
-export const BookModal = ({
-	modalData,
-	open,
-	addToHasRead,
-	addToWantsToRead,
-	book,
-}) => {
+export const BookModal = ({ modalData, open }) => {
 	const [show, setShow] = useState(false);
 
 	const isMounted = useRef(false);
 
 	const loggedIn = useSelector((state) => state.loggedIn);
+
+	const username = useSelector((state) => state.user.user);
 
 	useEffect(() => {
 		if (isMounted.current) {
@@ -58,6 +55,31 @@ export const BookModal = ({
 			</Popover.Body>
 		</Popover>
 	);
+
+	const addToHasRead = async (isbn, title, author) => {
+		try {
+			const sendData = {
+				method: 'add_to_read',
+				ISBN: isbn,
+				title: title,
+				author: author,
+			};
+			const options = {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			};
+			const { data } = await axios.patch(
+				`https://read-herring.herokuapp.com/users/${username}`,
+				JSON.stringify(sendData),
+				options
+			);
+
+			console.log(data);
+		} catch (err) {
+			throw new Error(err.message);
+		}
+	};
 
 	return (
 		<Modal
@@ -102,11 +124,17 @@ export const BookModal = ({
 
 				<button
 					variant='primary'
-					onClick={() => addToHasRead(book)}
+					onClick={() =>
+						addToHasRead(modalData.ISBN, modalData.title, modalData.author)
+					}
 					disabled={!loggedIn}>
 					Add to Read Bookshelf
 				</button>
-				<button variant='warning' onClick={addToWantsToRead}>
+				<button
+					variant='warning'
+					onClick={() => {
+						// addToHasRead(modalData.isbn);
+					}}>
 					Add to Reading List
 				</button>
 			</Modal.Footer>
