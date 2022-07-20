@@ -45,7 +45,6 @@ export const BooksResult = () => {
 				options
 			);
 			setBooks(data);
-			setHasSearched(true);
 			setLoading(false);
 		} catch (err) {
 			throw new Error(err.message);
