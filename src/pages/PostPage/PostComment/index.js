@@ -80,6 +80,7 @@ export const PostComment = ({
 
     <>
       {" "}
+      {/* ******** Boolean Toggle for Hiding Deleted Comments ******** */}
       {!deleted && (
         <div className="message-box">
           {message_username == username && loggedIn ? (
