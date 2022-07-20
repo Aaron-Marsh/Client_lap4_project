@@ -1,11 +1,10 @@
 import React from 'react';
 
+import './style.css';
+
 export const LoadScreen = () => {
 	return (
-		<>
-			<h2>
-				We're working hard on trying to find the book you're looking for...
-			</h2>
+		<div className='load-screen-wrapper'>
 			<div class='bookshelf_wrapper'>
 				<ul class='books_list'>
 					<li class='book_item first'></li>
@@ -17,6 +16,6 @@ export const LoadScreen = () => {
 				</ul>
 				<div class='shelf'></div>
 			</div>
-		</>
+		</div>
 	);
 };
