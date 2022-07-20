@@ -25,6 +25,7 @@
 }
 
 .post-author {
+  width: fit-content;
   color: var(--pale-orange);
   text-decoration: none;
   font-weight: 400;
@@ -42,7 +43,6 @@
   padding-inline: 2rem;
   padding-block: 1.5rem;
   margin-inline: 4rem;
-  font-weight: 600;
 }
 
 .post-header > h3 {
@@ -114,6 +114,7 @@
 .reply-content {
   position: relative;
   margin-left: 1rem;
+  margin-bottom: 1rem;
 }
 
 .reply-content::after {
