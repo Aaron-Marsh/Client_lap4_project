@@ -18,8 +18,10 @@ export const ChildSignUpModal = (props) => {
     const onSignUp = async (e) => {
         if (email === '' || password === '') {
             setError('Missing username or password!');
-        } else if (password != confirmPassword) {
+        } else if (password !== confirmPassword) {
             setError('Passwords do not match!');
+        } else if (!email.includes('@')) {
+            setError('Email is invalid! Check for @ symbol.');
         } else {
             try {
                 let registerDetails = {
