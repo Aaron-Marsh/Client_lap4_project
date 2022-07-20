@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 
+import "./profile.css";
 import { LoginFooter, Profile } from "../../components";
 
 export const ProfilePage = () => {

@@ -1,11 +1,14 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 
-import './style.css';
-import { SearchBar, BookModal, Books } from '../';
+
+import "./style.css";
+import { SearchBar, BookModal, Books } from "../";
 
 export const BooksResult = () => {
+
 	const [books, setBooks] = useState([]);
 	const [hasSearched, setHasSearched] = useState(false);
 	const [loading, setLoading] = useState(false);
@@ -117,4 +120,5 @@ export const BooksResult = () => {
 			)}
 		</div>
 	);
+
 };

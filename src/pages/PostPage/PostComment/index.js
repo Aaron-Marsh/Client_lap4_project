@@ -11,12 +11,14 @@ export const PostComment = ({
   serverURL,
   messageId,
   username,
+  m_user
 }) => {
   const [reply, setReply] = useState("");
   const [isShown, setIsShown] = useState(false);
   const [isReplyButton, setIsReplyButton] = useState(true);
   const [isWidth, setIsWidth] = useState(false);
   const [repliesArray, setRepliesArray] = useState([]);
+  const [deleted, setDeleted] = useState(false);
 
   const replyRef = useRef(null);
 
@@ -44,7 +46,7 @@ export const PostComment = ({
     try {
       const { data } = await axios({
         method: "PATCH",
-        url: `http://127.0.0.1:8000/forums/${postId}`,
+        url: `https://read-herring.herokuapp.com/forums/${postId}`,
         data: {
           method: "reply_message",
           username: username,
@@ -59,104 +61,142 @@ export const PostComment = ({
     } catch (err) {}
   };
 
+  const handleDeleteReplyEvent = async () => {
+    try {
+      const { data } = await axios({
+        method: "PATCH",
+        url: `https://read-herring.herokuapp.com/forums/${postId}`,
+        data: {
+          method: "delete_message",
+
+          message_id: messageId,
+        },
+      });
+      console.log(message_username, username);
+      setDeleted(true);
+    } catch (err) {}
+  };
+
   return (
-    <div className="message-box">
-      <div className="message-open-reply"></div>
-      <div className="message-content">
-        <div
-          className="message-line"
-          onClick={() => {
-            clicked
-              ? document
-                  .getElementById(messageId)
-                  .classList.remove("hide-reply")
-              : document.getElementById(messageId).classList.add("hide-reply");
-            clicked = !clicked;
-          }}
-        ></div>
-        <div>
-          <Link
-            className="message-username"
-            to={`/profile/${message_username}`}
-          >
-            {message_username}
-          </Link>
-        </div>
-        <div className="message-message">{message}</div>
-      </div>
-      <div className="reply-container" id={messageId}>
-        {repliesArray.length > 0
-          ? repliesArray.map((reply) => (
-              <div className="reply-content">
-                <div>
-                  <Link
-                    className="message-username"
-                    to={`/profile/${reply.username}`}
-                  >
-                    {reply.username}
-                  </Link>
-                </div>
-                <div className="reply-message">{reply.reply}</div>
-              </div>
-            ))
-          : ""}
-        <div className="reply-form-container">
-          {!isReplyButton ? (
-            ""
-          ) : (
-            <button
-              className="white-button"
+
+    <>
+      {" "}
+      {!deleted && (
+        <div className="message-box">
+          {message_username == username && loggedIn ? (
+            <div
+              className="delete-message"
+
               onClick={() => {
-                handleShown();
-                handleWidth();
-                handleReplyButton();
-                setTimeout(() => {
-                  replyRef.current.focus();
-                }, 100);
+                handleDeleteReplyEvent();
               }}
-            >
-              Reply
-            </button>
+            ></div>
+          ) : (
+            ""
           )}
-          <div className="message-replies">
-            <form
-              className={
-                isShown
-                  ? isWidth
-                    ? "message-reply-input width"
-                    : "message-reply-input "
-                  : "message-reply-input"
-              }
-              onSubmit={handleReplyEvent}
-            >
-              <label htmlFor="reply"></label>
-              <input
-                ref={replyRef}
-                type="text"
-                id="reply"
-                name="reply"
-                className="orange-input"
-                placeholder="Add your reply..."
-                value={reply}
-                onChange={handleReplyInput}
-              />
-              <input
-                className="orange-button"
-                type="submit"
-                disabled={!loggedIn}
-              />
-              <div
-                className="close-reply-field"
-                onClick={() => {
-                  handleShown();
-                  handleWidth();
-                  handleReplyButton();
-                }}
-              ></div>
-            </form>
+
+          <div className="message-content">
+            <div
+              className="message-line"
+              onClick={() => {
+                clicked
+                  ? document
+                      .getElementById(messageId)
+                      .classList.remove("hide-reply")
+                  : document
+                      .getElementById(messageId)
+                      .classList.add("hide-reply");
+                clicked = !clicked;
+              }}
+            ></div>
+            <div>
+              <Link
+                className="message-username"
+                to={`/profile/${message_username}`}
+              >
+                {message_username}
+              </Link>
+            </div>
+            <div className="message-message">{message}</div>
+          </div>
+          <div className="reply-container" id={messageId}>
+            {repliesArray.length > 0
+              ? repliesArray.map((reply) => (
+                  <div className="reply-content">
+                    <div>
+                      <Link
+                        className="message-username"
+                        to={`/profile/${reply.username}`}
+                      >
+                        {reply.username}
+                      </Link>
+                    </div>
+                    <div className="reply-message" id={reply.id}>
+                      {reply.reply}
+                    </div>
+                  </div>
+                ))
+              : ""}
+            <div className="reply-form-container">
+              {!isReplyButton ? (
+                ""
+              ) : (
+                <button
+                  className="white-button"
+                  onClick={() => {
+                    handleShown();
+                    handleWidth();
+                    handleReplyButton();
+                    setTimeout(() => {
+                      replyRef.current.focus();
+                    }, 100);
+                  }}
+                >
+                  Reply
+                </button>
+              )}
+              <div className="message-replies">
+                <form
+                  className={
+                    isShown
+                      ? isWidth
+                        ? "message-reply-input width"
+                        : "message-reply-input "
+                      : "message-reply-input"
+                  }
+                  onSubmit={handleReplyEvent}
+                >
+                  <label htmlFor="reply"></label>
+                  <input
+                    ref={replyRef}
+                    type="text"
+                    id="reply"
+                    name="reply"
+                    className="orange-input"
+                    placeholder="Add your reply..."
+                    value={reply}
+                    onChange={handleReplyInput}
+                  />
+                  <input
+                    className="orange-button"
+                    type="submit"
+                    disabled={!loggedIn}
+                  />
+                  <div
+                    className="close-reply-field"
+                    onClick={() => {
+                      handleShown();
+                      handleWidth();
+                      handleReplyButton();
+                    }}
+                  ></div>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
+
   );
 };

@@ -131,7 +131,7 @@
 
 .close-reply-field {
   background-image: url("../../imgs/X.png");
-  height: 1rem;
+  height: 0.75rem;
   background-repeat: no-repeat;
   background-size: contain;
   margin-left: 1rem;
@@ -139,9 +139,28 @@
   aspect-ratio: 1;
   cursor: pointer;
 }
+.close-reply-field:hover {
+  height: 0.9rem;
+}
+
+.delete-message {
+  background-image: url("../../imgs/X.png");
+  height: 0.75rem;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  right: 1.5rem;
+  aspect-ratio: 1;
+  top: 1.5rem;
+  cursor: pointer;
+}
+
+.delete-message:hover {
+  height: 0.9rem;
+}
 
 .header-space {
-  margin-top: 11rem;
+  margin-top: 8rem;
 }
 
 .hide-reply {
