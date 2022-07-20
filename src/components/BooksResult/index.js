@@ -43,7 +43,7 @@ export const BooksResult = () => {
 				options
 			);
 
-			console.log(data);
+			console.log("add to read data: ",data);
 		} catch (err) {
 			throw new Error(err.message);
 		}
