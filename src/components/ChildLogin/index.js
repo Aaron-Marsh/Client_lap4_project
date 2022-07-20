@@ -52,7 +52,7 @@ export const ChildLoginModal = (props) => {
           setError("No server response!");
         } else if (err.response.status === 401) {
           setError(
-            "Unauthorized! Create an account or check your email and password!"
+            "Unauthorized! Create an account or check your email/username and password!"
           );
         } else {
           setError("Login failed!");
