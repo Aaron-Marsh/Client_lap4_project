@@ -1,7 +1,12 @@
 # Client_lap4_project
 
-![Animation of books landing on top of each other](imgs/books.png)
-<img src="imgs/books.gif" alt="animation of books landing on top of each other">
+<br>
+
+<p align="center">
+<img src="https://i.ibb.co/vxxSSMq/chris-lawton-zv-Kx6ix-Uh-WQ-unsplash.jpg">
+</p>
+
+<br>
 
 [Read Herring](https://read-herring.netlify.app/) is an application that might spark interest for books in you again. Simple and beautiful web-design developed by a team in futureproof bootcamp over a one-week period allows users to search for books as well as look and comment on books in forum. Even though the whole application is available for all users - only users who have accounts can have their own profile page with customized shelves for books which they have grabbed from books page or followed forum's recommandations and they can interact with others. As a registered user you can leave a rating on book that you have read and that is in your bookshelf as well you are able to discuss books in forum, by writing messges and replies. That's not all! Be free to follow a fellow user who seems to have similar taste to you or has just interesting ideas about books in general. That gives you an opportunity to have a peak on the followed users' profile, seeing their book shelves. Time to get inspired!
 
