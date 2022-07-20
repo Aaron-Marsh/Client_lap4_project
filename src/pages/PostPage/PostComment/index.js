@@ -12,8 +12,37 @@ export const PostComment = ({
   messageId,
   username,
 }) => {
+  // Edit Messages Section
+  const [isEditShown, setIsEditShown] = useState(false);
+  const [editMessage, setEditMessage] = useState('');
+  const [isEditWidth, setIsEditWidth] = useState(false);
+  const [currentMessage, setCurrentMessage] = useState('');
+
+  const handleEditButton = () => {
+    setEditMessage(message);
+    handleEditShown();
+    handleEditWidth();
+  };
+
+  const handleEditShown = () => {
+    setIsEditShown((current) => {
+      console.log('editShown: ', !current);
+      return !current;
+    });
+  };
+
+  const handleEditMessage = (e) => setEditMessage(e.target.value);
+
+  const handleEditWidth = () => {
+    setIsEditWidth((current) => !current);
+  };
+
+  useEffect(() => {
+    setCurrentMessage(message);
+  }, []);
+
   const [reply, setReply] = useState('');
-  const [isShown, setIsShown] = useState(false);
+  const [isReplyShown, setIsReplyShown] = useState(false);
   const [isReplyButton, setIsReplyButton] = useState(true);
   const [isWidth, setIsWidth] = useState(false);
   const [repliesArray, setRepliesArray] = useState([]);
@@ -28,9 +57,10 @@ export const PostComment = ({
   const handleWidth = () => {
     setIsWidth((current) => !current);
   };
-  const handleShown = () => {
-    setIsShown((current) => !current);
+  const handleReplyShown = () => {
+    setIsReplyShown((current) => !current);
   };
+
   const handleReplyButton = () => {
     setIsReplyButton((current) => !current);
   };
@@ -39,6 +69,7 @@ export const PostComment = ({
     setRepliesArray(replies);
   }, []);
 
+  // Send Reply to Backend
   const handleReplyEvent = async (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -58,6 +89,29 @@ export const PostComment = ({
 
       setReply('');
     } catch (err) {}
+  };
+
+  // Editing Comments
+  const handleEditEvent = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      const { data } = await axios({
+        method: 'PATCH',
+        url: `https://read-herring.herokuapp.com/forums/${postId}`,
+        data: {
+          method: 'thread_message',
+          username: username,
+          message: editMessage,
+          message_id: messageId,
+        },
+      });
+      // setRepliesArray((current) => [...current, data]);
+    } catch (err) {
+      console.log(err);
+    }
+    handleEditButton();
+    setCurrentMessage(editMessage);
   };
 
   const handleDeleteReplyEvent = async () => {
@@ -107,15 +161,48 @@ export const PostComment = ({
                 clicked = !clicked;
               }}
             ></div>
-            <div>
+            {/* MESSAGE USERNAME */}
+            <div className="message-header">
               <Link
                 className="message-username"
                 to={`/profile/${message_username}`}
               >
                 {message_username}
               </Link>
+              {/* EDIT BUTTON TO SHOW FORM */}
+              <button onClick={handleEditButton}>edit</button>
             </div>
-            <div className="message-message">{message}</div>
+            {/* MESSAGE MESSAGE */}
+            {/* LOGIC FOR EDIT MESSAGE FORM */}
+            {isEditShown && isEditWidth ? (
+              // EDIT MESSAGE FORM
+              <div className="reply-form-container width">
+                <form onSubmit={handleEditEvent}>
+                  <label htmlFor="edit"></label>
+                  <input
+                    type="text"
+                    id="edit"
+                    name="edit"
+                    className="orange-input"
+                    onChange={handleEditMessage}
+                    value={editMessage}
+                  ></input>
+                  <input
+                    type="submit"
+                    value="Save"
+                    className="orange-button"
+                    disabled={!loggedIn}
+                  ></input>
+                  <div
+                    className="close-edit-field"
+                    onClick={handleEditButton}
+                  ></div>
+                </form>
+              </div>
+            ) : (
+              // PASS IN MESSAGE
+              <div className="message-message">{currentMessage}</div>
+            )}
           </div>
           <div className="reply-container" id={messageId}>
             {repliesArray.length > 0
@@ -142,7 +229,7 @@ export const PostComment = ({
                 <button
                   className="white-button"
                   onClick={() => {
-                    handleShown();
+                    handleReplyShown();
                     handleWidth();
                     handleReplyButton();
                     setTimeout(() => {
@@ -156,7 +243,7 @@ export const PostComment = ({
               <div className="message-replies">
                 <form
                   className={
-                    isShown
+                    isReplyShown
                       ? isWidth
                         ? 'message-reply-input width'
                         : 'message-reply-input '
@@ -184,7 +271,7 @@ export const PostComment = ({
                   <div
                     className="close-reply-field"
                     onClick={() => {
-                      handleShown();
+                      handleReplyShown();
                       handleWidth();
                       handleReplyButton();
                     }}

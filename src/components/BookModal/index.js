@@ -7,11 +7,12 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 export const BookModal = ({ modalData, open }) => {
 	const [show, setShow] = useState(false);
+	const [hasRead, setHasRead] = useState(false);
+	const [wantsToRead, setWantsToRead] = useState(false);
 
 	const isMounted = useRef(false);
 
 	const loggedIn = useSelector((state) => state.loggedIn);
-
 	const username = useSelector((state) => state.user.user);
 
 	useEffect(() => {
@@ -74,8 +75,31 @@ export const BookModal = ({ modalData, open }) => {
 				JSON.stringify(sendData),
 				options
 			);
+			setHasRead(true);
+		} catch (err) {
+			throw new Error(err.message);
+		}
+	};
 
-			console.log(data);
+	const addToWantsToRead = async (isbn, title, author) => {
+		try {
+			const sendData = {
+				method: 'add_to_wants_to_read',
+				ISBN: isbn,
+				title: title,
+				author: author,
+			};
+			const options = {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			};
+			const { data } = await axios.patch(
+				`https://read-herring.herokuapp.com/users/${username}`,
+				JSON.stringify(sendData),
+				options
+			);
+			setWantsToRead(true);
 		} catch (err) {
 			throw new Error(err.message);
 		}
@@ -132,9 +156,10 @@ export const BookModal = ({ modalData, open }) => {
 				</button>
 				<button
 					variant='warning'
-					onClick={() => {
-						// addToHasRead(modalData.isbn);
-					}}>
+					onClick={() =>
+						addToWantsToRead(modalData.ISBN, modalData.title, modalData.author)
+					}
+					disabled={!loggedIn}>
 					Add to Reading List
 				</button>
 			</Modal.Footer>

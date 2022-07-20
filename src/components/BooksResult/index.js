@@ -7,42 +7,23 @@ import './style.css';
 import { SearchBar, BookModal, Books } from '../';
 
 export const BooksResult = () => {
-
 	const [books, setBooks] = useState([]);
-	const [hasSearched, setHasSearched] = useState(false);
 	const [loading, setLoading] = useState(false);
 
 	// Modal
 	const [open, setOpen] = useState(false);
 	const [modalData, setModalData] = useState(null);
-  
-    // Pagination
-    const [currentPage, setCurrentPage] = useState(1);
-    const [booksPerPage, setBooksPerPage] = useState(12);
 
-    const indexOfLastBook = currentPage * booksPerPage;
-    const indexOfFirstBook = indexOfLastBook - booksPerPage;
-    const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
+	// Pagination
+	const [currentPage, setCurrentPage] = useState(1);
+	const [booksPerPage, setBooksPerPage] = useState(12);
 
-    //change page
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+	const indexOfLastBook = currentPage * booksPerPage;
+	const indexOfFirstBook = indexOfLastBook - booksPerPage;
+	const currentBooks = books.slice(indexOfFirstBook, indexOfLastBook);
 
-	// 	Add book to has read: (PATCH)
-	// "method": "add_to_read",
-	//  	"ISBN": "12345",
-	//  	"title":"title",
-	//  	"author":"author"
-
-	//  To add books to wants_to_read:
-	//  Patch to users/username
-	//  {
-	//    "method": "add_to_wants_to_read",
-	//    "ISBN": "123",
-	//    "title":"book title",
-	//    "author": "book's author"
-	//  }
-
-	const addToWantsToRead = () => {};
+	//change page
+	const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 	// useEffect, search Google api through server
 	const fetchBooks = async (searchTerm) => {
@@ -51,7 +32,7 @@ export const BooksResult = () => {
 			const sendData = {
 				query_type: 'intitle',
 				query: searchTerm,
-				num_results: '40',
+				num_results: '36',
 			};
 			const options = {
 				headers: {
@@ -64,17 +45,11 @@ export const BooksResult = () => {
 				options
 			);
 			setBooks(data);
-			setHasSearched(true);
 			setLoading(false);
 		} catch (err) {
 			throw new Error(err.message);
 		}
 	};
-
-	useEffect(() => {
-		console.log(books);
-		console.log(books.length);
-	}, [books]);
 
 	return (
 		<div className='books-wrapper'>
@@ -85,24 +60,22 @@ export const BooksResult = () => {
 				<SearchBar getResults={fetchBooks} />
 			</div>
 
-		 {currentBooks && (
-                    <>
-                        <Books
-                            books={currentBooks}
-                            loading={loading}
-                            setModalData={setModalData}
-                            setOpen={setOpen}
-                        >
-                            <PaginationComponent
-                                booksPerPage={booksPerPage}
-                                totalBooks={books.length}
-                                paginate={paginate}
-                            />
-                        </Books>
-                        <BookModal modalData={modalData} open={open} />
-                    </>
-                )}
+			{currentBooks && (
+				<>
+					<Books
+						books={currentBooks}
+						loading={loading}
+						setModalData={setModalData}
+						setOpen={setOpen}>
+						<PaginationComponent
+							booksPerPage={booksPerPage}
+							totalBooks={books.length}
+							paginate={paginate}
+						/>
+					</Books>
+					<BookModal modalData={modalData} open={open} />
+				</>
+			)}
 		</div>
 	);
-
 };

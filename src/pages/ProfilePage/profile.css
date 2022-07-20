@@ -12,6 +12,8 @@
 .main-profile {
   display: flex;
   flex-direction: column;
+  background-color: white;
+  height: fit-content;
 }
 
 .intro-wrapper {
@@ -22,7 +24,11 @@
   width: 80%;
   margin: auto;
   display: flex;
+  flex-direction: column;
   align-content: space-around;
+}
+.bookshelf-title {
+  margin-left: 6rem;
 }
 
 .following-users {
@@ -42,7 +48,7 @@ Bookshelf */
   width: 100%;
   height: 100%;
   margin: 0 auto;
-  border: 10px #a87328 solid;
+  border: 8px #a87328 solid;
   overflow: hidden;
   background-image: linear-gradient(
     #241909,
@@ -55,29 +61,30 @@ Bookshelf */
     #986824 230px
   );
   background-size: 10px 230px;
-  box-shadow: 0px 1000px 0px 400px #7a7668;
+  box-shadow: 10px 0px 10px black;
 }
 
 .bookshelf-book {
   height: 200px;
   width: 50px;
-  margin-right: 5px;
+  margin-inline: 2px;
   float: left;
   color: white;
   font-size: 0.9em;
   font-family: Verdana, sans-serif;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin-bottom: 15px;
+  margin-top: 15px;
   transform: scale(1);
   transition: transform 0.4s ease;
+  cursor: pointer;
 }
 
-.book-tilted {
+.not-tilted + .book-tilted {
   float: left;
   width: 74px;
 }
 
-.book-tilted > .bookshelf-book {
+.not-titled + .book-tilted > .bookshelf-book {
   transform: translateY(-3px) translateX(15px) rotate(9deg);
 }
 
@@ -86,35 +93,35 @@ Bookshelf */
 }
 
 .book-1 {
-  background-color: darkgreen;
+  background-color: #2b3956;
   border-left: 2px solid black;
   border-right: 2px solid black;
 }
 
 .book-2 {
-  background-color: #0c347d;
+  background-color: #485a7e;
   border-left: 2px solid black;
   border-right: 2px solid black;
 }
 
 .book-3 {
-  background-color: #54290c;
+  background-color: #002369;
   border-left: 2px solid black;
   border-right: 2px solid black;
 }
 
 .book-4 {
-  background-color: #f5f59e;
+  background-color: #1e2738;
   border-left: 2px solid black;
   border-right: 2px solid black;
-  color: black;
+  color: white;
 }
 
 .book-favourite {
-  background-color: goldenrod;
+  background-color: var(--intense-orange);
   border-left: 2px solid black;
   border-right: 2px solid black;
-  color: black;
+  color: white;
 }
 
 .bookshelf-book h2 {
