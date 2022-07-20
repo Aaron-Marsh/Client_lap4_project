@@ -14,8 +14,8 @@ export const PostComment = ({
 }) => {
   // Edit Messages Section
   const [isEditShown, setIsEditShown] = useState(false);
-  const [editMessage,setEditMessage] = useState("")
-  const [editMessageId,setEditMessageId] = useState("")
+  const [editMessage, setEditMessage] = useState("");
+  const [editMessageId, setEditMessageId] = useState("");
 
   const handleEditShown = () => {
     setIsEditShown((current) => !current);
@@ -26,7 +26,6 @@ export const PostComment = ({
   const handleEditMessageId = () => {
     setEditMessageId((current) => !current);
   };
-
 
   const [reply, setReply] = useState("");
   const [isReplyShown, setIsReplyShown] = useState(false);
@@ -89,8 +88,8 @@ export const PostComment = ({
         data: {
           method: "thread_message",
           username: username,
-          message: {editMessage},
-          message_id: {editMessageId}
+          message: { editMessage },
+          message_id: { editMessageId },
         },
       });
       setRepliesArray((current) => [...current, data]);
@@ -110,13 +109,12 @@ export const PostComment = ({
           message_id: messageId,
         },
       });
-      console.log(message_username, username);
+
       setDeleted(true);
     } catch (err) {}
   };
 
   return (
-
     <>
       {" "}
       {/* ******** Boolean Toggle for Hiding Deleted Comments ******** */}
@@ -125,7 +123,6 @@ export const PostComment = ({
           {message_username == username && loggedIn ? (
             <div
               className="delete-message"
-
               onClick={() => {
                 handleDeleteReplyEvent();
               }}
@@ -156,13 +153,15 @@ export const PostComment = ({
               >
                 {message_username}
               </Link>
-            <button onClick={handleEditShown}>edit</button>
+              <button onClick={handleEditShown}>edit</button>
             </div>
             {/* MESSAGE MESSAGE */}
             {/* LOGIC FOR EDIT MESSAGE FORM */}
-            {isEditShown 
-            ? <div>Form Here</div>
-            : <div className="message-message">{message}</div>}
+            {isEditShown ? (
+              <div>Form Here</div>
+            ) : (
+              <div className="message-message">{message}</div>
+            )}
           </div>
           <div className="reply-container" id={messageId}>
             {repliesArray.length > 0
@@ -243,6 +242,5 @@ export const PostComment = ({
         </div>
       )}
     </>
-
   );
 };
