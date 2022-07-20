@@ -97,15 +97,19 @@ text-decoration: underline;
   top: 0;
   width: 2.5px;
   height: calc(100% - 3.8rem);
-
   margin-top: 2rem;
-
   cursor: pointer;
 }
 .message-line:hover {
   background-color: rgba(255, 255, 255, 0.8);
 }
-
+.message-line::before {
+  content: '';
+  position: absolute;
+  width:900%;
+  height:100%;
+  transform: translatex(-40%);
+}
 .message-reply-input {
   width: 0%;
   height: 0;
@@ -181,6 +185,21 @@ text-decoration: underline;
 }
 
 .delete-message:hover {
+  height: 0.9rem;
+}
+.delete-reply {
+  background-image: url("../../imgs/X.png");
+  height: 0.75rem;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  right: 1.5rem;
+  aspect-ratio: 1;
+  top: 1.5rem;
+  cursor: pointer;
+}
+
+.delete-reply:hover {
   height: 0.9rem;
 }
 
