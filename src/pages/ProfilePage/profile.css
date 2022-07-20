@@ -1,160 +1,161 @@
 .profile-error {
-  margin-top: 10rem;
-  margin-inline: auto;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
+	margin-top: 10rem;
+	margin-inline: auto;
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
 
-  align-items: center;
-  justify-content: center;
+	align-items: center;
+	justify-content: center;
 }
 
 .main-profile {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  height: fit-content;
-  margin-bottom: 10rem;
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+	height: fit-content;
+	margin-bottom: 10rem;
 }
 
 .intro-wrapper {
-  margin: 100px auto;
+	margin: 100px auto;
+	display: flex;
 }
 
 .shelf-user-wrapper {
-  width: 80%;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-content: space-around;
+	width: 80%;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	align-content: space-around;
 }
 .bookshelf-title {
-  margin-left: 6rem;
+	margin-left: 6rem;
 }
 
 .following-users {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
 }
 
 .shelf-favourited-book {
-  color: red;
+	color: red;
 }
 
 /* 
 Bookshelf */
 
 .bookshelf {
-  transform: scale(0.8);
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
-  border: 8px #a87328 solid;
-  overflow: hidden;
-  background-image: linear-gradient(
-    #241909,
-    #2c1e0b 220px,
-    #b87e2c 220px,
-    #b87e2c 222px,
-    #a87328 222px,
-    #a87328 228px,
-    #986824 228px,
-    #986824 230px
-  );
-  background-size: 10px 230px;
-  box-shadow: 10px 0px 10px black;
+	transform: scale(0.8);
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	border: 8px #a87328 solid;
+	overflow: hidden;
+	background-image: linear-gradient(
+		#241909,
+		#2c1e0b 220px,
+		#b87e2c 220px,
+		#b87e2c 222px,
+		#a87328 222px,
+		#a87328 228px,
+		#986824 228px,
+		#986824 230px
+	);
+	background-size: 10px 230px;
+	box-shadow: 10px 0px 10px black;
 }
 
 .bookshelf-book {
-  height: 200px;
-  width: 50px;
-  margin-inline: 2px;
-  float: left;
-  color: white;
-  font-size: 0.9em;
-  font-family: Verdana, sans-serif;
-  margin-bottom: 15px;
-  margin-top: 15px;
-  transform: scale(1);
-  transition: transform 0.4s ease;
-  cursor: pointer;
+	height: 200px;
+	width: 50px;
+	margin-inline: 2px;
+	float: left;
+	color: white;
+	font-size: 0.9em;
+	font-family: Verdana, sans-serif;
+	margin-bottom: 15px;
+	margin-top: 15px;
+	transform: scale(1);
+	transition: transform 0.4s ease;
+	cursor: pointer;
 }
 
 .not-tilted + .book-tilted {
-  float: left;
-  width: 74px;
+	float: left;
+	width: 74px;
 }
 
 .not-titled + .book-tilted > .bookshelf-book {
-  transform: translateY(-3px) translateX(15px) rotate(9deg);
+	transform: translateY(-3px) translateX(15px) rotate(9deg);
 }
 
 .bookshelf-book:hover {
-  transform: scale(1.09);
+	transform: scale(1.09);
 }
 
 .book-1 {
-  background-color: #2b3956;
-  border-left: 2px solid black;
-  border-right: 2px solid black;
+	background-color: #2b3956;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
 }
 
 .book-2 {
-  background-color: #485a7e;
-  border-left: 2px solid black;
-  border-right: 2px solid black;
+	background-color: #485a7e;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
 }
 
 .book-3 {
-  background-color: #002369;
-  border-left: 2px solid black;
-  border-right: 2px solid black;
+	background-color: #002369;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
 }
 
 .book-4 {
-  background-color: #1e2738;
-  border-left: 2px solid black;
-  border-right: 2px solid black;
-  color: white;
+	background-color: #1e2738;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+	color: white;
 }
 
 .book-favourite {
-  background-color: var(--intense-orange);
-  border-left: 2px solid black;
-  border-right: 2px solid black;
-  color: white;
+	background-color: var(--intense-orange);
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+	color: white;
 }
 
 .bookshelf-book h2 {
-  padding-inline: 0.4rem;
-  margin-left: 0.5rem;
-  font-size: 1em;
-  transform-origin: 0% 0%;
-  transform: rotate(0.25turn) translateY(-35px);
-  width: 190px;
+	padding-inline: 0.4rem;
+	margin-left: 0.5rem;
+	font-size: 1em;
+	transform-origin: 0% 0%;
+	transform: rotate(0.25turn) translateY(-35px);
+	width: 190px;
 }
 
 /* Star--------------- */
 
 .star {
-  visibility: hidden;
-  font-size: 30px;
-  cursor: pointer;
-  color: black;
+	visibility: hidden;
+	font-size: 30px;
+	cursor: pointer;
+	color: black;
 }
 .star:before {
-  content: "\2605";
-  position: absolute;
-  visibility: visible;
+	content: '\2605';
+	position: absolute;
+	visibility: visible;
 }
 .star:checked:before {
-  content: "\2606";
-  position: absolute;
-  color: yellow;
+	content: '\2606';
+	position: absolute;
+	color: yellow;
 }
 
 .modal-header-book {
-  display: flex;
-  gap: 0.5rem;
-  align-items: flex-start;
+	display: flex;
+	gap: 0.5rem;
+	align-items: flex-start;
 }
