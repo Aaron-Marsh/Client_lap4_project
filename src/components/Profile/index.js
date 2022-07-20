@@ -12,6 +12,7 @@ export const Profile = () => {
 	const [userData, setUserData] = useState({});
 	const [error, setError] = useState('');
 
+
 	const user = useSelector((state) => state.user.data.username);
 
 	const loggedIn = useSelector((state) => state.loggedIn);
@@ -39,9 +40,11 @@ export const Profile = () => {
 		}
 	};
 
+
 	useEffect(() => {
 		fetchUserOnLoad();
 	}, []);
+
 
 	const editAboutMe = () => {};
 

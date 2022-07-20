@@ -67,18 +67,20 @@ Bookshelf */
 }
 
 .bookshelf-book {
-	height: 200px;
-	width: 50px;
-	margin-inline: 2px;
-	float: left;
-	color: white;
-	font-size: 0.9em;
-	font-family: Verdana, sans-serif;
-	margin-bottom: 15px;
-	margin-top: 15px;
-	transform: scale(1);
-	transition: transform 0.4s ease;
-	cursor: pointer;
+
+  height: 200px;
+
+  margin-inline: 2px;
+  float: left;
+  color: white;
+  font-size: 0.9em;
+  font-family: Verdana, sans-serif;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  transform: scale(1);
+  transition: transform 0.4s ease;
+  cursor: pointer;
+
 }
 
 .not-tilted + .book-tilted {
@@ -95,44 +97,51 @@ Bookshelf */
 }
 
 .book-1 {
-	background-color: #2b3956;
-	border-left: 2px solid black;
-	border-right: 2px solid black;
+
+  background-color: #2b3956;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  width: 55px;
 }
 
 .book-2 {
-	background-color: #485a7e;
-	border-left: 2px solid black;
-	border-right: 2px solid black;
+  background-color: #485a7e;
+  width: 70px;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
 }
 
 .book-3 {
-	background-color: #002369;
-	border-left: 2px solid black;
-	border-right: 2px solid black;
+  background-color: #002369;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  width: 60px;
 }
 
 .book-4 {
-	background-color: #1e2738;
-	border-left: 2px solid black;
-	border-right: 2px solid black;
-	color: white;
+  background-color: #1e2738;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  width: 50px;
+  color: white;
 }
 
 .book-favourite {
-	background-color: var(--intense-orange);
-	border-left: 2px solid black;
-	border-right: 2px solid black;
-	color: white;
+  background-color: var(--intense-orange);
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  color: white;
+  width: 60px;
 }
 
 .bookshelf-book h2 {
-	padding-inline: 0.4rem;
-	margin-left: 0.5rem;
-	font-size: 1em;
-	transform-origin: 0% 0%;
-	transform: rotate(0.25turn) translateY(-35px);
-	width: 190px;
+  padding-inline: 0.4rem;
+  margin-left: 0.7rem;
+  font-size: 1em;
+  transform-origin: 0% 0%;
+  transform: rotate(0.25turn) translateY(-35px);
+  width: 190px;
+
 }
 
 /* Star--------------- */
@@ -152,6 +161,13 @@ Bookshelf */
 	content: '\2606';
 	position: absolute;
 	color: yellow;
+}
+
+.star:disabled:hover {
+  color: black;
+}
+.star:hover {
+  color: yellow;
 }
 
 .modal-header-book {
