@@ -5,10 +5,14 @@ export { HomeIntro } from './HomeIntro';
 export { HomeRandom } from './HomeRandom';
 export { LoginModal } from './LoginModal';
 export { LoginFooter } from './LoginFooter';
+export { Bookcase } from './Bookcase';
+export { Books } from './Books';
 
 export { MultiCarousel } from './Carousel';
 
 export { Navbar } from './Navbar';
-export { PaginationComponent } from './PaginationComponent';
+
 export { Profile } from './Profile';
 export { SearchBar } from './SearchBar';
+
+export { PaginationComponent } from './PaginationComponent';

@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { PaginationComponent } from '../';
 
 import './style.css';
-import { SearchBar, BookModal, PaginationComponent } from '../';
-import { Books } from '../Books';
-
-// import { getResult } from '../../actions';
+import { SearchBar, BookModal, Books } from '../';
 
 export const BooksResult = () => {
     const [books, setBooks] = useState([]);
@@ -15,6 +13,7 @@ export const BooksResult = () => {
     const [cookingCarousel, setCookingCarousel] = useState([]);
     const [hasSearched, setHasSearched] = useState(false);
     const [loading, setLoading] = useState(false);
+    const username = useSelector((state) => state.user.user);
 
     // Modal
     const [open, setOpen] = useState(false);
@@ -22,7 +21,7 @@ export const BooksResult = () => {
 
     // Pagination
     const [currentPage, setCurrentPage] = useState(1);
-    const [booksPerPage, setBooksPerPage] = useState(10);
+    const [booksPerPage, setBooksPerPage] = useState(12);
 
     const indexOfLastBook = currentPage * booksPerPage;
     const indexOfFirstBook = indexOfLastBook - booksPerPage;
@@ -31,89 +30,52 @@ export const BooksResult = () => {
     //change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-    // fetch on load
-    const fetchHerringBooksOnLoad = async () => {
+    // 	Add book to has read: (PATCH)
+    // "method": "add_to_read",
+    //  	"ISBN": "12345",
+    //  	"title":"title",
+    //  	"author":"author"
+
+    const addToHasRead = async (isbn) => {
         try {
-            const data = {
-                query_type: 'intitle',
-                query: 'herring',
-                num_results: 10,
+            const sendData = {
+                method: 'add_to_read',
+                ISBN: isbn,
+                title: 'title',
+                author: 'author',
             };
             const options = {
                 headers: {
                     'Content-Type': 'application/json',
                 },
             };
-            await axios.post(
-                `https://read-herring.herokuapp.com/books/api/`,
-                JSON.stringify(data),
+            const { data } = await axios.patch(
+                `https://read-herring.herokuapp.com/users/${username}`,
+                JSON.stringify(sendData),
                 options
             );
 
-            setHerringCarousel(data.items);
-        } catch (err) {
-            throw new Error(err.message);
-        }
-    };
-    const fetchFishBooksOnLoad = async () => {
-        try {
-            const data = {
-                query_type: 'intitle',
-                query: 'fish',
-                num_results: 10,
-            };
-            const options = {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            };
-            await axios.post(
-                `https://read-herring.herokuapp.com/books/api/`,
-                JSON.stringify(data),
-                options
-            );
-
-            setFishCarousel(data.items);
+            console.log(data);
         } catch (err) {
             throw new Error(err.message);
         }
     };
 
-    const fetchCookingBooksOnLoad = async () => {
-        try {
-            const data = {
-                query_type: 'intitle',
-                query: 'cooking',
-                num_results: 10,
-            };
-            const options = {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            };
-            await axios.post(
-                `https://read-herring.herokuapp.com/books/api/`,
-                JSON.stringify(data),
-                options
-            );
+    //  To add books to wants_to_read:
+    //  Patch to users/username
+    //  {
+    //    "method": "add_to_wants_to_read",
+    //    "ISBN": "123",
+    //    "title":"book title",
+    //    "author": "book's author"
+    //  }
 
-            setCookingCarousel(data.items);
-        } catch (err) {
-            throw new Error(err.message);
-        }
-    };
-
-    useEffect(() => {
-        fetchHerringBooksOnLoad();
-        fetchFishBooksOnLoad();
-        fetchCookingBooksOnLoad();
-    }, []);
+    const addToWantsToRead = () => {};
 
     // useEffect, search Google api through server
     const fetchBooks = async (searchTerm) => {
         setLoading(true);
         try {
-            console.log(loading);
             const sendData = {
                 query_type: 'intitle',
                 query: searchTerm,
@@ -132,85 +94,40 @@ export const BooksResult = () => {
             setBooks(data);
             setHasSearched(true);
             setLoading(false);
-            console.log(loading);
-            console.log(books);
         } catch (err) {
             throw new Error(err.message);
         }
     };
+
+    useEffect(() => {
+        console.log(books);
+        console.log(books.length);
+    }, [books]);
 
     return (
         <div className="books-wrapper">
             <div className="search-books-container">
                 <h2>Looking for a book to add to your bookshelf?</h2>
                 <p>Use the search bar below</p>
-
                 <SearchBar getResults={fetchBooks} />
+                {currentBooks && (
+                    <>
+                        <Books
+                            books={currentBooks}
+                            loading={loading}
+                            setModalData={setModalData}
+                            setOpen={setOpen}
+                        >
+                            <PaginationComponent
+                                booksPerPage={booksPerPage}
+                                totalBooks={books.length}
+                                paginate={paginate}
+                            />
+                        </Books>
+                        <BookModal modalData={modalData} open={open} />
+                    </>
+                )}
             </div>
-
-            {/* <div className='books-result-wrapper'> */}
-            {/* THIS CODE WILL BE USED WHEN EVERYTHING WORKS!!! */}
-            {/* {herringCarousel.map((book) => (
-
-					<div
-						role='img'
-						aria-label='Books with Herring in the title'
-						className='image-container'
-						key={book.id}>
-						<img
-							alt={book.volumeInfo.title}
-							src={book.volumeInfo.imageLinks?.thumbnail}
-						/>
-
-					</div>
-				))}
-				;
-				{fishCarousel.map((book) => (
-					<div
-						role='img'
-						aria-label='Books with Fish in the title'
-						className='image-container'
-						key={book.id}>
-						<img
-							alt={book.volumeInfo.title}
-							src={book.volumeInfo.imageLinks?.thumbnail}
-						/>
-					</div>
-				))}
-				;
-				{cookingCarousel.map((book) => (
-					<div
-						role='img'
-						aria-label='Books with Cooking Fish in the title'
-						className='image-container'
-						key={book.id}>
-						<img
-							alt={book.volumeInfo.title}
-							src={book.volumeInfo.imageLinks?.thumbnail}
-						/>
-					</div>
-
-				))} */}
-
-            {/* </div> */}
-
-            {currentBooks && (
-                <>
-                    <Books
-                        books={currentBooks}
-                        loading={loading}
-                        setModalData={setModalData}
-                        setOpen={setOpen}
-                    >
-                        <PaginationComponent
-                            booksPerPage={booksPerPage}
-                            totalBooks={books.length}
-                            paginate={paginate}
-                        />
-                    </Books>
-                    <BookModal modalData={modalData} open={open} />
-                </>
-            )}
         </div>
     );
 };

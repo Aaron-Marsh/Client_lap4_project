@@ -21,6 +21,7 @@ export const PostComments = ({
             <PostComment
               message_username={m.username}
               message={m.message}
+              m_user={m.username}
               replies={m.replies}
               loggedIn={loggedIn}
               postId={postId}
