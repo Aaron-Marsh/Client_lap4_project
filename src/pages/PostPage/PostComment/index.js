@@ -14,19 +14,32 @@ export const PostComment = ({
 }) => {
   // Edit Messages Section
   const [isEditShown, setIsEditShown] = useState(false);
-  const [editMessage,setEditMessage] = useState("")
-  const [editMessageId,setEditMessageId] = useState("")
+  const [editMessage, setEditMessage] = useState("")
+  const [isEditWidth, setIsEditWidth] = useState(false);
+  const [currentMessage, setCurrentMessage] = useState("");
+
+  const handleEditButton = () => {
+    setEditMessage(message)
+    handleEditShown();
+    handleEditWidth();
+  }
 
   const handleEditShown = () => {
-    setIsEditShown((current) => !current);
-  };
-  const handleEditMessage = () => {
-    setEditMessage((e) => e.target.value);
-  };
-  const handleEditMessageId = () => {
-    setEditMessageId((current) => !current);
+    setIsEditShown((current) => {
+      console.log("editShown: ",!current)
+      return !current
+    });
   };
 
+  const handleEditMessage = (e) => setEditMessage(e.target.value);
+  
+  const handleEditWidth = () => {
+    setIsEditWidth((current) => !current);
+  };
+
+  useEffect(() => {
+    setCurrentMessage(message);
+  }, []);
 
   const [reply, setReply] = useState("");
   const [isReplyShown, setIsReplyShown] = useState(false);
@@ -89,14 +102,16 @@ export const PostComment = ({
         data: {
           method: "thread_message",
           username: username,
-          message: {editMessage},
-          message_id: {editMessageId}
+          message: editMessage,
+          message_id: messageId
         },
       });
-      setRepliesArray((current) => [...current, data]);
-
-      setReply("");
-    } catch (err) {}
+      // setRepliesArray((current) => [...current, data]);
+    } catch (err) {
+      console.log(err)
+    }
+    handleEditButton();
+    setCurrentMessage(editMessage)
   };
 
   const handleDeleteReplyEvent = async () => {
@@ -156,13 +171,39 @@ export const PostComment = ({
               >
                 {message_username}
               </Link>
-            <button onClick={handleEditShown}>edit</button>
+            {/* EDIT BUTTON TO SHOW FORM */}
+            <button onClick={handleEditButton}>edit</button>
             </div>
             {/* MESSAGE MESSAGE */}
             {/* LOGIC FOR EDIT MESSAGE FORM */}
-            {isEditShown 
-            ? <div>Form Here</div>
-            : <div className="message-message">{message}</div>}
+            {isEditShown && isEditWidth
+            // EDIT MESSAGE FORM
+            ? <div 
+              className="reply-form-container width">
+            <form onSubmit={handleEditEvent}>
+              <label htmlFor="edit"></label>
+              <input
+                  type="text"
+                  id="edit"
+                  name="edit"
+                  className="orange-input"
+                  onChange={handleEditMessage}
+                  value={editMessage}
+                ></input>
+                <input
+                  type="submit"
+                  value="Save"
+                  className="orange-button"
+                  disabled={!loggedIn}
+                  ></input>
+                    <div
+                    className="close-edit-field"
+                    onClick={handleEditButton}
+                  ></div>
+            </form>
+            </div>
+            // PASS IN MESSAGE
+            : <div className="message-message">{currentMessage}</div>}
           </div>
           <div className="reply-container" id={messageId}>
             {repliesArray.length > 0
