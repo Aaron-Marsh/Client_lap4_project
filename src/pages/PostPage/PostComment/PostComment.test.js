@@ -1,38 +1,32 @@
-import { screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from '../../../store';
+import { screen } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "../../../store";
 
-import { PostComment } from '.';
+import { PostComment } from ".";
 
-describe('PostComment', () => {
-    beforeEach(() => {
-        render(
-            <Provider store={store}>
-                <BrowserRouter>
-                    <PostComment />
-                </BrowserRouter>
-            </Provider>
-        );
-    });
+describe("PostComment", () => {
+  beforeEach(() => {
+    render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <PostComment />
+        </BrowserRouter>
+      </Provider>
+    );
+  });
 
-    test('a line that opens and closes replies exists on the web page', () => {
-        const toggleLine = screen.getByLabelText('message-line');
+  test("a line that opens and closes replies exists on the web page", () => {
+    const toggleLine = screen.getByLabelText("message-line");
 
-        fireEvent.click(toggleLine);
-    });
+    fireEvent.click(toggleLine);
+  });
 
-    test('oline that opens and closes replies exists on the web page', () => {
-        const linkToMessagePoster = screen.getByLabelText(
-            'link-to-message-poster'
-        );
+  test("oline that opens and closes replies exists on the web page", () => {
+    const linkToMessagePoster = screen.getByLabelText("link-to-message-poster");
 
-        fireEvent.click(linkToMessagePoster);
+    fireEvent.click(linkToMessagePoster);
 
-        // const replies = screen.getByLabelText('replies');
-
-        // await waitFor(() => {
-        //     expect(backgroundLower.getElementsByClassName('newFish'));
-        // });
-    });
+    expect(linkToMessagePoster).toBeInTheDocument();
+  });
 });

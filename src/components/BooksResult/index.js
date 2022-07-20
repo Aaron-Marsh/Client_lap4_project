@@ -1,9 +1,14 @@
-
 import React, { useState } from 'react';
 import axios from 'axios';
 
 import './style.css';
-import { SearchBar, BookModal, Books, PaginationComponent } from '../';
+import {
+	SearchBar,
+	BookModal,
+	Books,
+	PaginationComponent,
+	LoadScreen,
+} from '../';
 
 export const BooksResult = () => {
 	const [books, setBooks] = useState([]);
@@ -63,6 +68,8 @@ export const BooksResult = () => {
 				<SearchBar getResults={fetchBooks} />
 			</div>
 
+			{loading && <LoadScreen />}
+
 			{currentBooks && (
 				<>
 					<Books
@@ -81,5 +88,4 @@ export const BooksResult = () => {
 			)}
 		</div>
 	);
-
 };

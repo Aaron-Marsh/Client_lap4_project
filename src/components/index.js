@@ -5,6 +5,7 @@ export { Books } from './Books';
 export { BooksResult } from './BooksResult';
 export { HomeIntro } from './HomeIntro';
 export { HomeRandom } from './HomeRandom';
+export { LoadScreen } from './LoadScreen';
 export { LoginModal } from './LoginModal';
 export { LoginFooter } from './LoginFooter';
 export { LogoutButton } from './LogoutButton';
