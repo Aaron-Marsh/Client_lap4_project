@@ -57,7 +57,7 @@ export const ChildSignUpModal = (props) => {
                         'Unauthorized! Create an account or check your email and password!'
                     );
                 } else {
-                    setError('Login failed!');
+                    setError('Sign up failed!');
                 }
             }
         }
@@ -81,12 +81,11 @@ export const ChildSignUpModal = (props) => {
 
     return (
         <>
-            <Modal.Header className="align-items-center">
-            </Modal.Header>
+            <Modal.Header className="align-items-center"></Modal.Header>
             <Modal.Body>
                 <Modal.Title
-                id="contained-modal-title-vcenter"
-                className="login-title"
+                    id="contained-modal-title-vcenter"
+                    className="login-title"
                 >
                     Sign Up
                 </Modal.Title>
@@ -135,21 +134,22 @@ export const ChildSignUpModal = (props) => {
                 </form>
             </Modal.Body>
             <Modal.Footer>
-            <div className="login-button-group">
-                <button 
-                className="login-button"
-                data-testid="signup" 
-                onClick={onSignUp}>
-                    Sign up
-                </button>
-                <button
-                    className="login-button-link"
-                    aria-label="toggle-to-log-in"
-                    id="toggle"
-                    onClick={() => props.setShowSignUp(false)}
+                <div className="login-button-group">
+                    <button
+                        className="login-button"
+                        data-testid="signup"
+                        onClick={onSignUp}
                     >
-                    Already have an account? Sign in
-                </button>
+                        Sign up
+                    </button>
+                    <button
+                        className="login-button-link"
+                        aria-label="toggle-to-log-in"
+                        id="toggle"
+                        onClick={() => props.setShowSignUp(false)}
+                    >
+                        Already have an account? Sign in
+                    </button>
                 </div>
             </Modal.Footer>
         </>
