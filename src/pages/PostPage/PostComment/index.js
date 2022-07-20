@@ -11,7 +11,6 @@ export const PostComment = ({
   serverURL,
   messageId,
   username,
-  m_user
 }) => {
   const [reply, setReply] = useState("");
   const [isShown, setIsShown] = useState(false);
@@ -81,6 +80,7 @@ export const PostComment = ({
 
     <>
       {" "}
+      {/* ******** Boolean Toggle for Hiding Deleted Comments ******** */}
       {!deleted && (
         <div className="message-box">
           {message_username == username && loggedIn ? (
@@ -180,6 +180,7 @@ export const PostComment = ({
                   <input
                     className="orange-button"
                     type="submit"
+                    value="Send"
                     disabled={!loggedIn}
                   />
                   <div
