@@ -111,112 +111,206 @@ export const Profile = () => {
     fetchUserOnLoad();
   }, []);
 
-  if (error) {
-    profile = (
-      <div className="profile-error">
-        <p>No user exists with this name</p>
-        <Link className="dark-light-button" to="/">
-          Home
-        </Link>
+  // if (error) {
+  //   profile = (
+  //     <div className="profile-error">
+  //       <p>No user exists with this name</p>
+  //       <Link className="dark-light-button" to="/">
+  //         Home
+  //       </Link>
+  //     </div>
+  //   );
+  // } else if (user === username) {
+  //   profile = (
+  //     <main className="main-profile">
+  //       <div className="intro-wrapper">
+  //         <div className="intro-container">
+  //           <h2 className="profile-title">Welcome back, {username}!</h2>
+  //         </div>
+  //         <div className="about-container">
+  //           <div>Profile image goes here</div>
+  //           <div className="about-section">
+  //             {!isEditShown && <p className="about-me">{currentAboutMe}</p>}
+  //             {!isEditShown && (
+  //               <button
+  //                 className="white-button edit-about-button"
+  //                 onClick={setIsEditShown}
+  //               >
+  //                 Edit
+  //               </button>
+  //             )}
+  //             {isEditShown && (
+  //               // EDIT MESSAGE FORM
+  //               <form className="about-form" onSubmit={handleEditEvent}>
+  //                 <label htmlFor="edit"></label>
+  //                 <textarea
+  //                   type="text"
+  //                   id="edit"
+  //                   rows="4"
+  //                   name="edit"
+  //                   className="white-input"
+  //                   value={currentAboutMe}
+  //                   onChange={handleEditAboutMe}
+  //                 />
+  //                 <input
+  //                   type="submit"
+  //                   value="Save"
+  //                   className="white-button save-about-button"
+  //                   disabled={!loggedIn}
+  //                 ></input>
+  //               </form>
+  //             )}
+  //           </div>
+  //         </div>
+  //         {/* ********** Edit Button ********** */}
+  //       </div>
+  //       {/* ********** bookshelves ************** */}
+  //       <div className="shelf-user-wrapper">
+  //         <div className="bookshelf-container">
+  //           <div>
+  //             <h3 className="bookshelf-title">Books I've Read</h3>
+  //           </div>
+  //           <Bookcase data={userHasReadBooks} />
+  //         </div>
+  //         <div className="bookshelf-container">
+  //           <h3 className="bookshelf-title">Books to read</h3>
+  //           <Bookcase data={userWantsToReadBooks} />
+  //         </div>
+  //       </div>
+  //     </main>
+  //   );
+  // }
+
+  // //Another users profile
+  // else {
+  //   profile = (
+  //     <main className="main-profile">
+  //       <div className="intro-wrapper">
+  //         <div className="intro-container">
+  //           <h2 className="profile-title">
+  //             Check out {username}'s collection!
+  //           </h2>
+  //         </div>
+  //         <div className="about-container">
+  //           <div>Profile image goes here</div>
+  //           <div className="about-section">
+  //             <p className="about-me">
+  //               {userData.about_me ==
+  //               "This is where I can write a little something about myself!"
+  //                 ? "Welcome to my page!"
+  //                 : userData.about_me}
+  //             </p>
+  //           </div>
+  //         </div>
+  //       </div>
+
+  //       <div className="shelf-user-wrapper">
+  //         <div className="bookshelf-container">
+  //           <h3 className="bookshelf-title">Books I've Read</h3>
+  //           <Bookcase data={userData.has_read} />
+  //         </div>
+  //         <div className="bookshelf-container">
+  //           <h3 className="bookshelf-title">Books to read</h3>
+  //           <Bookcase data={userData.wants_to_read} />
+  //         </div>
+  //       </div>
+  //     </main>
+  //   );
+  // }
+
+  return error ? (
+    <div className="profile-error">
+      <p>No user exists with this name</p>
+      <Link className="dark-light-button" to="/">
+        Home
+      </Link>
+    </div>
+  ) : user === username ? (
+    <main className="main-profile">
+      <div className="intro-wrapper">
+        <div className="intro-container">
+          <h2 className="profile-title">Welcome back, {username}!</h2>
+        </div>
+        <div className="about-container">
+          <div>Profile image goes here</div>
+          <div className="about-section">
+            {!isEditShown && <p className="about-me">{currentAboutMe}</p>}
+            {!isEditShown && (
+              <button
+                className="white-button edit-about-button"
+                onClick={setIsEditShown}
+              >
+                Edit
+              </button>
+            )}
+            {isEditShown && (
+              // EDIT MESSAGE FORM
+              <form className="about-form" onSubmit={handleEditEvent}>
+                <label htmlFor="edit"></label>
+                <textarea
+                  type="text"
+                  id="edit"
+                  rows="4"
+                  name="edit"
+                  className="white-input"
+                  value={currentAboutMe}
+                  onChange={handleEditAboutMe}
+                />
+                <input
+                  type="submit"
+                  value="Save"
+                  className="white-button save-about-button"
+                  disabled={!loggedIn}
+                ></input>
+              </form>
+            )}
+          </div>
+        </div>
+        {/* ********** Edit Button ********** */}
       </div>
-    );
-  } else if (user === username) {
-    profile = (
-      <main className="main-profile">
-        <div className="intro-wrapper">
-          <div className="intro-container">
-            <h2 className="profile-title">Welcome back, {username}!</h2>
-          </div>
-          <div className="about-container">
-            <div>Profile image goes here</div>
-            <div className="about-section">
-              {!isEditShown && <p className="about-me">{currentAboutMe}</p>}
-              {!isEditShown && (
-                <button
-                  className="white-button edit-about-button"
-                  onClick={setIsEditShown}
-                >
-                  Edit
-                </button>
-              )}
-              {isEditShown && (
-                // EDIT MESSAGE FORM
-                <form className="about-form" onSubmit={handleEditEvent}>
-                  <label htmlFor="edit"></label>
-                  <textarea
-                    type="text"
-                    id="edit"
-                    rows="4"
-                    name="edit"
-                    className="white-input"
-                    value={currentAboutMe}
-                    onChange={handleEditAboutMe}
-                  />
-                  <input
-                    type="submit"
-                    value="Save"
-                    className="white-button save-about-button"
-                    disabled={!loggedIn}
-                  ></input>
-                </form>
-              )}
-            </div>
-          </div>
-          {/* ********** Edit Button ********** */}
-        </div>
-        {/* ********** bookshelves ************** */}
-        <div className="shelf-user-wrapper">
-          <div className="bookshelf-container">
-            <div>
-              <h3 className="bookshelf-title">Books I've Read</h3>
-            </div>
-            <Bookcase data={userHasReadBooks} />
-          </div>
-          <div className="bookshelf-container">
-            <h3 className="bookshelf-title">Books to read</h3>
-            <Bookcase data={userWantsToReadBooks} />
-          </div>
-        </div>
-      </main>
-    );
-  }
-
-  //Another users profile
-  else {
-    profile = (
-      <main className="main-profile">
-        <div className="intro-wrapper">
-          <div className="intro-container">
-            <h2 className="profile-title">
-              Check out {username}'s collection!
-            </h2>
-          </div>
-          <div className="about-container">
-            <div>Profile image goes here</div>
-            <div className="about-section">
-              <p className="about-me">
-                {userData.about_me ==
-                "This is where I can write a little something about myself!"
-                  ? "Welcome to my page!"
-                  : userData.about_me}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="shelf-user-wrapper">
-          <div className="bookshelf-container">
+      {/* ********** bookshelves ************** */}
+      <div className="shelf-user-wrapper">
+        <div className="bookshelf-container">
+          <div>
             <h3 className="bookshelf-title">Books I've Read</h3>
-            <Bookcase data={userData.has_read} />
           </div>
-          <div className="bookshelf-container">
-            <h3 className="bookshelf-title">Books to read</h3>
-            <Bookcase data={userData.wants_to_read} />
+          <Bookcase data={userHasReadBooks} />
+        </div>
+        <div className="bookshelf-container">
+          <h3 className="bookshelf-title">Books to read</h3>
+          <Bookcase data={userWantsToReadBooks} />
+        </div>
+      </div>
+    </main>
+  ) : (
+    <main className="main-profile">
+      <div className="intro-wrapper">
+        <div className="intro-container">
+          <h2 className="profile-title">Check out {username}'s collection!</h2>
+        </div>
+        <div className="about-container">
+          <div>Profile image goes here</div>
+          <div className="about-section">
+            <p className="about-me">
+              {userData.about_me ==
+              "This is where I can write a little something about myself!"
+                ? "Welcome to my page!"
+                : userData.about_me}
+            </p>
           </div>
         </div>
-      </main>
-    );
-  }
+      </div>
 
-  return <>{profile}</>;
+      <div className="shelf-user-wrapper">
+        <div className="bookshelf-container">
+          <h3 className="bookshelf-title">Books I've Read</h3>
+          <Bookcase data={userData.has_read} />
+        </div>
+        <div className="bookshelf-container">
+          <h3 className="bookshelf-title">Books to read</h3>
+          <Bookcase data={userData.wants_to_read} />
+        </div>
+      </div>
+    </main>
+  );
 };

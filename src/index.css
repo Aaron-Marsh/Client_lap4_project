@@ -74,8 +74,13 @@ body {
 
 /* boxes ------------------------------------------ */
 .flex-container {
+  margin-top: 1rem;
+  width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  gap: 1rem;
+  justify-content: flex-start;
+  margin-bottom: 0;
+  padding-block: 0;
 }
 
 /* Navabar ------------------------------------------------------------------------------*/

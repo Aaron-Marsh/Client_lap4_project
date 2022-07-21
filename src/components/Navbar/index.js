@@ -116,6 +116,7 @@ export const Navbar = () => {
                   className="link"
                   onClick={() => {
                     setModalShow(true);
+                    setRegisterShow(false);
                   }}
                 >
                   Sign In
@@ -150,6 +151,7 @@ export const Navbar = () => {
                 <NavLink
                   className="link"
                   onClick={() => {
+                    setRegisterShow(false);
                     onLogoutButtonClick();
                   }}
                   to="/"
