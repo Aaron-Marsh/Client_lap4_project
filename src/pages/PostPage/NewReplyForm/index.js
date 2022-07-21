@@ -16,7 +16,7 @@ export const NewReplyForm = ({
   const handleReplyInput = (e) => setReplyText(e.target.value);
 
   // Send Reply to Backend
-  const handleReplyEvent = async (e) => {
+  const handleNewReplyEvent = async (e) => {
     e.preventDefault();
     e.stopPropagation();
     try {
@@ -42,7 +42,7 @@ export const NewReplyForm = ({
         className={
           isReplyShown && isWidth ? "edit-reply-form width" : "edit-reply-form "
         }
-        onSubmit={handleReplyEvent}
+        onSubmit={handleNewReplyEvent}
       >
         <label htmlFor="reply"></label>
         <input
