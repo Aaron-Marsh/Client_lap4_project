@@ -74,6 +74,8 @@ export const BookModal = ({ modalData, open }) => {
   }, [wantsToRead, show]);
 
   useEffect(() => {
+    if (modalData) {
+    }
     modalData && setReviews(modalData.reviews);
   }, [modalData]);
 
@@ -307,8 +309,6 @@ export const BookModal = ({ modalData, open }) => {
     setShowAddNewReview(false);
   };
 
-  const addNewReview = async () => {};
-
   const handleNewReviewEvent = async (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -325,7 +325,7 @@ export const BookModal = ({ modalData, open }) => {
       };
 
       const { data } = await axios.patch(
-        `https://read-herring.herokuapp.com/books/:bookId`,
+        `https://read-herring.herokuapp.com/books/${modalData.ISBN}`,
         JSON.stringify(sendData),
         options
       );
