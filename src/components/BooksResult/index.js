@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import "./style.css";
@@ -58,6 +58,38 @@ export const BooksResult = () => {
       throw new Error(err.message);
     }
   };
+
+  useEffect(() => {
+    const fetchBooks = async () => {
+      setLoading(true);
+      try {
+        const sendData = {
+          query_type: "intitle",
+          query: "fishing",
+          num_results: "36",
+        };
+        const options = {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        let { data } = await axios.post(
+          `https://read-herring.herokuapp.com/books/api/`,
+          JSON.stringify(sendData),
+          options
+        );
+        setBooks(data);
+        setLoading(false);
+      } catch (err) {
+        alert("book does not exist, please try again");
+
+        setLoading(false);
+
+        throw new Error(err.message);
+      }
+    };
+    fetchBooks();
+  }, []);
 
   return (
     <div className="books-wrapper">
