@@ -1,9 +1,9 @@
-:root{
+:root {
   --book1-url: url("../../imgs/books/book-catch22.png");
   --book2-url: url("../../imgs/books/book-firefly-lane.png");
   --book3-url: url("../../imgs/books/book-game-of-thrones.png");
   --book4-url: url("../../imgs/books/book-lords-of-the-bow.png");
-  --book5-url: url("../../imgs/books/book-the-five-love-languages.png")
+  --book5-url: url("../../imgs/books/book-the-five-love-languages.png");
 }
 
 .home-title {
@@ -28,12 +28,14 @@
 .home-banner {
   height: 100vh;
   width: 100vw;
+  z-index: -1;
 }
 
 .background-image-upper {
   width: 100%;
   height: 100%;
   position: absolute;
+  z-index: -1;
 }
 
 .background-lower {
@@ -43,7 +45,7 @@
   background-size: contain; */
   position: absolute;
   top: 50%;
-  z-index: -1;
+  z-index: 1;
 }
 
 [xaf] circle {
@@ -62,6 +64,7 @@
 }
 .newFish {
   position: absolute;
+  cursor: pointer;
 }
 
 .left {
@@ -183,12 +186,12 @@
   left: 50%;
   top: 15%;
   transform: translate(-50%, -50%);
-  text-align:center;
+  text-align: center;
   color: white;
   font-size: 2.7rem;
   font-weight: 600;
   line-height: 1;
-  margin-top:1.6rem;
+  margin-top: 1.6rem;
 }
 
 .book {
