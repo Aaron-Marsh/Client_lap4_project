@@ -4,7 +4,7 @@ import axios from "axios";
 import Modal from "react-bootstrap/Modal";
 import Popover from "react-bootstrap/Popover";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-
+import { NavLink } from "react-router-dom";
 import { setUser } from "../../actions";
 import { ChildLoginModal } from "../ChildLogin";
 
@@ -324,17 +324,25 @@ export const BookModal = ({ modalData, open }) => {
                 }`
               : ""}
           </p>
+          <OverlayTrigger
+            classname="overlay-button"
+            trigger="click"
+            placement="right"
+            overlay={popover}
+          >
+            <button
+              disabled={!userHasReadBool || hasRatedBool}
+              className="dark-light-button"
+            >
+              Rate
+            </button>
+          </OverlayTrigger>
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <OverlayTrigger trigger="click" placement="top" overlay={popover}>
-          <button
-            disabled={!userHasReadBool || hasRatedBool}
-            className="dark-light-button"
-          >
-            Rate🌟
-          </button>
-        </OverlayTrigger>
+        <NavLink className="dark-light-button-wide forum-link" to="/forums">
+          Go Discuss!
+        </NavLink>
 
         <button
           className="orange-button-wide read-button"
@@ -343,7 +351,7 @@ export const BookModal = ({ modalData, open }) => {
           }
           disabled={!loggedIn || userHasReadBool}
         >
-          Read It!
+          ReadShelf it!
         </button>
         <button
           className="orange-button-wide read-button wants-read-button"
@@ -352,7 +360,7 @@ export const BookModal = ({ modalData, open }) => {
           }
           disabled={!loggedIn || userWantsToReadBool || userHasReadBool}
         >
-          Will Read It!
+          NextShelf it!
         </button>
       </Modal.Footer>
     </Modal>

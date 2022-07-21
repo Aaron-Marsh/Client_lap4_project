@@ -146,6 +146,22 @@
   width: 120%;
 }
 
+.fish-caught {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  color: white;
+  font-weight: 600;
+}
+
+.fish-check {
+  stroke: #fff;
+  fill: #fff;
+  fill-opacity: 0;
+  stroke-opacity: 0;
+}
+
 /* Home random book ------------------------------------------- */
 
 .home-random {
