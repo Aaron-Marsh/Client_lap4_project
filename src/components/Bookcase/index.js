@@ -6,7 +6,7 @@ export const Bookcase = ({ data }) => {
   const [open, setOpen] = useState(false);
   const [userData, setUserData] = useState([]);
   const [modalData, setModalData] = useState(null);
-  console.log(data);
+
   function randomNumber() {
     return `${Math.floor(Math.random() * 4) + 1}`;
   }
@@ -20,8 +20,12 @@ export const Bookcase = ({ data }) => {
 
   useEffect(() => {
     if (data == undefined) return;
-    setUserData(data);
+    resetBooks();
   }, [data]);
+
+  const resetBooks = () => {
+    setUserData(data);
+  };
 
   const findBook = async (isbn) => {
     try {
@@ -84,7 +88,7 @@ export const Bookcase = ({ data }) => {
           </div>
         )}
 
-        <BookModal modalData={modalData} open={open} />
+        <BookModal modalData={modalData} resetBooks={resetBooks} open={open} />
       </div>
     </>
   );

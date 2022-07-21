@@ -195,6 +195,7 @@ body {
   -webkit-transition-duration: 0.25s;
   transition-duration: 0.25s;
   padding: 0.175rem 0.6rem;
+  border: var(--slate-blue2) 1px solid;
 }
 
 .dark-light-button:hover {
