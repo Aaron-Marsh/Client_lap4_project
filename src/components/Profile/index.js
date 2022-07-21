@@ -20,6 +20,11 @@ export const Profile = () => {
 
   const loggedIn = useSelector((state) => state.loggedIn);
 
+  const userHasReadBooks = useSelector((state) => state.user.data.has_read);
+  const userWantsToReadBooks = useSelector(
+    (state) => state.user.data.wants_to_read
+  );
+
   let profile;
 
   // edit
@@ -122,47 +127,54 @@ export const Profile = () => {
           <div className="intro-container">
             <h2 className="profile-title">Welcome back, {username}!</h2>
           </div>
-          {!isEditShown && (
-            <button className="orange-button" onClick={setIsEditShown}>
-              Edit
-            </button>
-          )}
-          {!isEditShown && <p className="about-me">{currentAboutMe}</p>}
+          <div className="about-container">
+            <div>Profile image goes here</div>
+            <div className="about-section">
+              {!isEditShown && <p className="about-me">{currentAboutMe}</p>}
+              {!isEditShown && (
+                <button
+                  className="white-button edit-about-button"
+                  onClick={setIsEditShown}
+                >
+                  Edit
+                </button>
+              )}
+              {isEditShown && (
+                // EDIT MESSAGE FORM
+                <form className="about-form" onSubmit={handleEditEvent}>
+                  <label htmlFor="edit"></label>
+                  <textarea
+                    type="text"
+                    id="edit"
+                    rows="4"
+                    name="edit"
+                    className="white-input"
+                    value={currentAboutMe}
+                    onChange={handleEditAboutMe}
+                  />
+                  <input
+                    type="submit"
+                    value="Save"
+                    className="white-button save-about-button"
+                    disabled={!loggedIn}
+                  ></input>
+                </form>
+              )}
+            </div>
+          </div>
           {/* ********** Edit Button ********** */}
-          {isEditShown && (
-            // EDIT MESSAGE FORM
-            <form onSubmit={handleEditEvent}>
-              <label htmlFor="edit"></label>
-              <textarea
-                type="text"
-                id="edit"
-                name="edit"
-                className="orange-input"
-                value={currentAboutMe}
-                onChange={handleEditAboutMe}
-              />
-              <input
-                type="submit"
-                value="Save"
-                className="orange-button"
-                disabled={!loggedIn}
-              ></input>
-              <div
-                className="close-edit-field"
-                onClick={handleEditButton}
-              ></div>
-            </form>
-          )}
         </div>
         {/* ********** bookshelves ************** */}
         <div className="shelf-user-wrapper">
           <div className="bookshelf-container">
-            <h3 className="bookshelf-title">Books I've Read</h3>
-            <Bookcase data={userData.has_read} />
+            <div>
+              <h3 className="bookshelf-title">Books I've Read</h3>
+            </div>
+            <Bookcase data={userHasReadBooks} />
           </div>
           <div className="bookshelf-container">
             <h3 className="bookshelf-title">Books to read</h3>
-            <Bookcase data={userData.wants_to_read} />
+            <Bookcase data={userWantsToReadBooks} />
           </div>
         </div>
       </main>
@@ -174,8 +186,17 @@ export const Profile = () => {
     profile = (
       <main className="main-profile">
         <div className="intro-wrapper">
-          <h2 className="profile-title">Check out {username}'s collection!</h2>
-          <p className="about-me">{userData.about_me}</p>
+          <div className="intro-container">
+            <h2 className="profile-title">
+              Check out {username}'s collection!
+            </h2>
+          </div>
+          <div className="about-container">
+            <div>Profile image goes here</div>
+            <div className="about-section">
+              <p className="about-me">{userData.about_me}</p>
+            </div>
+          </div>
         </div>
 
         <div className="shelf-user-wrapper">
