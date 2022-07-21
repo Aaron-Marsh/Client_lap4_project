@@ -402,7 +402,6 @@ export const BookModal = ({ modalData, open }) => {
                     value="Post"
                   />
                 </form>
-                <div onClick={onCloseNewReviewClick}>X</div>
               </>
             )}
             <button
@@ -415,9 +414,9 @@ export const BookModal = ({ modalData, open }) => {
               reviews.map((review) => (
                 <div key={review.review} className="flex-container">
                   <Link
-                    // className='link'
+                    className="post-author"
                     to={{
-                      pathname: "/users/" + review.username,
+                      pathname: "/profile/" + review.username,
                     }}
                   >
                     <p>{review.username}</p>

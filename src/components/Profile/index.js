@@ -194,7 +194,12 @@ export const Profile = () => {
           <div className="about-container">
             <div>Profile image goes here</div>
             <div className="about-section">
-              <p className="about-me">{userData.about_me}</p>
+              <p className="about-me">
+                {userData.about_me ==
+                "This is where I can write a little something about myself!"
+                  ? "Welcome to my page!"
+                  : userData.about_me}
+              </p>
             </div>
           </div>
         </div>
