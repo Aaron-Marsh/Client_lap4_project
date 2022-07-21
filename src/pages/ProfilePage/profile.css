@@ -94,11 +94,15 @@ Bookshelf */
   margin-right: 1rem;
 }
 
-.not-tilted + .book-tilted {
+.not-tilted + .book-tilted > .bookshelf-book {
   transform: translateY(-3px) translateX(15px) rotate(9deg);
 }
 
 .bookshelf-book:hover {
+  transform: scale(1.09);
+}
+
+.not-tilted + .book-tilted > .bookshelf-book:hover {
   transform: scale(1.09);
 }
 
@@ -155,8 +159,12 @@ Bookshelf */
   visibility: hidden;
   font-size: 30px;
   cursor: pointer;
-  color: black;
+  color: yellow;
   text-shadow: 0 0 1px black;
+}
+
+.star:checked {
+  color: yellow;
 }
 .star:before {
   content: "\2605";
@@ -169,9 +177,6 @@ Bookshelf */
   color: yellow;
 }
 
-.star:disabled:hover {
-  color: black;
-}
 .star:hover {
   color: yellow;
 }

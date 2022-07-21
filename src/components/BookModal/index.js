@@ -287,7 +287,7 @@ export const BookModal = ({ modalData, open }) => {
             id="star1"
             class="star"
             type="checkbox"
-            checked={starBool}
+            checked={!starBool}
             disabled={!loggedIn || !userHasReadBool}
             title="bookmark page"
             onClick={() => {
@@ -327,7 +327,7 @@ export const BookModal = ({ modalData, open }) => {
           <OverlayTrigger
             classname="overlay-button"
             trigger="click"
-            placement="right"
+            placement="left"
             overlay={popover}
           >
             <button
