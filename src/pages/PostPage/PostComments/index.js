@@ -1,36 +1,67 @@
 import React, { useState, useEffect } from "react";
 import { PostComment } from "../PostComment";
+import axios from "axios";
+
+// POST COMMENTS
+// Renders post comments
+// This component stores current comments in local state
+// handles delete comment function
 
 export const PostComments = ({
-  postMessages,
-  loggedIn,
-  postId,
-  serverURL,
-  username,
+    username,
+    loggedIn,
+    post,
+    postId,
+    serverURL,
 }) => {
-  const [allReplies, setAllReplies] = useState([]);
+    // comments array
+    const [commentsArray, setCommentsArray] = useState([]);
 
-  useEffect(() => {
-    setAllReplies(postMessages);
-  }, [postMessages]);
+    // updates comments array at after post loaded
+    useEffect(() => {
+        if (post.messages) {
+            setCommentsArray(post.messages);
+        }
+        return () => {};
+    }, [post]);
 
-  return (
-    <div className="container post-comments">
-      {allReplies.length > 0
-        ? allReplies.map((m) => (
-            <PostComment
-              message_username={m.username}
-              message={m.message}
-              m_user={m.username}
-              replies={m.replies}
-              loggedIn={loggedIn}
-              postId={postId}
-              serverURL={serverURL}
-              messageId={m.message_id}
-              username={username}
-            />
-          ))
-        : ""}
-    </div>
-  );
+    // Handle Deleted Comments
+    const handleDelete = (messageId) => {
+        const deleteCommentRequest = async () => {
+            try {
+                const { data } = await axios({
+                    method: "PATCH",
+                    url: `${serverURL}/forums/${postId}`,
+                    data: {
+                        method: "delete_message",
+                        message_id: messageId,
+                    },
+                });
+            } catch (err) {}
+        };
+        deleteCommentRequest();
+
+        const filteredCommentsArray = commentsArray.filter((c) => {
+            return c.message_id !== messageId;
+        });
+        setCommentsArray(filteredCommentsArray);
+    };
+
+    return (
+        <div className="container post-comments">
+            {commentsArray.map((c) => (
+                <PostComment
+                    username={username}
+                    loggedIn={loggedIn}
+                    messageId={c.message_id}
+                    messageUsername={c.username}
+                    message={c.message}
+                    replies={c.replies}
+                    postId={postId}
+                    serverURL={serverURL}
+                    onDelete={handleDelete}
+                />
+            ))}
+        </div>
+    );
 };

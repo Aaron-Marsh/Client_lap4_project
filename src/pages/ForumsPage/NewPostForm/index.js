@@ -10,17 +10,9 @@ export const NewPostForm = ({ username, loggedIn, onCreate }) => {
 
   const newPostRef = useRef(null);
 
-  const handleShown = () => {
-    setIsShown((current) => !current);
-  };
-
-  const handleWidth = () => {
-    setIsWidth((current) => !current);
-  };
-
-  const handleNewPostButton = () => {
-    setIsNewPostButton((current) => !current);
-  };
+  const handleShown = () => setIsShown((current) => !current);
+  const handleWidth = () => setIsWidth((current) => !current);
+  const handleNewPostButton = () => setIsNewPostButton((current) => !current);
 
   const handleTitleInput = (e) => setTitle(e.target.value);
   const handleMessageInput = (e) => setMessage(e.target.value);

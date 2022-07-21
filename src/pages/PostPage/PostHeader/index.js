@@ -1,7 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const PostHeader = ({ title, post_username, first_message }) => {
+export const PostHeader = ({ 
+  title, 
+  postUsername, 
+  username, 
+  loggedIn, 
+  first_message,
+  onDelete }) => {
+
   return (
     <div className="post-header">
       <h3>{title}</h3>
@@ -9,12 +16,19 @@ export const PostHeader = ({ title, post_username, first_message }) => {
         <Link
           className="post-author"
           data-testid="message-username"
-          to={`/profile/${post_username}`}
+          to={`/profile/${postUsername}`}
         >
-          {post_username}
+          {postUsername}
         </Link>
       </h5>
       <p>{first_message}</p>
-    </div>
+    {((postUsername == username) && loggedIn) &&
+     (
+      <div
+      className="delete-thread"
+      onClick={() => onDelete()}
+      >X</div>
+      )}
+        </div>
   );
 };

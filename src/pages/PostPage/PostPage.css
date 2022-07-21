@@ -98,13 +98,18 @@
   top: 0;
   width: 2.5px;
   height: calc(100% - 3.8rem);
-
   margin-top: 2rem;
-
   cursor: pointer;
 }
 .message-line:hover {
   background-color: rgba(255, 255, 255, 0.8);
+}
+.message-line::before {
+  content: '';
+  position: absolute;
+  width:900%;
+  height:100%;
+  transform: translatex(-40%);
 }
 
 .message-reply-input {
@@ -132,6 +137,16 @@
   color: var(--off-white);
   text-decoration: underline;
 }
+.reply-username {
+  color: var(--pale-orange);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+.reply-username:hover {
+  color: var(--off-white);
+  text-decoration: underline;
+}
 
 .message-message {
   font-size: 1.2rem;
@@ -153,6 +168,11 @@
   gap: 1rem;
   margin-top: 1rem;
   margin-left: 0.9rem;
+}
+
+.reply-header{
+  display:flex;
+  justify-content:space-between;
 }
 
 .close-reply-field {
@@ -183,6 +203,34 @@
 
 .delete-message:hover {
   height: 0.9rem;
+}
+
+.reply-footer{
+  font-size:0.8rem;
+}
+
+.edit-reply-form {
+  width: 0%;
+  height: 0;
+  overflow: hidden;
+  transition: width 0.3s ease-in;
+  display: flex;
+}
+
+.edit-reply {
+  color:grey;
+  cursor: pointer;
+  margin-right:1rem;
+}
+.edit-reply:hover {
+  color:white;
+}
+.delete-reply {
+  color:grey;
+  cursor: pointer;
+}
+.delete-reply:hover {
+  color:white;
 }
 
 .header-space {
