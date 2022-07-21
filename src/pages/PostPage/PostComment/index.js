@@ -74,7 +74,7 @@ export const PostComment = ({
             {/* main message conatiner */}
             <div className="message-box">
                 {/* Show delete button if correct user */}
-                {messageUsername == username && loggedIn ? (
+                {((messageUsername === username) && (loggedIn)) ? (
                     <div
                         className="delete-message"
                         onClick={() => onDelete(messageId)}
