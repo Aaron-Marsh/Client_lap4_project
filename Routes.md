@@ -1,6 +1,6 @@
 # Backend Routes
 ## Forums:
-### CREATE
+### CREATE/EDIT
 #### Create a new thread: (POST)
 /forums/
 "title": "new thread here",
@@ -14,15 +14,12 @@
 "message": "this is another message in the thread"
 
 ### Edit a reply to message in thread: (PATCH)
+/forms/:forumId
 "method":"reply_message",
 "username": "user10",
 "reply": "This is changed",
 "reply_id": "e6f32bfd-b1ca-4bbd-94f5-438b40b86e3c",
 "reply_to": ""
-
-### Delete a reply to message in thread: (PATCH)
-"method": "delete_reply",
-"reply_id": "886" (edited) 
 
 ### Add reply to message in thread (add reply_id to Edit existing reply): (PATCH)
 /forms/:forumId
@@ -33,11 +30,19 @@
 "reply_to": ""
 
 ### DELETE
+
+Delete a thread: (DELETE)
+/forms/:forumId
+no body
 #### Delete a message in thread: (PATCH)
 /forms/:forumId
 "method": "delete_message",
 "message_id":"123"
 
+### Delete a reply to message in thread: (PATCH)
+/forms/:forumId
+"method": "delete_reply",
+"reply_id": "886" (edited) 
 ### OTHER
 #### Search by title: (POST)
 /forums/search/
