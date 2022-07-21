@@ -40,10 +40,10 @@ export const ChildLoginModal = (props) => {
         if (data.error) {
           setError(data.error);
         } else {
-          props.onHide();
           dispatch(login());
 
-          dispatch(setUser(data.username));
+          dispatch(setUser(data));
+          props.onHide();
         }
 
         /* loginError.textContent = "Incorrect email or password"; */
@@ -52,7 +52,7 @@ export const ChildLoginModal = (props) => {
           setError("No server response!");
         } else if (err.response.status === 401) {
           setError(
-            "Unauthorized! Create an account or check your email and password!"
+            "Unauthorized! Create an account or check your email/username and password!"
           );
         } else {
           setError("Login failed!");

@@ -12,10 +12,14 @@
 .main-profile {
   display: flex;
   flex-direction: column;
+  background-color: white;
+  height: fit-content;
+  margin-bottom: 10rem;
 }
 
 .intro-wrapper {
   margin: 100px auto;
+  display: flex;
 }
 
 .shelf-user-wrapper {
@@ -59,12 +63,12 @@ Bookshelf */
     #986824 230px
   );
   background-size: 10px 230px;
-  box-shadow: 0px 1000px 0px 400px #7a7668;
+  box-shadow: 10px 0px 10px black;
 }
 
 .bookshelf-book {
   height: 200px;
-  width: 50px;
+
   margin-inline: 2px;
   float: left;
   color: white;
@@ -74,14 +78,16 @@ Bookshelf */
   margin-top: 15px;
   transform: scale(1);
   transition: transform 0.4s ease;
+  cursor: pointer;
 }
 
-.book-tilted {
+.not-tilted + .book-tilted {
   float: left;
   width: 74px;
+  margin-right: 1rem;
 }
 
-.book-tilted > .bookshelf-book {
+.not-tilted + .book-tilted {
   transform: translateY(-3px) translateX(15px) rotate(9deg);
 }
 
@@ -90,42 +96,79 @@ Bookshelf */
 }
 
 .book-1 {
-  background-color: darkgreen;
+  background-color: #2b3956;
   border-left: 2px solid black;
   border-right: 2px solid black;
+  width: 55px;
 }
 
 .book-2 {
-  background-color: #0c347d;
+  background-color: #485a7e;
+  width: 70px;
   border-left: 2px solid black;
   border-right: 2px solid black;
 }
 
 .book-3 {
-  background-color: #54290c;
+  background-color: #002369;
   border-left: 2px solid black;
   border-right: 2px solid black;
+  width: 60px;
 }
 
 .book-4 {
-  background-color: #f5f59e;
+  background-color: #1e2738;
   border-left: 2px solid black;
   border-right: 2px solid black;
-  color: black;
+  width: 50px;
+  color: white;
 }
 
 .book-favourite {
-  background-color: goldenrod;
+  background-color: var(--intense-orange);
   border-left: 2px solid black;
   border-right: 2px solid black;
-  color: black;
+  color: white;
+  width: 60px;
 }
 
 .bookshelf-book h2 {
   padding-inline: 0.4rem;
-  margin-left: 0.5rem;
+  margin-left: 0.7rem;
   font-size: 1em;
   transform-origin: 0% 0%;
   transform: rotate(0.25turn) translateY(-35px);
-  width: 170px;
+  width: 190px;
+}
+
+/* Star--------------- */
+
+.star {
+  visibility: hidden;
+  font-size: 30px;
+  cursor: pointer;
+  color: black;
+}
+.star:before {
+  content: "\2605";
+  position: absolute;
+  visibility: visible;
+}
+.star:checked:before {
+  content: "\2606";
+  position: absolute;
+  color: yellow;
+}
+
+.star:disabled:hover {
+  color: black;
+}
+.star:hover {
+  color: yellow;
+}
+
+.modal-header-book {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
 }

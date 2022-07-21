@@ -9,12 +9,13 @@ import axios from "axios";
 import "./PostPage.css";
 
 export const PostPage = () => {
-    const username = useSelector((state) => state.user.user);
+   const username = useSelector((state) => state.user.user);
     const loggedIn = useSelector((state) => state.loggedIn);
     const goTo = useNavigate();
     const [showLoginFooter, setShowLoginFooter] = useState(false);
     const [post, setPost] = useState("");
     let { postId } = useParams();
+
 
     // ***************** HARDCODE SERVER URL ********************
     let serverURL = "https://read-herring.herokuapp.com";
