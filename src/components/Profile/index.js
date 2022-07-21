@@ -128,7 +128,7 @@ export const Profile = () => {
             <h2 className="profile-title">Welcome back, {username}!</h2>
           </div>
           <div className="about-container">
-            <div>Profile image goes here</div>
+            <div><img src={require("../../imgs/profile_pics/profile_picture.jpeg")} alt="profile image" width="200rem" /></div>
             <div className="about-section">
               {!isEditShown && <p className="about-me">{currentAboutMe}</p>}
               {!isEditShown && (
@@ -192,7 +192,7 @@ export const Profile = () => {
             </h2>
           </div>
           <div className="about-container">
-            <div>Profile image goes here</div>
+            <div><img src={require("../../imgs/profile_pics/profile_picture.jpeg")} alt="profile image" width="200rem" /></div>
             <div className="about-section">
               <p className="about-me">
                 {userData.about_me ==
