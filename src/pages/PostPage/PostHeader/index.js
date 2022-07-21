@@ -17,14 +17,12 @@ export const PostHeader = ({
   const [liked, setLiked] = useState(false);
 
   useEffect(() => {
-    console.log("dataLikes:", dataLikes);
     if (likes) {
       setDataLikes(likes);
     }
   }, [likes]);
 
   useEffect(() => {
-    console.log("dataLikes:", dataLikes);
     setLikeCount(dataLikes.length);
   }, [dataLikes]);
 
@@ -47,8 +45,6 @@ export const PostHeader = ({
   // };
 
   const handleLikedClick = async () => {
-    console.log("thumb clicked!!!");
-    console.log("liked: ", liked);
     if (loggedIn) {
       try {
         const { data } = await axios({
@@ -60,7 +56,7 @@ export const PostHeader = ({
             username: username,
           },
         });
-        console.log(data);
+
         setDataLikes(data);
       } catch (err) {
         throw new Error(err.message);
