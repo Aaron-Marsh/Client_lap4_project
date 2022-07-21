@@ -13,6 +13,7 @@ import {
 export const BooksResult = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   // Modal
   const [open, setOpen] = useState(false);
@@ -31,6 +32,7 @@ export const BooksResult = () => {
 
   // useEffect, search Google api through server
   const fetchBooks = async (searchTerm) => {
+    setError(false);
     setLoading(true);
     try {
       const sendData = {
@@ -48,10 +50,14 @@ export const BooksResult = () => {
         JSON.stringify(sendData),
         options
       );
+      console.log(data);
       setBooks(data);
       setLoading(false);
     } catch (err) {
-      alert("book does not exist, please try again");
+      setBooks([]);
+      setError(
+        "Sorry! It seems that the book you are searching for doesn't exist!"
+      );
 
       setLoading(false);
 
@@ -99,6 +105,8 @@ export const BooksResult = () => {
 
         <SearchBar getResults={fetchBooks} />
       </div>
+
+      <div className="error-message">{error}</div>
 
       {loading && <LoadScreen />}
 
