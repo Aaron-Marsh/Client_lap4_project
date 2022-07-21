@@ -89,17 +89,28 @@ npm run start
 
 ## Wins
 
+- users are able to search for books based on the title
+- users can open a modal for each book where they can read the description of the book. Loggedin users can, if they like the short summary of the book, put the book in their NextShelf (meaning they'd like to read it in the future)! Or, in case they have read some book, can add it to ReadShelf which in turn allows them to rate and favourite the book.
+- users can create a post on forum page on the topic they choose
+- there's a possibility to leave a reply on the post and like the post that somebody has created
+- on profile page there is a section where people can write an about section about themselves that only they can see
+
 ## Challenges
+
+- Data flow
+- API data
+- Testing…
 
 ## Contribution guide
 
 Look for a file named CONTRIBUTING on a file root level.
 
-## Bugs
-
 ## Future features
 
-- user can buy a book
+- Responsiveness
+- Authors
+- Mail Integration
+- Live Chat
 
 ## Licence
 
