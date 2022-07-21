@@ -74,7 +74,7 @@ export const BooksResult = () => {
         let queryChosen = queryOptions[Math.floor(Math.random() * queryOptions.length)]
         const sendData = {
           query_type: "intitle",
-          query: queryChosen,
+          query: 'fishing',
           num_results: "36",
         };
         const options = {
