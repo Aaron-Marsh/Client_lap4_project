@@ -20,6 +20,12 @@
 .intro-wrapper {
   margin: 100px auto;
   display: flex;
+  flex-direction: column;
+}
+
+.intro-container {
+  display: flex;
+  justify-content: space-between;
 }
 
 .shelf-user-wrapper {
