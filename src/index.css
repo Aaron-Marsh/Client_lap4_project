@@ -1,26 +1,26 @@
 *,
 *::after,
 *::before {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 /* color variables */
 :root {
-  --off-white: #fff9f9;
-  --pale-orange: #fe6e4a;
-  --intense-orange: rgb(255, 107, 1);
+	--off-white: #fff9f9;
+	--pale-orange: #fe6e4a;
+	--intense-orange: rgb(255, 107, 1);
 
-  --slate-blue: #281e32;
-  --slate-blue2: #2b3956;
-  --book-page: #f2eecb;
-  --brown: #a87328;
-  --darkblue: #0c347d;
-  --umber: #54290c;
-  --springer: #eded80;
+	--slate-blue: #281e32;
+	--slate-blue2: #2b3956;
+	--book-page: #f2eecb;
+	--brown: #a87328;
+	--darkblue: #0c347d;
+	--umber: #54290c;
+	--springer: #eded80;
 }
 
 /* *********************** Fonts *********************** */
-@import url("https://fonts.googleapis.com/css2?family=Kreon&family=Nunito:ital,wght@1,800&family=Poppins&family=Roboto+Slab&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Kreon&family=Nunito:ital,wght@1,800&family=Poppins&family=Roboto+Slab&display=swap');
 
 /* 
 font-family: 'Nunito', sans-serif;
@@ -30,46 +30,52 @@ font-family: 'Roboto Slab', serif;
 */
 
 h1 {
-  font-family: "Nunito", sans-serif;
-  font-size: 2.5rem;
-  color: var(--pale-orange);
-  text-shadow: 2px 2px 0 var(--umber);
+	font-family: 'Nunito', sans-serif;
+	font-size: 2.5rem;
+	color: var(--pale-orange);
+	text-shadow: 2px 2px 0 var(--umber);
 }
 
 h2 {
-  font-family: "Kreon", serif;
+	font-family: 'Kreon', serif;
 }
 
 header {
-  user-select: none;
+	user-select: none;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: "Roboto Slab", serif;
-  overflow-x: hidden;
-  overflow-y: scroll !important;
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto Slab', serif;
+	overflow-x: hidden;
+	overflow-y: scroll !important;
 }
 
 ::-webkit-scrollbar {
-  width: 15px;
-  background-color: white;
+	width: 15px;
+	background-color: white;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: transparent;
+	background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #b0b5b5;
-  border-radius: 20px;
-  border: 3px solid transparent;
-  background-clip: content-box;
+	background-color: #b0b5b5;
+	border-radius: 20px;
+	border: 3px solid transparent;
+	background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #494a4a;
+	background-color: #494a4a;
+}
+
+/* boxes ------------------------------------------ */
+.flex-container {
+	display: flex;
+	justify-content: space-evenly;
 }
 
 /* Navabar ------------------------------------------------------------------------------*/
@@ -77,554 +83,554 @@ body {
 /* All inputs and buttons ------------ */
 
 .orange-input {
-  position: relative;
-  border: var(--slate-blue2) 2.5px solid;
-  border-radius: 5px;
-  padding-left: 0.4rem;
-  height: fit-content;
-  padding-block: 0.2rem;
-  margin-right: 0.25rem;
-  width: 20rem;
+	position: relative;
+	border: var(--slate-blue2) 2.5px solid;
+	border-radius: 5px;
+	padding-left: 0.4rem;
+	height: fit-content;
+	padding-block: 0.2rem;
+	margin-right: 0.25rem;
+	width: 20rem;
 }
 
 .orange-input:focus {
-  border: var(--intense-orange) 2.5px solid;
-  outline: none;
+	border: var(--intense-orange) 2.5px solid;
+	outline: none;
 }
 
 .orange-button {
-  position: relative;
-  outline: 0;
-  border-radius: 5px;
-  width: 5rem;
-  cursor: pointer;
-  font-size: 1rem;
-  height: fit-content;
-  border: none;
-  background-color: var(--intense-orange);
-  color: var(--off-white);
-  -webkit-transition-duration: 0.25s;
-  transition-duration: 0.25s;
-  padding: 0.3rem 0.6rem;
+	position: relative;
+	outline: 0;
+	border-radius: 5px;
+	width: 5rem;
+	cursor: pointer;
+	font-size: 1rem;
+	height: fit-content;
+	border: none;
+	background-color: var(--intense-orange);
+	color: var(--off-white);
+	-webkit-transition-duration: 0.25s;
+	transition-duration: 0.25s;
+	padding: 0.3rem 0.6rem;
 }
 
 .orange-button:hover {
-  border: var(--intense-orange) 1px solid;
-  color: var(--intense-orange);
-  background-color: var(--off-white);
+	border: var(--intense-orange) 1px solid;
+	color: var(--intense-orange);
+	background-color: var(--off-white);
 }
 
 .orange-button-wide {
-  position: relative;
-  outline: 0;
-  border-radius: 5px;
-  width: auto;
-  cursor: pointer;
-  font-size: 1rem;
-  height: fit-content;
-  border: none;
-  background-color: var(--intense-orange);
-  color: var(--off-white);
-  -webkit-transition-duration: 0.25s;
-  transition-duration: 0.25s;
-  padding: 0.3rem 0.6rem;
+	position: relative;
+	outline: 0;
+	border-radius: 5px;
+	width: auto;
+	cursor: pointer;
+	font-size: 1rem;
+	height: fit-content;
+	border: none;
+	background-color: var(--intense-orange);
+	color: var(--off-white);
+	-webkit-transition-duration: 0.25s;
+	transition-duration: 0.25s;
+	padding: 0.3rem 0.6rem;
 }
 
 .orange-button-wide:hover {
-  border: var(--intense-orange) 1px solid;
-  color: var(--intense-orange);
-  background-color: var(--off-white);
+	border: var(--intense-orange) 1px solid;
+	color: var(--intense-orange);
+	background-color: var(--off-white);
 }
 
 .white-button {
-  position: relative;
-  outline: 0;
-  border-radius: 5px;
-  width: 5rem;
-  cursor: pointer;
-  font-size: 1rem;
-  height: fit-content;
-  border: none;
-  background-color: var(--off-white);
-  color: var(--intense-orange);
-  text-shadow: #000 0.1px 0.1px;
-  -webkit-transition-duration: 0.25s;
-  transition-duration: 0.25s;
-  padding: 0.175rem 0.6rem;
+	position: relative;
+	outline: 0;
+	border-radius: 5px;
+	width: 5rem;
+	cursor: pointer;
+	font-size: 1rem;
+	height: fit-content;
+	border: none;
+	background-color: var(--off-white);
+	color: var(--intense-orange);
+	text-shadow: #000 0.1px 0.1px;
+	-webkit-transition-duration: 0.25s;
+	transition-duration: 0.25s;
+	padding: 0.175rem 0.6rem;
 }
 
 .white-button:hover {
-  color: var(--off-white);
-  background-color: var(--intense-orange);
+	color: var(--off-white);
+	background-color: var(--intense-orange);
 }
 
 .dark-button {
-  position: relative;
-  outline: 0;
-  border-radius: 5px;
-  width: 5rem;
-  cursor: pointer;
-  font-size: 1rem;
-  height: fit-content;
-  border: none;
-  background-color: var(--off-white);
-  color: var(--slate-blue2);
-  text-shadow: #000 0.1px 0.1px;
-  -webkit-transition-duration: 0.25s;
-  transition-duration: 0.25s;
-  padding: 0.175rem 0.6rem;
+	position: relative;
+	outline: 0;
+	border-radius: 5px;
+	width: 5rem;
+	cursor: pointer;
+	font-size: 1rem;
+	height: fit-content;
+	border: none;
+	background-color: var(--off-white);
+	color: var(--slate-blue2);
+	text-shadow: #000 0.1px 0.1px;
+	-webkit-transition-duration: 0.25s;
+	transition-duration: 0.25s;
+	padding: 0.175rem 0.6rem;
 }
 
 .dark-button:hover {
-  color: var(--off-white);
-  background-color: var(--slate-blue2);
+	color: var(--off-white);
+	background-color: var(--slate-blue2);
 }
 
 .dark-light-button {
-  position: relative;
-  outline: 0;
-  border-radius: 5px;
-  width: 5rem;
-  cursor: pointer;
-  font-size: 1rem;
-  height: fit-content;
-  border: none;
-  background-color: var(--slate-blue2);
-  color: var(--off-white);
-  text-shadow: #000 0.1px 0.1px;
-  -webkit-transition-duration: 0.25s;
-  transition-duration: 0.25s;
-  padding: 0.175rem 0.6rem;
+	position: relative;
+	outline: 0;
+	border-radius: 5px;
+	width: 5rem;
+	cursor: pointer;
+	font-size: 1rem;
+	height: fit-content;
+	border: none;
+	background-color: var(--slate-blue2);
+	color: var(--off-white);
+	text-shadow: #000 0.1px 0.1px;
+	-webkit-transition-duration: 0.25s;
+	transition-duration: 0.25s;
+	padding: 0.175rem 0.6rem;
 }
 
 .dark-light-button:hover {
-  border: var(--slate-blue2) 1px solid;
-  color: var(--slate-blue2);
-  background-color: var(--off-white);
+	border: var(--slate-blue2) 1px solid;
+	color: var(--slate-blue2);
+	background-color: var(--off-white);
 }
 .dark-light-button-wide {
-  position: relative;
-  outline: 0;
-  border-radius: 5px;
-  width: auto;
-  cursor: pointer;
-  font-size: 1rem;
-  height: fit-content;
-  border: none;
-  background-color: var(--slate-blue2);
-  color: var(--off-white);
-  text-shadow: #000 0.1px 0.1px;
-  -webkit-transition-duration: 0.25s;
-  transition-duration: 0.25s;
-  padding: 0.175rem 0.6rem;
+	position: relative;
+	outline: 0;
+	border-radius: 5px;
+	width: auto;
+	cursor: pointer;
+	font-size: 1rem;
+	height: fit-content;
+	border: none;
+	background-color: var(--slate-blue2);
+	color: var(--off-white);
+	text-shadow: #000 0.1px 0.1px;
+	-webkit-transition-duration: 0.25s;
+	transition-duration: 0.25s;
+	padding: 0.175rem 0.6rem;
 }
 .dark-light-button-wide:hover {
-  border: var(--slate-blue2) 1px solid;
-  color: var(--slate-blue2);
-  background-color: var(--off-white);
+	border: var(--slate-blue2) 1px solid;
+	color: var(--slate-blue2);
+	background-color: var(--off-white);
 }
 
 input:disabled {
-  background-color: grey !important;
-  border: none;
-  cursor: auto;
+	background-color: grey !important;
+	border: none;
+	cursor: auto;
 }
 input:disabled:hover {
-  background-color: grey;
-  border: none;
-  color: white;
+	background-color: grey;
+	border: none;
+	color: white;
 }
 
 input::after {
-  content: "You must be logged in!";
-  font-size: 1rem;
-  color: black;
-  width: 100px;
-  height: 20px;
-  position: absolute;
-  padding-bottom: 25px;
-  padding-inline: 10px;
-  display: block;
-  background-color: lightgray;
-  border: 0.5px solid black;
-  z-index: 100;
+	content: 'You must be logged in!';
+	font-size: 1rem;
+	color: black;
+	width: 100px;
+	height: 20px;
+	position: absolute;
+	padding-bottom: 25px;
+	padding-inline: 10px;
+	display: block;
+	background-color: lightgray;
+	border: 0.5px solid black;
+	z-index: 100;
 }
 input:disabled:hover::after {
-  display: block;
+	display: block;
 }
 
 button::after {
-  content: "You must be logged in!";
-  font-size: 1rem;
-  color: black;
-  width: max-content;
-  height: 20px;
-  position: absolute;
-  padding-bottom: 25px;
-  padding-inline: 10px;
-  display: none;
-  background-color: lightgray;
-  border: 0.5px solid black;
-  z-index: 100;
+	content: 'You must be logged in!';
+	font-size: 1rem;
+	color: black;
+	width: max-content;
+	height: 20px;
+	position: absolute;
+	padding-bottom: 25px;
+	padding-inline: 10px;
+	display: none;
+	background-color: lightgray;
+	border: 0.5px solid black;
+	z-index: 100;
 }
 button:disabled {
-  background-color: grey !important;
-  border: none;
-  cursor: auto;
+	background-color: grey !important;
+	border: none;
+	cursor: auto;
 }
 button:disabled:hover {
-  background-color: grey;
-  border: none;
-  color: white;
+	background-color: grey;
+	border: none;
+	color: white;
 }
 
 button:disabled:hover::after {
-  display: block;
+	display: block;
 }
 
 .correct-hover::after {
-  content: "You've already added this!";
+	content: "You've already added this!";
 }
 
 .search-form {
-  display: flex;
+	display: flex;
 
-  justify-content: center;
+	justify-content: center;
 }
 
 .navbar {
-  display: flex;
-  align-items: center;
-  background-color: var(--slate-blue2);
-  width: 100%;
-  position: absolute;
-  z-index: 100;
-  top: 0;
-  padding: 0;
+	display: flex;
+	align-items: center;
+	background-color: var(--slate-blue2);
+	width: 100%;
+	position: absolute;
+	z-index: 100;
+	top: 0;
+	padding: 0;
 }
 
 .home-background {
-  background-color: transparent;
+	background-color: transparent;
 }
 
 .logo {
-  margin-right: auto;
-  padding-left: calc(min(1rem, 5%));
-  padding-top: 0.5rem;
-  width: 3.75em;
-  height: 3.75em;
+	margin-right: auto;
+	padding-left: calc(min(1rem, 5%));
+	padding-top: 0.5rem;
+	width: 3.75em;
+	height: 3.75em;
 
-  position: relative;
-  margin-bottom: 1rem;
+	position: relative;
+	margin-bottom: 1rem;
 }
 
 .logo-image {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  transition-duration: 1s;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	transition-duration: 1s;
 }
 
 .logo-image:hover {
-  transform: rotate(360deg);
+	transform: rotate(360deg);
 }
 .nav-items {
-  /* primary nav */
-  padding-right: 3rem;
-  gap: 2.5rem;
-  display: flex;
-  margin-top: 1rem;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	/* primary nav */
+	padding-right: 3rem;
+	gap: 2.5rem;
+	display: flex;
+	margin-top: 1rem;
+	list-style: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-  position: relative;
+	position: relative;
 }
 
 .link {
-  position: relative;
-  padding-bottom: 1.4rem;
-  padding-inline: 0.75rem;
-  font-size: 1.125em;
-  font-weight: 600;
-  text-align: center;
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.8);
-  cursor: pointer;
+	position: relative;
+	padding-bottom: 1.4rem;
+	padding-inline: 0.75rem;
+	font-size: 1.125em;
+	font-weight: 600;
+	text-align: center;
+	text-decoration: none;
+	color: rgba(255, 255, 255, 0.8);
+	cursor: pointer;
 }
 
 .link:hover {
-  color: white;
+	color: white;
 }
 
 .sr-only {
-  display: none;
+	display: none;
 }
 
 .mobile-nav-button {
-  display: none;
+	display: none;
 }
 
 /* //Navbar media queries  */
 
 @media (min-width: 47rem) and (max-width: 51rem) {
-  .nav-items {
-    gap: 2rem;
-    padding-right: 2rem;
-  }
+	.nav-items {
+		gap: 2rem;
+		padding-right: 2rem;
+	}
 }
 
 @media (max-width: 47rem) {
-  .nav-items {
-    position: fixed;
+	.nav-items {
+		position: fixed;
 
-    margin-block: 0;
-    inset: 0 0 0 0;
-    flex-direction: column;
-    padding: 10rem 6rem;
-    background-color: rgba(27, 27, 27, 0.5);
-    z-index: 999;
-    transform: translateX(100%);
-    transition: transform 500ms ease-out;
-  }
-  .nav-items[data-visible="true"] {
-    transform: translatex(0%);
-  }
-  .link {
-    font-size: 1.25rem;
-    margin-left: 1.5rem;
-    user-select: none;
-  }
-  .link::after {
-    display: none;
-  }
-  .mobile-nav-button {
-    display: block;
-    position: fixed;
-    background: url(./imgs/hamburger.png);
-    background-repeat: no-repeat;
-    background-size: cover;
+		margin-block: 0;
+		inset: 0 0 0 0;
+		flex-direction: column;
+		padding: 10rem 6rem;
+		background-color: rgba(27, 27, 27, 0.5);
+		z-index: 999;
+		transform: translateX(100%);
+		transition: transform 500ms ease-out;
+	}
+	.nav-items[data-visible='true'] {
+		transform: translatex(0%);
+	}
+	.link {
+		font-size: 1.25rem;
+		margin-left: 1.5rem;
+		user-select: none;
+	}
+	.link::after {
+		display: none;
+	}
+	.mobile-nav-button {
+		display: block;
+		position: fixed;
+		background: url(./imgs/hamburger.png);
+		background-repeat: no-repeat;
+		background-size: cover;
 
-    border: 0;
-    width: 2rem;
-    aspect-ratio: 1;
-    z-index: 1000;
-    top: 1em;
-    right: 3em;
-    cursor: pointer;
-  }
-  .mobile-nav-button[data-open="true"] {
-    background: url(./imgs/X.png);
-    background-repeat: no-repeat;
-    z-index: 1000;
-  }
-  .nav-bar {
-    right: 0;
-  }
+		border: 0;
+		width: 2rem;
+		aspect-ratio: 1;
+		z-index: 1000;
+		top: 1em;
+		right: 3em;
+		cursor: pointer;
+	}
+	.mobile-nav-button[data-open='true'] {
+		background: url(./imgs/X.png);
+		background-repeat: no-repeat;
+		z-index: 1000;
+	}
+	.nav-bar {
+		right: 0;
+	}
 }
 
 @supports (backdrop-filter: blur(1rem)) {
-  @media (max-width: 47em) {
-    .nav-items {
-      background: rgba(27, 27, 27, 0.5);
-      backdrop-filter: blur(1em);
-      gap: 2rem;
-    }
+	@media (max-width: 47em) {
+		.nav-items {
+			background: rgba(27, 27, 27, 0.5);
+			backdrop-filter: blur(1em);
+			gap: 2rem;
+		}
 
-    .link:hover {
-      background-color: transparent;
-      color: white;
-    }
-    .link {
-      color: white;
-      padding-inline: 0;
-      background-color: transparent !important;
-      padding-block: 0;
-    }
-  }
+		.link:hover {
+			background-color: transparent;
+			color: white;
+		}
+		.link {
+			color: white;
+			padding-inline: 0;
+			background-color: transparent !important;
+			padding-block: 0;
+		}
+	}
 }
 
 /* Login footer */
 
 .login-footer {
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  height: fit-content;
-  background-color: rgb(246, 107, 0);
-  display: flex;
-  align-items: center;
-  opacity: 1;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	height: fit-content;
+	background-color: rgb(246, 107, 0);
+	display: flex;
+	align-items: center;
+	opacity: 1;
 }
 
 .login-footer-text {
-  margin-right: auto;
-  margin-left: 30%;
-  color: white;
-  padding-block: 0.5rem;
-  text-shadow: 0.5px 0 0 #000, 0 -0.5px 0 #000, 0 0.5px 0 #000, -0.5px 0 0 #000;
+	margin-right: auto;
+	margin-left: 30%;
+	color: white;
+	padding-block: 0.5rem;
+	text-shadow: 0.5px 0 0 #000, 0 -0.5px 0 #000, 0 0.5px 0 #000, -0.5px 0 0 #000;
 }
 .login-footer-text > p {
-  font-size: 0.9rem;
-  margin-block: 0;
+	font-size: 0.9rem;
+	margin-block: 0;
 }
 .login-footer-text > h4 {
-  margin-bottom: 0;
-  font-weight: 600;
+	margin-bottom: 0;
+	font-weight: 600;
 }
 
 .login-footer-buttons {
-  margin-right: 10%;
-  display: flex;
-  gap: 2rem;
+	margin-right: 10%;
+	display: flex;
+	gap: 2rem;
 }
 
 .login-footer-close {
-  display: block;
-  position: absolute;
-  background: url(./imgs/X.png);
-  background-repeat: no-repeat;
-  background-size: cover;
+	display: block;
+	position: absolute;
+	background: url(./imgs/X.png);
+	background-repeat: no-repeat;
+	background-size: cover;
 
-  border: 0;
-  width: 1rem;
-  aspect-ratio: 1;
-  z-index: 1000;
-  top: 0.4rem;
-  right: 1rem;
-  cursor: pointer;
+	border: 0;
+	width: 1rem;
+	aspect-ratio: 1;
+	z-index: 1000;
+	top: 0.4rem;
+	right: 1rem;
+	cursor: pointer;
 }
 
 .login-footer-close:hover {
-  transform: scale(1.1);
+	transform: scale(1.1);
 }
 
 /******************* Login Modal ********************/
 
 .login-title {
-  font-family: "Poppins", sans-serif;
-  font-size: 1.2rem;
-  text-align: center;
+	font-family: 'Poppins', sans-serif;
+	font-size: 1.2rem;
+	text-align: center;
 }
 
 .login-error {
-  color: red;
+	color: red;
 }
 
 .forum-link {
-  position: absolute;
-  left: 1rem;
-  text-decoration: none;
+	position: absolute;
+	left: 1rem;
+	text-decoration: none;
 }
 
 .login {
-  height: 100%;
-  bottom: 0;
-  /* padding: 20px 0; */
-  transition: left 0.5s ease;
-  position: relative;
-  width: 100%;
+	height: 100%;
+	bottom: 0;
+	/* padding: 20px 0; */
+	transition: left 0.5s ease;
+	position: relative;
+	width: 100%;
 }
 .login-input {
-  width: 65%;
-  display: block;
-  appearance: none;
-  outline: 0;
-  border: 0.1rem solid var(--slate-blue2);
-  color: grey;
-  border-radius: 3px;
-  padding: 10px 15px;
-  margin: 0 auto;
-  background: white;
-  text-align: center;
-  font-size: 18px;
+	width: 65%;
+	display: block;
+	appearance: none;
+	outline: 0;
+	border: 0.1rem solid var(--slate-blue2);
+	color: grey;
+	border-radius: 3px;
+	padding: 10px 15px;
+	margin: 0 auto;
+	background: white;
+	text-align: center;
+	font-size: 18px;
 
-  transition-duration: 0.25s;
-  font-weight: 300;
+	transition-duration: 0.25s;
+	font-weight: 300;
 }
 .login-input::placeholder {
-  color: grey;
+	color: grey;
 }
 
 .login-input:hover {
-  background-color: white;
-  color: grey;
+	background-color: white;
+	color: grey;
 }
 
 .login-input:focus {
-  background-color: white;
-  width: 80%;
-  color: grey;
+	background-color: white;
+	width: 80%;
+	color: grey;
 }
 
 .login-button-group {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 .login-button {
-  text-align: center;
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  text-transform: uppercase;
+	text-align: center;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 600;
+	text-transform: uppercase;
 
-  appearance: none;
-  outline: 0;
-  width: 30%;
-  cursor: pointer;
-  font-size: 18px;
+	appearance: none;
+	outline: 0;
+	width: 30%;
+	cursor: pointer;
+	font-size: 18px;
 
-  border: 0px;
-  border-radius: 10px;
-  padding: 0.6rem 1.1rem;
-  background-size: 200% auto;
-  display: block;
+	border: 0px;
+	border-radius: 10px;
+	padding: 0.6rem 1.1rem;
+	background-size: 200% auto;
+	display: block;
 
-  border: white 1px solid;
-  background-image: linear-gradient(
-    45deg,
-    #ff512f 0%,
-    #f09819 51%,
-    #ff512f 100%
-  );
-  box-shadow: 0px 0px 14px -7px #f09819;
+	border: white 1px solid;
+	background-image: linear-gradient(
+		45deg,
+		#ff512f 0%,
+		#f09819 51%,
+		#ff512f 100%
+	);
+	box-shadow: 0px 0px 14px -7px #f09819;
 
-  color: var(--off-white);
+	color: var(--off-white);
 
-  transition-duration: 0.25s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
+	transition-duration: 0.25s;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
 
-  margin-bottom: 1rem;
+	margin-bottom: 1rem;
 }
 
 .login-button:hover {
-  color: var(--off-white);
-  background-position: right center;
+	color: var(--off-white);
+	background-position: right center;
 }
 
 .login-button:active {
-  transform: scale(0.95);
+	transform: scale(0.95);
 }
 
 .login-button-link {
-  background: none;
-  color: inherit;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
 }
 
 .login-button-link:hover {
-  font-style: normal;
-  text-decoration: underline;
+	font-style: normal;
+	text-decoration: underline;
 }
 /* .modal-open {
   overflow-y: auto;
