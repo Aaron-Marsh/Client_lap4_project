@@ -54,7 +54,7 @@
 }
 
 .book-title {
-	margin-top: 25px;
+  margin-top: 25px;
 }
 
 /* Modal */
@@ -77,10 +77,6 @@
 }
 
 /* Popover */
-.popover-fish {
-  height: 30px;
-  margin-left: 5px;
-}
 
 /* Book rotating CSS */
 
@@ -175,5 +171,4 @@
   background-color: var(--slate-blue2);
   border-radius: 0 2px 2px 0;
   box-shadow: -10px 0 50px 10px #666;
-
 }
