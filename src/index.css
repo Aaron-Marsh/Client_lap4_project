@@ -218,7 +218,7 @@ input::after {
   content: "You must be logged in!";
   font-size: 1rem;
   color: black;
-  width: max-content;
+  width: 100px;
   height: 20px;
   position: absolute;
   padding-bottom: 25px;
