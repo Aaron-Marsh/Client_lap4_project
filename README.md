@@ -8,13 +8,14 @@
 
 <br>
 
-[Read Herring](https://read-herring.netlify.app/) is an application that might spark interest for books in you again. Simple and beautiful web-design developed by a team in futureproof bootcamp over a one-week period allows users to search for books as well as look and comment on books in forum. 
+[Read Herring](https://read-herring.netlify.app/) is an application that might spark interest for books in you again. Simple and beautiful web-design developed by a team in futureproof bootcamp over a one-week period allows users to search for books as well as look and comment on books in forum.
 
 ## Features
-* Full site functions unlocked after user signup/login
-* Edit profile including favourite book section
-* Forum
-Even though the whole application is available for all users - only users who have accounts can have their own profile page with customized shelves for books which they have grabbed from books page or followed forum's recommandations and they can interact with others. As a registered user you can leave a rating on book that you have read and that is in your bookshelf as well you are able to discuss books in forum, by writing messges and replies. That's not all! Be free to follow a fellow user who seems to have similar taste to you or has just interesting ideas about books in general. That gives you an opportunity to have a peak on the followed users' profile, seeing their book shelves. Time to get inspired!
+
+- Full site functions unlocked after user signup/login
+- Edit profile including favourite book section
+- Forum
+  Even though the whole application is available for all users - only users who have accounts can have their own profile page with customized shelves for books which they have grabbed from books page or followed forum's recommandations and they can interact with others. As a registered user you can leave a rating on book that you have read and that is in your bookshelf as well you are able to discuss books in forum, by writing messges and replies. That's not all! Be free to follow a fellow user who seems to have similar taste to you or has just interesting ideas about books in general. That gives you an opportunity to have a peak on the followed users' profile, seeing their book shelves. Time to get inspired!
 
 <br>
 
@@ -24,32 +25,41 @@ Access the deployed client site [here](https://read-herring.netlify.app/).
 
 ### Backend information
 
--   Backend GitHub repository is [here](https://github.com/Aaron-Marsh/Server_lap4_project)
+- Backend GitHub repository is [here](https://github.com/Aaron-Marsh/Server_lap4_project)
 
--   The backend for this repo is deployed in [Heroku](https://read-herring.herokuapp.com/)
+- The backend for this repo is deployed in [Heroku](https://read-herring.herokuapp.com/)
+
+<br>
 
 ## Installation & usage
 
--   Clone or download code
--   cd in the the folder
--   Exectute these commands to enter development mode:
+- Clone or download code
+- cd in the the folder
+- Exectute these commands to enter development mode:
+
 ```
 npm install
 npm run start
 ```
--   Development Mode:
-	*   Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-	*   The page will reload when you make changes.
-	*   You may also see any lint errors in the console.
-	*   feel free to make changes in your own local environment
+
+- Development Mode:
+
+  - Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  - The page will reload when you make changes.
+  - You may also see any lint errors in the console.
+  - feel free to make changes in your own local environment
+
+  <br>
 
 ## Contact
 
--   [Aaron Marsh](https://github.com/Aaron-Marsh)
--   [William Sessions](https://github.com/Izgardon)
--   [Christopher Pucknell](https://github.com/xargon666)
--   [Rebecca Blixt](https://github.com/rebeccablixt)
--   [Alice Kreslins](https://github.com/alicekres)
+- [Aaron Marsh](https://github.com/Aaron-Marsh)
+- [William Sessions](https://github.com/Izgardon)
+- [Christopher Pucknell](https://github.com/xargon666)
+- [Rebecca Blixt](https://github.com/rebeccablixt)
+- [Alice Kreslins](https://github.com/alicekres)
+
+<br>
 
 ## Technologies
 
@@ -60,7 +70,22 @@ npm run start
 ![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
 ![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)
 
+<br>
+
 ## Process
+
+- Gathering ideas about the application for given theme(theme: app for book readers to discuss and search for books) and drawing them out in excalidraw/writing a gist.
+- Deciding on tools to be used and presenting the vision taking into account user journey and MVP (Minimum Viable product)
+- Launching backend and frontend repositories.
+- Initial/main routes in backend(Python) and main pages in frontend(React)
+- Starting testing frontend
+- Deployment
+- Starting testing backend functionality
+- Consistent meetings, gathering new ideas and solving coding issues
+- initial presentation
+- final presentation
+
+<br>
 
 ## Wins
 
@@ -73,6 +98,8 @@ Look for a file named CONTRIBUTING on a file root level.
 ## Bugs
 
 ## Future features
+
+- user can buy a book
 
 ## Licence
 
