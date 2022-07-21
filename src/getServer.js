@@ -9,11 +9,11 @@
 //     const establishEnv = () => {
 //         let serverUrl;
 //         if (process.env.NODE_ENV === "production") {
-//             console.log("Client is Running in Production");
+//
 //             serverUrl = prodServerUrl;
 //         }
 //         if (process.env.NODE_ENV === "development") {
-//             console.log("Client is Running in Development");
+//
 //             serverUrl = devServerUrl;
 //         }
 //         return serverUrl;

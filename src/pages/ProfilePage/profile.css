@@ -153,6 +153,7 @@ Bookshelf */
   border-left: 2px solid black;
   border-right: 2px solid black;
   width: 55px;
+  color: var(--off-white);
 }
 
 .book-2 {
@@ -160,21 +161,23 @@ Bookshelf */
   width: 70px;
   border-left: 2px solid black;
   border-right: 2px solid black;
+  color: var(--off-white);
 }
 
 .book-3 {
-  background-color: #002369;
+  background-color: #042c7c;
   border-left: 2px solid black;
   border-right: 2px solid black;
   width: 60px;
+  color: var(--off-white);
 }
 
 .book-4 {
-  background-color: #1e2738;
+  background-color: #c9d7f1;
   border-left: 2px solid black;
   border-right: 2px solid black;
   width: 50px;
-  color: white;
+  color: rgb(44, 43, 43);
 }
 
 .book-favourite {
