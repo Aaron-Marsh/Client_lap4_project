@@ -55,6 +55,7 @@
 
 .book-title {
   margin-top: 25px;
+
 }
 
 .error-message {
@@ -64,6 +65,7 @@
   margin-top: 50px;
   text-align: center;
   font-size: 2rem;
+
 }
 
 /* Modal */
@@ -86,10 +88,6 @@
 }
 
 /* Popover */
-.popover-fish {
-  height: 30px;
-  margin-left: 5px;
-}
 
 /* Book rotating CSS */
 

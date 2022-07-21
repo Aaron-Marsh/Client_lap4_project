@@ -142,6 +142,7 @@ Bookshelf */
   padding-inline: 0.4rem;
   margin-left: 0.7rem;
   font-size: 1em;
+  font-weight: 600;
   transform-origin: 0% 0%;
   transform: rotate(0.25turn) translateY(-35px);
   width: 190px;
@@ -178,4 +179,10 @@ Bookshelf */
   display: flex;
   gap: 0.5rem;
   align-items: flex-start;
+}
+
+.popover-fish {
+  height: 30px;
+  margin-left: 5px;
+  cursor: pointer;
 }

@@ -261,6 +261,10 @@ button:disabled:hover::after {
   display: block;
 }
 
+.correct-hover::after {
+  content: "You've already added this!";
+}
+
 .search-form {
   display: flex;
 
