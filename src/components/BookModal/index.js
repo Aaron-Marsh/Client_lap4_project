@@ -4,7 +4,8 @@ import axios from "axios";
 import Modal from "react-bootstrap/Modal";
 import Popover from "react-bootstrap/Popover";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+
 import { setUser } from "../../actions";
 import { ChildLoginModal } from "../ChildLogin";
 
@@ -21,6 +22,10 @@ export const BookModal = ({ modalData, open }) => {
   const [hasRated, setHasRated] = useState(false);
   const [hasRatedBool, setHasRatedBool] = useState(false);
   const [correctBook, setCorrectBook] = useState(null);
+  const [review, setReview] = useState("");
+  const [reviews, setReviews] = useState([]);
+  const [showReviews, setShowReviews] = useState(false);
+  const [showAddNewReview, setShowAddNewReview] = useState(false);
 
   const isMounted = useRef(false);
 
@@ -69,6 +74,10 @@ export const BookModal = ({ modalData, open }) => {
   }, [wantsToRead, show]);
 
   useEffect(() => {
+    modalData && setReviews(modalData.reviews);
+  }, [modalData]);
+
+  useEffect(() => {
     if (isMounted.current) {
       if (loggedIn && show) {
         userHasReadBooks.map((book) => {
@@ -83,7 +92,6 @@ export const BookModal = ({ modalData, open }) => {
   }, [changeStar, show]);
 
   useEffect(() => {
-    console.log(correctBook);
     if (isMounted.current) {
       if (loggedIn && show && userHasReadBool) {
         userHasReadBooks.map((book) => {
@@ -105,7 +113,11 @@ export const BookModal = ({ modalData, open }) => {
     }
   }, [open]);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setShowReviews(false);
+    setShowAddNewReview(false);
+  };
 
   const fetchUser = async () => {
     try {
@@ -203,6 +215,7 @@ export const BookModal = ({ modalData, open }) => {
     }
   };
 
+  // Rating ************************
   const rating = async (e, isbn) => {
     let currentBook = {};
 
@@ -236,7 +249,9 @@ export const BookModal = ({ modalData, open }) => {
       throw new Error(err.message);
     }
   };
+
   let arr = [1, 2, 3, 4, 5];
+
   const popover = (
     <Popover id="popover-basic">
       <Popover.Body>
@@ -275,6 +290,57 @@ export const BookModal = ({ modalData, open }) => {
     </Popover>
   );
 
+  // review ****************
+  const onShowReviewClick = () => {
+    setShowReviews(true);
+  };
+
+  const onCloseReviewClick = () => {
+    setShowReviews(false);
+  };
+
+  const onShowNewReviewClick = () => {
+    setShowAddNewReview(true);
+  };
+
+  const onCloseNewReviewClick = () => {
+    setShowAddNewReview(false);
+  };
+
+  const addNewReview = async () => {};
+
+  const handleNewReviewEvent = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+      const sendData = {
+        method: "add_review",
+        username: username,
+        review: review,
+      };
+      const options = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      const { data } = await axios.patch(
+        `https://read-herring.herokuapp.com/books/:bookId`,
+        JSON.stringify(sendData),
+        options
+      );
+      setReviews([...reviews, { username: username, review: review }]);
+
+      setShowAddNewReview(false);
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  };
+
+  const handleNewReviewInput = (e) => {
+    setReview(e.target.value);
+  };
+
   return (
     <Modal
       show={show}
@@ -301,60 +367,133 @@ export const BookModal = ({ modalData, open }) => {
       </Modal.Header>
 
       <Modal.Body className="modal-wrapper">
-        <div className="modal-description">
-          {modalData && modalData.description}
-        </div>
-        <div className="modal-container">
-          <img
-            alt={modalData && modalData.title}
-            src={modalData && modalData.images.thumbnail}
-            className="modal-img"
-          />
-          <p>{modalData && modalData.author}</p>
-          <p>
-            Rating:{" "}
-            {modalData
-              ? liveRating == 0
-                ? modalData.rating.toFixed(2)
-                : liveRating.toFixed(2)
-              : "Loading..."}
-            {modalData && modalData.num_ratings < 1 ? (
-              liveNumRatings == 0 ? (
-                <p>Be the first to rate this book!</p>
-              ) : (
-                ""
-              )
+        {showReviews ? (
+          <div>
+            {!showAddNewReview ? (
+              <button
+                className="dark-light-button-wide"
+                onClick={onShowNewReviewClick}
+                disabled={!loggedIn}
+              >
+                Add Review
+              </button>
             ) : (
-              ""
+              <>
+                <form
+                  className="new-message-form"
+                  onSubmit={handleNewReviewEvent}
+                >
+                  <label htmlFor="review"></label>
+                  <textarea
+                    type="text"
+                    className="orange-input "
+                    id="review"
+                    name="review"
+                    placeholder="Add a review here..."
+                    value={review}
+                    rows="4"
+                    cols="50"
+                    onChange={handleNewReviewInput}
+                  />
+                  <input
+                    className="orange-button"
+                    type="submit"
+                    disabled={!loggedIn}
+                    value="Post"
+                  />
+                </form>
+                <div onClick={onCloseNewReviewClick}>X</div>
+              </>
             )}
-            {(modalData &&
-              modalData.num_ratings > 0 &&
-              modalData.num_ratings) ||
-            liveNumRatings > 0
-              ? ` from ${
-                  modalData
-                    ? liveNumRatings == 0
-                      ? modalData.num_ratings
-                      : liveNumRatings
-                    : "Loading..."
-                } reader${modalData.num_ratings > 1 ? "s" : ""}`
-              : ""}
-          </p>
-          <OverlayTrigger
-            classname="overlay-button"
-            trigger="click"
-            placement="left"
-            overlay={popover}
-          >
             <button
-              disabled={!userHasReadBool || hasRatedBool}
-              className="dark-light-button"
+              className="dark-light-button-wide button-margin"
+              onClick={onCloseReviewClick}
             >
-              Rate
+              Book Info
             </button>
-          </OverlayTrigger>
-        </div>
+            {modalData &&
+              reviews.map((review) => (
+                <div key={review.review} className="flex-container">
+                  <Link
+                    // className='link'
+                    to={{
+                      pathname: "/users/" + review.username,
+                    }}
+                  >
+                    <p>{review.username}</p>
+                  </Link>
+                  <p>{review.review}</p>
+                </div>
+              ))}
+          </div>
+        ) : (
+          <>
+            <div className="modal-description">
+              {modalData && modalData.description}
+            </div>
+            <div className="modal-container">
+              <img
+                alt={modalData && modalData.title}
+                src={modalData && modalData.images.thumbnail}
+                className="modal-img"
+              />
+              <p>{modalData && modalData.author}</p>
+
+              <p>
+                Rating:{" "}
+                {modalData
+                  ? liveRating == 0
+                    ? modalData.rating.toFixed(2)
+                    : liveRating.toFixed(2)
+                  : "Loading..."}
+                {modalData && modalData.num_ratings < 1 ? (
+                  liveNumRatings == 0 ? (
+                    <p>Be the first to rate this book!</p>
+                  ) : (
+                    ""
+                  )
+                ) : (
+                  ""
+                )}
+                {(modalData &&
+                  modalData.num_ratings > 0 &&
+                  modalData.num_ratings) ||
+                liveNumRatings > 0
+                  ? ` from ${
+                      modalData
+                        ? liveNumRatings == 0
+                          ? modalData.num_ratings
+                          : liveNumRatings
+                        : "Loading..."
+                    } reader${modalData.num_ratings > 1 ? "s" : ""}`
+                  : ""}
+              </p>
+              <div className="flex-container">
+                <button
+                  className="dark-light-button"
+                  onClick={onShowReviewClick}
+                >
+                  Reviews
+                </button>
+                <OverlayTrigger
+                  classname="overlay-button"
+                  trigger="click"
+                  placement="left"
+                  overlay={popover}
+                >
+                  <button
+                    disabled={!userHasReadBool || hasRatedBool}
+                    className="dark-light-button"
+                  >
+                    Rate
+                  </button>
+                </OverlayTrigger>
+              </div>
+            </div>
+          </>
+        )}
       </Modal.Body>
+
       <Modal.Footer>
         <NavLink className="dark-light-button-wide forum-link" to="/forums">
           Go Discuss!

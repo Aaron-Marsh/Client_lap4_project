@@ -50,7 +50,7 @@ export const BooksResult = () => {
         JSON.stringify(sendData),
         options
       );
-      console.log(data);
+
       setBooks(data);
       setLoading(false);
     } catch (err) {

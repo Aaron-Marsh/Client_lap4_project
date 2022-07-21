@@ -126,12 +126,13 @@
 }
 
 .subheading {
+  font-size:2rem;
   color: var(--off-white);
   padding-bottom: 1rem;
   width: fit-content;
   border-bottom: 3px solid var(--off-white);
   font-weight: 600;
-  margin-bottom: 2rem;
+  margin-bottom: 1.3rem;
 }
 
 .home-intro-image {
@@ -144,6 +145,11 @@
   top: -26%;
   height: 120%;
   width: 120%;
+}
+
+.home-intro-text-bold{
+  font-weight:1000;
+  letter-spacing: 0.1rem;
 }
 
 .fish-caught {

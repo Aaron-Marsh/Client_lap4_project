@@ -1,20 +1,31 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React from "react";
+import { useDispatch } from "react-redux";
 
-import { setUser } from '../../actions';
+import { setUser, logout } from "../../actions";
 
 export const LogoutButton = () => {
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-	const onLogoutButtonClick = () => {
-		dispatch(setUser(''));
-	};
+  const onLogoutButtonClick = () => {
+    dispatch(
+      setUser({
+        data: {
+          username: "",
+          email: "",
+          about_me: "",
+          has_read: [],
+          wants_to_read: [],
+        },
+      })
+    );
+    dispatch(logout());
+  };
 
-	return (
-		<>
-			<button className='white-button' onClick={onLogoutButtonClick}>
-				Logout
-			</button>
-		</>
-	);
+  return (
+    <>
+      <button className="white-button" onClick={onLogoutButtonClick}>
+        Logout
+      </button>
+    </>
+  );
 };

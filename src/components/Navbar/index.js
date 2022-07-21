@@ -1,13 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
 import { LoginModal } from "../LoginModal";
-import { useSelector } from "react-redux";
+import { setUser, logout } from "../../actions";
 
 export const Navbar = () => {
   const [modalShow, setModalShow] = useState(false);
+  const [registerShow, setRegisterShow] = useState(false);
 
   const loggedIn = useSelector((state) => state.loggedIn);
   const username = useSelector((state) => state.user.data.username);
+  const dispatch = useDispatch();
+
+  const onLogoutButtonClick = () => {
+    dispatch(
+      setUser({
+        data: {
+          username: "",
+          email: "",
+          about_me: "",
+          has_read: [],
+          wants_to_read: [],
+        },
+      })
+    );
+    dispatch(logout());
+  };
 
   function toggle() {
     let navItems = document.querySelector(".nav-items");
@@ -95,9 +114,11 @@ export const Navbar = () => {
               {!loggedIn ? (
                 <a
                   className="link"
-                  onClick={loggedIn ? "" : () => setModalShow(true)}
+                  onClick={() => {
+                    setModalShow(true);
+                  }}
                 >
-                  {loggedIn ? "Profile" : "Sign in"}
+                  Sign In
                 </a>
               ) : (
                 <NavLink
@@ -110,15 +131,41 @@ export const Navbar = () => {
                     pathname: "/profile/" + username,
                   }}
                 >
-                  {loggedIn ? "Profile" : "Sign in"}
+                  Profile
                 </NavLink>
               )}
             </div>
-            <div></div>
+            <div>
+              {!loggedIn ? (
+                <a
+                  className="link"
+                  onClick={() => {
+                    setModalShow(true);
+                    setRegisterShow(true);
+                  }}
+                >
+                  Sign Up
+                </a>
+              ) : (
+                <NavLink
+                  className="link"
+                  onClick={() => {
+                    onLogoutButtonClick();
+                  }}
+                  to="/"
+                >
+                  Sign Out
+                </NavLink>
+              )}
+            </div>
           </ul>
         </nav>
       </header>
-      <LoginModal show={modalShow} onHide={() => setModalShow(false)} />
+      <LoginModal
+        show={modalShow}
+        registershow={registerShow}
+        onHide={() => setModalShow(false)}
+      />
     </>
   );
 };
