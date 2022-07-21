@@ -10,6 +10,7 @@ export const NewCommentForm = ({
   const [message, setMessage] = useState("");
   const handleMessageInput = (e) => setMessage(e.target.value);
 
+  // Create New Comment
   const handleFormEvent = async (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -25,6 +26,7 @@ export const NewCommentForm = ({
           },
         });
         setMessage("");
+        // pass comment update to PostPage/index.js
         onComment();
       } catch (err) {
         console.error(err);
