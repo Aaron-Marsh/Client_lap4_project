@@ -31,15 +31,6 @@
   margin-block: 0;
 }
 
-.new-post-input {
-  width: 0%;
-  height: 0;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: height 0.4s ease-in-out;
-}
-
 .close-new-post-field {
   background-image: url("../../imgs/X-slate.png");
   height: 0.75rem;
@@ -52,6 +43,15 @@
 }
 .close-new-post-field:hover {
   transform: scale(1.1);
+}
+
+.new-post-input {
+  width: 0%;
+  height: 0%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: height 4s ease-in-out;
 }
 
 .new-post-input > textarea {
@@ -88,8 +88,8 @@
 
 .forum-search {
   position: absolute;
-  right: 12%;
-  top: 8.5rem;
+  right: calc(max(20%,11rem));
+  top: 12.5rem;
 }
 
 .new-post-form-container-inner {
