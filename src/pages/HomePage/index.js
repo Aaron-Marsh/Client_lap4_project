@@ -181,7 +181,6 @@ export const HomePage = () => {
   const [count, setCount] = useState(0);
 
   const addCount = () => {
-    console.log("jello");
     setCount((prev) => prev + 1);
   };
 
