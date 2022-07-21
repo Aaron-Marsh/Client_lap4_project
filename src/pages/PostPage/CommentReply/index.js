@@ -83,7 +83,7 @@ export const CommentReply = ({
             </div>
 
             {/* Show delete button if correct user */}
-            {replyUsername == username && loggedIn && (
+            {((replyUsername === username) && (loggedIn)) && (
                 <div className="reply-footer">
                     <span
                         className="edit-reply"
