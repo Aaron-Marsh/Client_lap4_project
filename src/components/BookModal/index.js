@@ -369,6 +369,20 @@ export const BookModal = ({ modalData, open }) => {
       <Modal.Body className="modal-wrapper">
         {showReviews ? (
           <div>
+            {modalData &&
+              reviews.map((review) => (
+                <div key={review.review} className="flex-container">
+                  <Link
+                    className="post-author"
+                    to={{
+                      pathname: "/profile/" + review.username,
+                    }}
+                  >
+                    <p>{review.username}</p>
+                  </Link>
+                  <p>{review.review}</p>
+                </div>
+              ))}
             {!showAddNewReview ? (
               <button
                 className="dark-light-button-wide"
@@ -410,20 +424,6 @@ export const BookModal = ({ modalData, open }) => {
             >
               Book Info
             </button>
-            {modalData &&
-              reviews.map((review) => (
-                <div key={review.review} className="flex-container">
-                  <Link
-                    className="post-author"
-                    to={{
-                      pathname: "/profile/" + review.username,
-                    }}
-                  >
-                    <p>{review.username}</p>
-                  </Link>
-                  <p>{review.review}</p>
-                </div>
-              ))}
           </div>
         ) : (
           <>
