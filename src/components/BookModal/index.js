@@ -88,10 +88,6 @@ export const BookModal = ({ modalData, open }) => {
         userHasReadBooks.map((book) => {
           if (book.ISBN === modalData.ISBN) {
             setCorrectBook(book);
-
-            /* document
-              .querySelector(".wants-read-button")
-              .classList.add("correct-hover"); */
           }
         });
       }
@@ -134,38 +130,6 @@ export const BookModal = ({ modalData, open }) => {
     }
   };
 
-  /* useEffect(() => {
-    const fetchBooks = async () => {
-      setLoading(true);
-      try {
-        const sendData = {
-          query_type: "intitle",
-          query: "fishing",
-          num_results: "36",
-        };
-        const options = {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        };
-        let { data } = await axios.post(
-          `https://read-herring.herokuapp.com/books/api/`,
-          JSON.stringify(sendData),
-          options
-        );
-        setBooks(data);
-        setLoading(false);
-      } catch (err) {
-        alert("book does not exist, please try again");
-
-        setLoading(false);
-
-        throw new Error(err.message);
-      }
-    };
-    fetchBooks();
-  }, []);
- */
   const addToHasRead = async (isbn, title, author) => {
     try {
       const sendData = {
@@ -348,18 +312,15 @@ export const BookModal = ({ modalData, open }) => {
             Rating:{" "}
             {modalData
               ? liveRating == 0
-                ? modalData.rating
-                : liveRating
+                ? modalData.rating.toFixed(2)
+                : liveRating.toFixed(2)
               : "Loading..."}
-            {modalData && modalData.num_rating < 1 && (
-              <p>
-                Oh no! This book hasn't been rated yet! Be the first person to
-                give this book some love (or hate. We're not gonna judge)
-              </p>
+            {modalData && modalData.num_ratings < 1 && (
+              <p>Be the first to rate this book!</p>
             )}{" "}
-            {modalData && modalData.num_rating > 0 && modalData.rating}{" "}
-            {modalData && modalData.num_rating > 0 && <p>/</p>}
-            {modalData && modalData.num_rating > 0 && modalData.num_rating}
+            from{" "}
+            {modalData && modalData.num_ratings > 0 && modalData.num_ratings}{" "}
+            readers
           </p>
         </div>
       </Modal.Body>
