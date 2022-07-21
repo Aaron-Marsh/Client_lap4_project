@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import { ForumPost } from "../ForumPost";
 import { Link } from "react-router-dom";
 
-export const ForumPosts = ({ posts }) => {
+export const ForumPosts = ({ posts, loading }) => {
+  const [currentPosts, setCurrentPosts] = useState([]);
 
-  const [currentPosts,setCurrentPosts] = useState([])
-
-  useEffect(()=> {
-    setCurrentPosts(posts)
-  },[posts])
+  useEffect(() => {
+    setCurrentPosts(posts);
+  }, [posts]);
 
   return (
     <div className="posts-container">
