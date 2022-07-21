@@ -55,6 +55,17 @@
 
 .book-title {
   margin-top: 25px;
+
+}
+
+.error-message {
+  width: 100%;
+  margin-left: "auto";
+  margin-right: "auto";
+  margin-top: 50px;
+  text-align: center;
+  font-size: 2rem;
+
 }
 
 /* Modal */

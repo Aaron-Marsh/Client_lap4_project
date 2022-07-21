@@ -33,12 +33,8 @@ export const CommentReplies = ({
 
   const replyRef = useRef(null);
 
-  const handleWidth = () => {
-    setIsWidth((current) => !current);
-  };
-  const handleReplyShown = () => {
-    setIsReplyShown((current) => !current);
-  };
+	const handleWidth = () => setIsWidth((current) => !current);
+    const handleReplyShown = () => setIsReplyShown((current) => !current);
 
   const handleReplyButton = () => {
     setIsReplyButton((current) => !current);
@@ -49,7 +45,7 @@ export const CommentReplies = ({
   };
 
   // Handle Delete Reply
-  const handleDelete = (reply_id) => {
+  const handleDeleteReply = (reply_id) => {
     const deleteReplyRequest = async () => {
       try {
         const { data } = await axios({
@@ -82,7 +78,7 @@ export const CommentReplies = ({
           replyTo={r.reply_to}
           postId={postId}
           serverURL={serverURL}
-          onDelete={handleDelete}
+          onDelete={handleDeleteReply}
         />
       ))}
       {/* render reply form if comment has replies  */}

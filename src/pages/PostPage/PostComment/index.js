@@ -68,19 +68,19 @@ export const PostComment = ({
 
   let lineClickedBoolean = false;
 
-  return (
-    <>
-      {/* main message conatiner */}
-      <div className="message-box">
-        {/* Show delete button if correct user */}
-        {messageUsername == username && loggedIn ? (
-          <div
-            className="delete-message"
-            onClick={() => onDelete(messageId)}
-          ></div>
-        ) : (
-          ""
-        )}
+    return (
+        <>
+            {/* main message conatiner */}
+            <div className="message-box">
+                {/* Show delete button if correct user */}
+                {((messageUsername === username) && (loggedIn)) ? (
+                    <div
+                        className="delete-message"
+                        onClick={() => onDelete(messageId)}
+                    ></div>
+                ) : (
+                    ""
+                )}
 
         <div className="message-content">
           {/* line button that hides/reveals replies */}
