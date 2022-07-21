@@ -82,6 +82,10 @@ body {
 
 /* All inputs and buttons ------------ */
 
+.button-margin {
+	margin-left: 5px;
+}
+
 .orange-input {
 	position: relative;
 	border: var(--slate-blue2) 2.5px solid;

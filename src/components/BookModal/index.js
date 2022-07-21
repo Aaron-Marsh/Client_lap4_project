@@ -4,7 +4,8 @@ import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
 import Popover from 'react-bootstrap/Popover';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
+
 import { setUser } from '../../actions';
 import { ChildLoginModal } from '../ChildLogin';
 
@@ -285,6 +286,7 @@ export const BookModal = ({ modalData, open }) => {
 		</Popover>
 	);
 
+	// review ****************
 	const onShowReviewClick = () => {
 		setShowReviews(true);
 	};
@@ -301,7 +303,11 @@ export const BookModal = ({ modalData, open }) => {
 		setShowAddNewReview(false);
 	};
 
-	const addNewReview = async () => {
+	const addNewReview = async () => {};
+
+	const handleNewReviewEvent = async (e) => {
+		e.preventDefault();
+		e.stopPropagation();
 		try {
 			const sendData = {
 				method: 'add_review',
@@ -313,17 +319,18 @@ export const BookModal = ({ modalData, open }) => {
 					'Content-Type': 'application/json',
 				},
 			};
+			console.log(sendData);
 			const { data } = await axios.patch(
 				`https://read-herring.herokuapp.com/books/:bookId`,
 				JSON.stringify(sendData),
 				options
 			);
+			console.log(data);
+			setShowAddNewReview(false);
 		} catch (err) {
 			throw new Error(err.message);
 		}
 	};
-
-	const handleNewReviewEvent = () => {};
 
 	const handleNewReviewInput = (e) => {
 		setReview(e.target.value);
@@ -391,15 +398,21 @@ export const BookModal = ({ modalData, open }) => {
 							</>
 						)}
 						<button
-							className='dark-light-button-wide'
+							className='dark-light-button-wide button-margin'
 							onClick={onCloseReviewClick}>
 							Book Info
 						</button>
 						{modalData &&
 							modalData.reviews.map((review) => (
 								<div key={review.review} className='flex-container'>
+									<Link
+										// className='link'
+										to={{
+											pathname: '/users/' + review.username,
+										}}>
+										<p>{review.username}</p>
+									</Link>
 									<p>{review.review}</p>
-									<p>{review.username}</p>
 								</div>
 							))}
 					</div>
