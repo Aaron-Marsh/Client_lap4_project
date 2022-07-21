@@ -3,48 +3,53 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "../../../store";
 
-import { NewCommentForm } from ".";
+import { CommentReply } from ".";
 
-describe("NewCommentForm", () => {
+describe("CommentReply", () => {
   beforeEach(() => {
     render(
       <Provider store={store}>
         <BrowserRouter>
-          <NewCommentForm
+          <CommentReply
             postId={null}
             onComment={""}
             username={""}
             loggedIn={"true"}
             serverURL={""}
+            replyId={null}
+            replyUsername={""}
+            replyText={""}
+            replyTo={""}
+            onDelete={"false"}
           />
         </BrowserRouter>
       </Provider>
     );
   });
 
-  test("it should render textarea element", () => {
-    const textarea = screen.getByPlaceholderText(/Add a comment here.../i);
-    expect(textarea).toBeInTheDocument();
+  test("it should render commentInput element", () => {
+    const commentInput = screen.getByPlaceholderText(/Add your reply.../i);
+    expect(commentInput).toBeInTheDocument();
   });
 
-  test("should be able to type into textarea", () => {
-    const textarea = screen.getByPlaceholderText(/Add a comment here.../i);
+  test("should be able to type into commentInput", () => {
+    const commentInput = screen.getByPlaceholderText(/Add your reply.../i);
 
-    fireEvent.change(textarea, {
-      target: { value: "I like how practical this book is! Love it!" },
+    fireEvent.change(commentInput, {
+      target: { value: "I disagree with you" },
     });
-    expect(textarea.value).toBe("I like how practical this book is! Love it!");
+    expect(commentInput.value).toBe("I disagree with you");
   });
 
-  test("should have emtpy textarea when ", () => {
-    const textarea = screen.getByPlaceholderText(/Add a comment here.../i);
+  test("should have emtpy commentInput when ", () => {
+    const commentInput = screen.getByPlaceholderText(/Add your reply.../i);
     const button = screen.getByRole("button");
 
-    fireEvent.change(textarea, {
-      target: { value: "I like how practical this book is! Love it!" },
+    fireEvent.change(commentInput, {
+      target: { value: "No, I agree, actually" },
     });
 
     fireEvent.click(button);
-    expect(textarea.value).toBe("I like how practical this book is! Love it!");
+    expect(commentInput.value).toBe("");
   });
 });
