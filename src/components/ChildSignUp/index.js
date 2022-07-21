@@ -48,10 +48,7 @@ export const ChildSignUpModal = (props) => {
         if (data.error) {
           setError(data.error);
         } else {
-          props.onHide();
-          dispatch(login());
-
-          dispatch(setUser(registerDetails.username));
+          props.setShowSignUp(false);
         }
 
         /* loginError.textContent = "Incorrect email or password"; */
