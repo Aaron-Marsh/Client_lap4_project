@@ -148,6 +148,7 @@ Bookshelf */
   font-size: 30px;
   cursor: pointer;
   color: black;
+  text-shadow: 0 0 1px black;
 }
 .star:before {
   content: "\2605";
