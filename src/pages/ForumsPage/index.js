@@ -5,11 +5,14 @@ import axios from "axios";
 import { SearchBar, LoginFooter } from "../../components/";
 import { ForumPosts } from "./ForumPosts";
 import { NewPostForm } from "./NewPostForm";
+import { LoadScreen } from "../../components/";
 import "./ForumsPage.css";
 
 export const ForumsPage = () => {
   const [showLoginFooter, setShowLoginFooter] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const username = useSelector((state) => state.user.data.username);
   const loggedIn = useSelector((state) => state.loggedIn);
@@ -38,6 +41,9 @@ export const ForumsPage = () => {
   }, []);
 
   const fetchForums = async (searchTerm) => {
+    setLoading(true);
+    setError("");
+
     if (searchTerm == "") {
       fetchPosts();
     }
@@ -56,8 +62,15 @@ export const ForumsPage = () => {
         options
       );
 
-      setPosts(data);
-      setHasSearched(true);
+      if (data.length == 0) {
+        setLoading(false);
+
+        setError("No forums with that name, please try again!");
+      } else {
+        setLoading(false);
+        setPosts(data);
+        setHasSearched(true);
+      }
     } catch (err) {
       throw new Error(err.message);
     }
@@ -90,6 +103,7 @@ export const ForumsPage = () => {
               className="forum-search"
               getResults={fetchForums}
             />
+            {error ? <div>{error}</div> : ""}
           </div>
           <NewPostForm
             username={username}
@@ -97,7 +111,7 @@ export const ForumsPage = () => {
             onCreate={fetchPosts}
           />
 
-          <ForumPosts posts={posts} />
+          {loading ? <LoadScreen /> : <ForumPosts posts={posts} />}
         </div>
         {showLoginFooter ? <LoginFooter /> : ""}
       </div>
