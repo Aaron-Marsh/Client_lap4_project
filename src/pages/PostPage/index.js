@@ -80,7 +80,10 @@ export const PostPage = () => {
             title={post.title}
             postUsername={post.username}
             first_message={post.first_message}
+            likes={post.likes}
             onDelete={handleDeletePost}
+            serverURL={serverURL}
+            postId={postId}
           />
           {/* Form for adding new comments */}
           <NewCommentForm

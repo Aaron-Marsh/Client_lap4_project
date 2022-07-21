@@ -20,6 +20,7 @@ export const ForumPosts = ({ posts, loading }) => {
         >
           <ForumPost
             title={p.title}
+            likeCount={p.likes.length}
             username={p.username}
             first_message={p.first_message}
           />
