@@ -9,7 +9,7 @@ import axios from "axios";
 import "./PostPage.css";
 
 export const PostPage = () => {
-   const username = useSelector((state) => state.user.user);
+    const username = useSelector((state) => state.user.data.username);
     const loggedIn = useSelector((state) => state.loggedIn);
     const goTo = useNavigate();
     const [showLoginFooter, setShowLoginFooter] = useState(false);
@@ -67,8 +67,6 @@ export const PostPage = () => {
         deletePost();
         goTo('../forums');
     };
-
-    // POSTHEADER SHOULD HAVE A DELETE BUTTON
 
     return (
         <>

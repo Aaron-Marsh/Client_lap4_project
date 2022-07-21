@@ -62,8 +62,8 @@ export const ForumsPage = () => {
       throw new Error(err.message);
     }
   };
-  //Generic Results
 
+  //Generic Results
   const fetchPosts = async () => {
     try {
       let myURL = "https://read-herring.herokuapp.com";
