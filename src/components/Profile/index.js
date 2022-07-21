@@ -12,12 +12,47 @@ export const Profile = () => {
 	const [userData, setUserData] = useState({});
 	const [error, setError] = useState('');
 
-
 	const user = useSelector((state) => state.user.data.username);
+
+	const aboutMe = useSelector((state) => state.user.data.about_me);
 
 	const loggedIn = useSelector((state) => state.loggedIn);
 
 	let profile;
+
+	// edit
+	const [isEditShown, setIsEditShown] = useState(false);
+	const [editAboutMe, setEditAboutMe] = useState('');
+	const [currentAboutMe, setCurrentAboutMe] = useState(aboutMe);
+
+	const handleEditButton = () => {
+		handleEditShown();
+	};
+
+	const handleEditShown = () => setIsEditShown((current) => !current);
+
+	// Edit Comment **********************************************
+	const handleEditEvent = async (e) => {
+		e.preventDefault();
+		e.stopPropagation();
+		try {
+			const { data } = await axios({
+				method: 'PATCH',
+				url: `https://read-herring.herokuapp.com/users/${username}`,
+				data: {
+					method: 'edit_about_me',
+					about_me: editAboutMe,
+				},
+			});
+		} catch (err) {
+			throw new Error(err.message);
+		}
+		handleEditButton();
+		setCurrentAboutMe(editAboutMe);
+	};
+
+	// Edit Reply Input Handler
+	const handleEditAboutMe = (e) => setEditAboutMe(e.target.value);
 
 	const fetchUserOnLoad = async () => {
 		try {
@@ -40,13 +75,9 @@ export const Profile = () => {
 		}
 	};
 
-
 	useEffect(() => {
 		fetchUserOnLoad();
 	}, []);
-
-
-	const editAboutMe = () => {};
 
 	if (error) {
 		profile = (
@@ -65,19 +96,44 @@ export const Profile = () => {
 						<h2 className='profile-title'>Welcome back, {username}!</h2>
 						<p className='about-me'>{userData.about_me}</p>
 					</div>
-					<button className='orange-button' onClick={editAboutMe}>
+					<button className='orange-button' onClick={setIsEditShown}>
 						Edit
 					</button>
-				</div>
+					{isEditShown ? (
+						// EDIT MESSAGE FORM
+						<form onSubmit={handleEditEvent}>
+							<label htmlFor='edit'></label>
+							<textarea
+								type='text'
+								id='edit'
+								name='edit'
+								className='orange-input'
+								value={editAboutMe}
+								onChange={handleEditAboutMe}
+							/>
+							<input
+								type='submit'
+								value='Save'
+								className='orange-button'
+								disabled={!loggedIn}></input>
+							<div
+								className='close-edit-field'
+								onClick={handleEditButton}></div>
+						</form>
+					) : (
+						// 	// Pass in message content from PostComments
+						<div className='message-message'>{currentAboutMe}</div>
+					)}
 
-				<div className='shelf-user-wrapper'>
-					<div className='bookshelf-container'>
-						<h3 className='bookshelf-title'>Books I've Read</h3>
-						<Bookcase data={userData.has_read} />
-					</div>
-					<div className='bookshelf-container'>
-						<h3 className='bookshelf-title'>Books to read</h3>
-						<Bookcase data={userData.wants_to_read} />
+					<div className='shelf-user-wrapper'>
+						<div className='bookshelf-container'>
+							<h3 className='bookshelf-title'>Books I've Read</h3>
+							<Bookcase data={userData.has_read} />
+						</div>
+						<div className='bookshelf-container'>
+							<h3 className='bookshelf-title'>Books to read</h3>
+							<Bookcase data={userData.wants_to_read} />
+						</div>
 					</div>
 				</div>
 			</main>
@@ -85,7 +141,7 @@ export const Profile = () => {
 	}
 
 	//Another users profile
-	else
+	else {
 		profile = (
 			<main className='main-profile'>
 				<div className='intro-wrapper'>
@@ -105,6 +161,7 @@ export const Profile = () => {
 				</div>
 			</main>
 		);
+	}
 
 	return <>{profile}</>;
 };
