@@ -70,7 +70,7 @@ export const BooksResult = () => {
     const fetchBooks = async () => {
       setLoading(true);
       try {
-        let queryOptions = ["fishing", "herring", "harry potter", "game of thrones", "catch 22", "firefly lane", "lords of the bow", "five love languages", "the hobbit", "don quixote", "a tale of two cities", "sherlock" ]
+        let queryOptions = ["fishing", "herring", "harry potter", "game of thrones", "catch 22", "firefly lane", "lords of the bow", "five love languages", "don quixote", "a tale of two cities", "sherlock" ]
         let queryChosen = queryOptions[Math.floor(Math.random() * queryOptions.length)]
         const sendData = {
           query_type: "intitle",
