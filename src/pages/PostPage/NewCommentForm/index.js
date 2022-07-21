@@ -11,7 +11,7 @@ export const NewCommentForm = ({
   const handleMessageInput = (e) => setMessage(e.target.value);
 
   // Create New Comment
-  const handleFormEvent = async (e) => {
+  const handleNewCommentEvent = async (e) => {
     e.preventDefault();
     e.stopPropagation();
     if (message != "") {
@@ -36,7 +36,7 @@ export const NewCommentForm = ({
 
   return (
     <>
-      <form className="new-message-form" onSubmit={handleFormEvent}>
+      <form className="new-message-form" onSubmit={handleNewCommentEvent}>
         <label htmlFor="message"></label>
         <textarea
           type="text"
