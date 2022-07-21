@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { LoginFooter, BackButton } from "../../components/index";
 import { PostHeader } from "./PostHeader";
 import { PostComments } from "./PostComments";
@@ -9,87 +9,101 @@ import axios from "axios";
 import "./PostPage.css";
 
 export const PostPage = () => {
-  const [showLoginFooter, setShowLoginFooter] = useState(false);
-  const username = useSelector((state) => state.user.user);
-  const loggedIn = useSelector((state) => state.loggedIn);
-  const [postMessages, setPostMessages] = useState([]);
-  const [post, setPost] = useState("");
-  let { postId } = useParams();
+    const username = useSelector((state) => state.user.user);
+    const loggedIn = useSelector((state) => state.loggedIn);
+    const goTo = useNavigate();
+    const [showLoginFooter, setShowLoginFooter] = useState(false);
+    const [post, setPost] = useState("");
+    let { postId } = useParams();
 
-  let serverURL = "https://read-herring.herokuapp.com";
-  const loadData = async () => {
-    try {
-      const { data } = await axios.get(`${serverURL}/forums/${postId}`);
-      // const pertinentPost = await data.filter((p)=>{
-      //     return p.id === postId
-      // })
-      setPost(await data);
-    } catch (err) {}
-  };
-  // get post data by id in route
-  useEffect(() => {
-    loadData();
-    return () => {};
-  }, []);
+    // ***************** HARDCODE SERVER URL ********************
+    let serverURL = "https://read-herring.herokuapp.com";
 
-  useEffect(() => {
-    if (post && post.messages) {
-      setPostMessages(post.messages);
-      /* post.messages && post.messages.reverse().map((m) => {}); */
-    }
-    return () => {};
-  }, [post]);
-
-  //Footer stuff
-
-  useEffect(() => {
-    let myScrollFunc = function () {
-      let y = window.scrollY;
-      if (y >= 10) {
-        setShowLoginFooter(true);
-      } else {
-        setShowLoginFooter(false);
-      }
+    const loadData = async () => {
+        try {
+            const reqUrl = `${serverURL}/forums/${postId}`;
+            const { data } = await axios.get(reqUrl);
+            setPost(await data);
+        } catch (err) {}
     };
 
-    window.addEventListener("scroll", myScrollFunc);
+    // get post data by id in route
+    useEffect(() => {
+        loadData();
+        return () => {};
+    }, []);
 
-    return () => {
-      window.removeEventListener("scroll", myScrollFunc);
+    //Footer stuff
+    useEffect(() => {
+        let myScrollFunc = function () {
+            let y = window.scrollY;
+            if (y >= 10) {
+                setShowLoginFooter(true);
+            } else {
+                setShowLoginFooter(false);
+            }
+        };
+
+        window.addEventListener("scroll", myScrollFunc);
+
+        return () => {
+            window.removeEventListener("scroll", myScrollFunc);
+        };
+    }, []);
+
+    const handleDeletePost = () => {
+        const deletePost = async () => {
+            try {
+                const { data } = await axios({
+                    method: "DELETE",
+                    url: `${serverURL}/forums/${postId}`,
+                });
+                // setRepliesArray((current) => [...current, data]);
+            } catch (err) {
+              throw new Error(err.message);
+            }
+        };
+        deletePost();
+        goTo('../forums');
     };
-  }, []);
 
-  return (
-    <>
-      <div className="post-page-container">
-        <div className="container header-space">
-          <BackButton />
-          <PostHeader
-            title={post.title}
-            post_username={post.username}
-            first_message={post.first_message}
-          />
-          <NewCommentForm
-            postId={postId}
-            onComment={loadData}
-            username={username}
-            loggedIn={loggedIn}
-            serverURL={serverURL}
-          />
-          {postMessages ? (
-            <PostComments
-              postMessages={postMessages}
-              loggedIn={loggedIn}
-              postId={postId}
-              serverURL={serverURL}
-              username={username}
-            />
-          ) : (
-            <p>no comments yet</p>
-          )}
-        </div>
-        {showLoginFooter ? <LoginFooter /> : ""}
-      </div>
-    </>
-  );
+    // POSTHEADER SHOULD HAVE A DELETE BUTTON
+
+    return (
+        <>
+            <h1>Welcome to post page</h1>
+            <div className="post-page-container">
+                <div className="container header-space">
+                    <BackButton />
+                    {/* The Main Post Message */}
+                    <PostHeader
+                        username={username}
+                        loggedIn={loggedIn}
+                        title={post.title}
+                        postUsername={post.username}
+                        first_message={post.first_message}
+                        onDelete={handleDeletePost}
+                    />
+                    {/* Form for adding new comments */}
+                    <NewCommentForm
+                        username={username}
+                        loggedIn={loggedIn}
+                        postId={postId}
+                        onComment={loadData}
+                        serverURL={serverURL}
+                    />
+                    {/* If post has comments, render comments */}
+                    {/* Pass in comments data, main post id, username/login status */}
+                    <PostComments
+                        username={username}
+                        loggedIn={loggedIn}
+                        post={post}
+                        postId={postId}
+                        serverURL={serverURL}
+                    />
+                </div>
+                {showLoginFooter ? <LoginFooter /> : ""}
+            </div>
+        </>
+    );
 };
