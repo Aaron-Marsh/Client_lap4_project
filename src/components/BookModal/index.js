@@ -318,9 +318,11 @@ export const BookModal = ({ modalData, open }) => {
             {modalData && modalData.num_ratings < 1 && (
               <p>Be the first to rate this book!</p>
             )}{" "}
-            from{" "}
-            {modalData && modalData.num_ratings > 0 && modalData.num_ratings}{" "}
-            readers
+            {modalData && modalData.num_ratings > 0 && modalData.num_ratings
+              ? `from ${modalData.num_ratings} reader${
+                  modalData.num_ratings > 1 ? "s" : ""
+                }`
+              : ""}
           </p>
         </div>
       </Modal.Body>
