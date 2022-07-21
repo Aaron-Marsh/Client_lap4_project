@@ -20,7 +20,9 @@ export const CommentReplies = ({
     const [currentReplies, setCurrentReplies] = useState([]);
 
     useEffect(() => {
-        setCurrentReplies(replies);
+        if (replies.length>0){
+          setCurrentReplies(replies);
+        }
     }, [replies]);
 
     const handleNewReply = (data) => {
@@ -34,19 +36,12 @@ export const CommentReplies = ({
   
     const replyRef = useRef(null);
   
-    const handleWidth = () => {
-      setIsWidth((current) => !current);
-    };
-    const handleReplyShown = () => {
-      setIsReplyShown((current) => !current);
-    };
-  
-    const handleReplyButton = () => {
-      setIsReplyButton((current) => !current);
-    };
+    const handleWidth = () => setIsWidth((current) => !current);
+    const handleReplyShown = () => setIsReplyShown((current) => !current);
+    const handleReplyButton = () => setIsReplyButton((current) => !current);
   
 // Handle Delete Reply 
-const handleDelete = (reply_id) => {
+const handleDeleteReply = (reply_id) => {
   const deleteReplyRequest = async () => {
     try {
       const { data } = await axios({
@@ -79,11 +74,11 @@ setCurrentReplies(filteredCurrentReplies);
                     replyTo={r.reply_to}
                     postId={postId}
                     serverURL={serverURL}
-                    onDelete={handleDelete}
+                    onDelete={handleDeleteReply}
                 />
             ))}
             {/* render reply form if comment has replies  */}
-            {replies && (
+            
                 <div className="reply-form-container">
                     {!isReplyButton ? (
                       <>
@@ -124,7 +119,7 @@ setCurrentReplies(filteredCurrentReplies);
                         </button>
                     )}
                 </div>
-            )}
+            
         </>
     );
 };
