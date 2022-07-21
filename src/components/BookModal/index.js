@@ -17,6 +17,7 @@ export const BookModal = ({ modalData, open }) => {
   const [starBool, setStarBool] = useState(false);
   const [changeStar, setChangeStar] = useState(false);
   const [liveRating, setLiveRating] = useState(0);
+  const [liveNumRatings, setLiveNumRatings] = useState(0);
   const [hasRated, setHasRated] = useState(false);
   const [hasRatedBool, setHasRatedBool] = useState(false);
   const [correctBook, setCorrectBook] = useState(null);
@@ -96,6 +97,7 @@ export const BookModal = ({ modalData, open }) => {
 
   useEffect(() => {
     setLiveRating(0);
+    setLiveNumRatings(0);
     if (isMounted.current) {
       setShow(true);
     } else {
@@ -228,6 +230,7 @@ export const BookModal = ({ modalData, open }) => {
         options
       );
       setLiveRating(data.rating);
+      setLiveNumRatings(data.num_ratings);
       fetchUser();
     } catch (err) {
       throw new Error(err.message);
@@ -315,13 +318,26 @@ export const BookModal = ({ modalData, open }) => {
                 ? modalData.rating.toFixed(2)
                 : liveRating.toFixed(2)
               : "Loading..."}
-            {modalData && modalData.num_ratings < 1 && (
-              <p>Be the first to rate this book!</p>
-            )}{" "}
-            {modalData && modalData.num_ratings > 0 && modalData.num_ratings
-              ? `from ${modalData.num_ratings} reader${
-                  modalData.num_ratings > 1 ? "s" : ""
-                }`
+            {modalData && modalData.num_ratings < 1 ? (
+              liveNumRatings == 0 ? (
+                <p>Be the first to rate this book!</p>
+              ) : (
+                ""
+              )
+            ) : (
+              ""
+            )}
+            {(modalData &&
+              modalData.num_ratings > 0 &&
+              modalData.num_ratings) ||
+            liveNumRatings > 0
+              ? ` from ${
+                  modalData
+                    ? liveNumRatings == 0
+                      ? modalData.num_ratings
+                      : liveNumRatings
+                    : "Loading..."
+                } reader${modalData.num_ratings > 1 ? "s" : ""}`
               : ""}
           </p>
           <OverlayTrigger
