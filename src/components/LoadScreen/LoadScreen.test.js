@@ -5,19 +5,25 @@ import store from "../../store";
 
 import { LoadScreen } from ".";
 
-describe("App", () => {
+describe("LoadScreen", () => {
   beforeEach(() => {
     render(
       <Provider store={store}>
         <BrowserRouter>
-          <App />
+          <LoadScreen />
         </BrowserRouter>
       </Provider>
     );
   });
-  test("", () => {
-    render();
+  test("when it renders during loading it shows a pile of books", () => {
+    const loadingLogo = screen.getByLabelText("loading-logo");
+    expect(loadingLogo).toBeInTheDocument();
+  });
 
-    expect(screen.getByText(/Read Herring/i)).toBeInTheDocument();
+  test("when it renders a unordered list", () => {
+    const unorderedListOfBooks = screen.getByLabelText(
+      "unordered-list-of-books"
+    );
+    expect(unorderedListOfBooks).toBeInTheDocument();
   });
 });
