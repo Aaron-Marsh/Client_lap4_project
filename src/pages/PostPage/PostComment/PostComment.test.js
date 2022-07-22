@@ -22,11 +22,11 @@ describe("PostComment", () => {
     fireEvent.click(toggleLine);
   });
 
-  test("oline that opens and closes replies exists on the web page", () => {
-    const linkToMessagePoster = screen.getByLabelText("link-to-message-poster");
+  // test("oline that opens and closes replies exists on the web page", () => {
+  //   const linkToMessagePoster = screen.getByLabelText("link-to-message-poster");
 
-    fireEvent.click(linkToMessagePoster);
+  //   fireEvent.click(linkToMessagePoster);
 
-    expect(linkToMessagePoster).toBeInTheDocument();
-  });
+  //   expect(linkToMessagePoster).toBeInTheDocument();
+  // });
 });

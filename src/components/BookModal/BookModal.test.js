@@ -42,4 +42,23 @@ describe("BookModal", () => {
   //     fireEvent.click(button);
   //     expect(replyInput.value).toBe("I don't like this book");
   //   });
+
+  test("modal shows the children and a close button", () => {
+    const handleClose = jest.fn();
+
+    // Act
+    const { getByText } = render(
+      <Modal onClose={handleClose}>
+        <div>test</div>
+      </Modal>
+    );
+    // Assert
+    expect(getByText("test")).toBeTruthy();
+
+    // Act
+    fireEvent.click(getByText(/close/i));
+
+    // Assert
+    expect(handleClose).toHaveBeenCalledTimes(1);
+  });
 });
