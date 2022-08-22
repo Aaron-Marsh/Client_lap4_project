@@ -6,17 +6,24 @@ import store from "../../store";
 import { LogoutButton } from ".";
 
 describe("LogoutButton", () => {
-  beforeEach(() => {
-    render(
-      <Provider store={store}>
-        <BrowserRouter>
-          <LogoutButton />
-        </BrowserRouter>
-      </Provider>
-    );
-  });
-  test("logout button appears on render", () => {
-    const logoutButton = screen.getByRole("button", { name: "Logout" });
-    expect(logoutButton).toBeInTheDocument();
-  });
+  // const useDispatchMock = jest.spyOn(reactRedux, "useDispatch");
+  //   render(
+  //     <Provider store={store}>
+  //       <BrowserRouter>
+  //         <LogoutButton />
+  //       </BrowserRouter>
+  //     </Provider>
+  //   );
+  // beforeEach(() => {
+  //   useDispatchMock.mockClear();
+  // });
+  // test("logout button appears on render", () => {
+  //   const logoutButton = screen.getByRole("button", { name: "Logout" });
+  //   expect(logoutButton).toBeInTheDocument();
+  // });
+  // test("logout button appears", () => {
+  //   const dummyDispatch = jest.fn();
+  //   useDispatchMock.mockReturnValue(dummyDispatch);
+  //   expect(dummyDispatch).toHaveBeenCalled();
+  // });
 });
